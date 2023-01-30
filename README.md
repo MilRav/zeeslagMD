@@ -1,2 +1,3 @@
 # zeeslagMD
-zeeslag spel marinedagen
+zeeslag spel voor de marinedagen.
+
