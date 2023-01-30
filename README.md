@@ -1,5 +1,5 @@
 # zeeslagMD
-zeeslag spel ontwikkeld voor de marinedagen.
+Zeeslag spel ontwikkeld voor de marinedagen.
 
 ## Gebruikte technologieen 
 HTML, CSS en JavaScript.
