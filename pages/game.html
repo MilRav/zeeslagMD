@@ -15,14 +15,18 @@
     <div class="header">
         <h1>Zeeslag</h1>
     </div>
-    <div class="main">
-        <canvas id="gameCanvas" width="500" height="500"></canvas>
+    <div class="grid">
         <script>
-            var canvas = document.getElementById("gameCanvas");
-            var ctx = canvas.getContext("2d");
-            ctx.fillStyle = "#FF0000";
-            ctx.fillRect(1,1,10,10);
-        </script>
+        for (var i = 0; i < 100; i++) {
+            var item = document.createElement("div");
+            item.classList.add("grid-item");
+            item.innerHTML = i+1;
+            item.addEventListener("click", function() {
+                alert("You clicked on " + this.innerHTML);
+            });
+            document.querySelector(".grid").appendChild(item);
+        }
+    </script>
     </div>
     <div class="footer">
         <div class="footerText">
