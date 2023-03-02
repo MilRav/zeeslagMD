@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="icon" type="image/x-icon" href="../media/faviconJivc.ico">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styling/style.css" />
+    <link rel="icon" type="image/x-icon" href="../media/faviconJivc.ico" />
     <title>Game</title>
 </head>
+
 <body>
     <div class="logo">
-        <img src="../media/jivcLogo.jpg" alt="JIVC logo">
+        <img src="../media/jivcLogo.jpg" alt="JIVC logo" />
     </div>
     <div class="header">
         <h1>Zeeslag</h1>
     </div>
     <div class="grid">
         <script>
-        for (var i = 0; i < 100; i++) {
-            var item = document.createElement("div");
-            item.classList.add("grid-item");
-            item.innerHTML = i+1;
-            item.addEventListener("click", function() {
-                alert("You clicked on " + this.innerHTML);
-            });
-            document.querySelector(".grid").appendChild(item);
-        }
-    </script>
+            for (var i = 0; i < 100; i++) {
+                var item = document.createElement("div");
+                item.classList.add("grid-item");
+                item.innerHTML = i + 1;
+                item.addEventListener("click", function () {
+                    alert("You clicked on " + this.innerHTML);
+                });
+                document.querySelector(".grid").appendChild(item);
+            }
+        </script>
     </div>
     <div class="footer">
         <div class="footerText">
-          <p>JIVC | het IT-bedrijf van Defensie</p>
-          <p>Copyright | Disclaimer</p>
+            <p>JIVC | het IT-bedrijf van Defensie</p>
+            <p>Copyright | Disclaimer</p>
         </div>
-      </div>
+    </div>
 </body>
+
 </html>
