@@ -15,6 +15,7 @@
     margin: 0;
     padding: 0;
 }
+
 body {
     background-color: #F5F5F5;
     font-family: rijksoverheidSansText;
@@ -23,9 +24,11 @@ body {
 h1 {
     font-family: rijksoverheidSansHeading;
 }
+
 .logo {
     background-color: #FFF;
 }
+
 .logo img{
     max-height:  10vh;
     margin: 10px;
@@ -46,7 +49,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 80vh;
     background-image: url("media/lcf.jpg");
     background-repeat:no-repeat;
     background-size:cover;
@@ -58,6 +61,7 @@ h1 {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     background-color: #FFF;
     padding: 50px;
     border-radius: 5px;
@@ -92,6 +96,10 @@ canvas {
 }
 
 .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     color: #FFF;
     background-color: #2F767E;
     padding: 2vh 2vw 5vh 2vw;
@@ -102,4 +110,23 @@ canvas {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+progress {
+  border: none;
+  width: 300px;
+  height: 10px;
+  background: crimson;
+}
+
+progress {
+  color: #2F767E;
+}
+
+progress::-webkit-progress-value {
+  background: #2F767E;
+}
+
+progress::-moz-progress-bar {
+  background: #2F767E;
 }
