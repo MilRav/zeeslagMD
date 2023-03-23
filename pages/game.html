@@ -15,14 +15,39 @@
     <div class="header">
         <h1>Zeeslag</h1>
     </div>
-    <div class="main">
-        <canvas id="gameCanvas" width="500" height="500"></canvas>
+        <div class="gameContainer">
+            <div class="gameInfo">
+                <p>Ronde: <span id="turnDisplay"></span></p>
+                <p>Info: <span id="info"></span></p>
+            </div>
+
+            <div id="gamesBoardContainer"></div>
+
+            <div class="optionContainer">
+                <div id="0" class="destroyerPreview destroyer" draggable="true"></div>
+                <div id="1" class="submarinePreview submarine" draggable="true"></div>
+                <div id="2" class="cruiserPreview cruiser" draggable="true"></div>
+                <div id="3" class="battleshipPreview battleship" draggable="true"></div>
+                <div id="4" class="carrierPreview carrier" draggable="true"></div>
+            </div>
+
+            <button id="flipButton">Draai</button>
+            <button id="startButton">Start</button>
+        </div>
+
+    <script src="../scripts/script.js"></script>
+    <!-- <div class="grid">
         <script>
-            var canvas = document.getElementById("gameCanvas");
-            var ctx = canvas.getContext("2d");
-            ctx.fillStyle = "#FF0000";
-            ctx.fillRect(1,1,10,10);
-            </script>
+            for (var i = 0; i < 100; i++) {
+                var item = document.createElement("div");
+                item.classList.add("grid-item");
+                item.innerHTML = i + 1;
+                item.addEventListener("click", function () {
+                    alert("You clicked on " + this.innerHTML);
+                });
+                document.querySelector(".grid").appendChild(item);
+            }
+        </script> -->
     </div>
     <div class="footer">
         <div class="footerText">
