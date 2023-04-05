@@ -22,5 +22,6 @@ Download het project en open de index.html in uw favoriete browser na keuze.
 
 ## Credits
 [MilRav](https://github.com/MilRav/)
+[Britneyspoel](https://github.com/britneyspoel)
 
 ## Licenties

@@ -6,36 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styling/style.css" />
-    <link rel="icon" type="image/x-icon" href="../media/faviconJivc.ico" />
+    <script>
+      let gameMode = 'singlePlayer'
+    </script>
+    <script src="../scripts/script.js" charset="utf-8"></script>
     <title>Game</title>
 </head>
 
 <body>
-    <div class="logo">
-        <img src="../media/jivcLogo.jpg" alt="JIVC logo" />
+  <div class="container hidden-info">
+    <h3 id="whose-go" class="info-text">Your Go!</h3>
+    <h3 id="info" class="info-text"></h3>
+  </div>
+
+  <div class="container">
+    <div class="battleship-grid grid-user"></div>
+    <div class="battleship-grid grid-computer"></div>
+  </div>
+
+  <div class="container">
+    <div class="grid-display">
+      <div class="ship destroyer-container" draggable="true"><div id="destroyer-0"></div><div id="destroyer-1"></div></div>
+      <div class="ship submarine-container" draggable="true"><div id="submarine-0"></div><div id="submarine-1"></div><div id="submarine-2"></div></div>
+      <div class="ship cruiser-container" draggable="true"><div id="cruiser-0"></div><div id="cruiser-1"></div><div id="cruiser-2"></div></div>
+      <div class="ship battleship-container" draggable="true"><div id="battleship-0"></div><div id="battleship-1"></div><div id="battleship-2"></div><div id="battleship-3"></div></div>
+      <div class="ship carrier-container" draggable="true"><div id="carrier-0"></div><div id="carrier-1"></div><div id="carrier-2"></div><div id="carrier-3"></div><div id="carrier-4"></div></div>
     </div>
-    <div class="header">
-        <h1>Zeeslag</h1>
+  </div>
+
+  <div class="container hidden-info">
+    <div class="setup-buttons" id="setup-buttons">
+      <button id="start" class="btn">Start Game</button>
+      <script>
+        document.getElementById("start")
+      </script>
+      <button id="rotate" class="btn">Rotate Your Ships</button>
     </div>
-    <div class="grid">
-        <script>
-            for (var i = 0; i < 100; i++) {
-                var item = document.createElement("div");
-                item.classList.add("grid-item");
-                item.innerHTML = i + 1;
-                item.addEventListener("click", function () {
-                    alert("You clicked on " + this.innerHTML);
-                });
-                document.querySelector(".grid").appendChild(item);
-            }
-        </script>
-    </div>
-    <div class="footer">
-        <div class="footerText">
-            <p>JIVC | het IT-bedrijf van Defensie</p>
-            <p>Copyright | Disclaimer</p>
-        </div>
-    </div>
+  </div>
 </body>
 
 </html>
