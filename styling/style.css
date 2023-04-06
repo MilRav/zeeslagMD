@@ -218,6 +218,7 @@ progress::-moz-progress-bar {
     width: 20px;
     height: 10px;
     margin: 3px;
+    cursor: grab;
 }
 .submarinePreview {
     width: 30px;
@@ -240,14 +241,30 @@ progress::-moz-progress-bar {
     margin: 3px;
 }
 
+#computer:hover {
+    cursor: crosshair;
+}
+
+#computer .destroyer,
+#computer .submarine,
+#computer .cruiser,
+#computer .battleship,
+#computer .carrier {
+    background-color: lightgrey;
+}
+
+
+
+
 .hover {
     background-color: black;
 }
 
 .boom {
-    background-color: red;
+    background-color: red !important;
 }
 
 .empty {
-    background-color: white;
+    background-color: white !important;
+    pointer-events: none;
 }

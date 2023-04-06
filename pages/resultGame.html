@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../media/faviconJivc.ico" />
+    <link rel="stylesheet" href="../styling/style.css" />
+    <title>Gewonnen of verloren</title>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="../media/jivcLogo.jpg" alt="JIVC logo" />
+    </div>
+    <div class="section">
+        <div class="sectionContent">
+            <div class="sectionText">
+                <h1>gewonnen of verloren</h1>
+                <p>Bedankt voor het spelen!</p>
+            </div>
+            <div class="redirectionIndexPage">
+                <br>
+                <p>U word na 20 seconde terug gestuurd naar welkom pagina.</p>
+                <progress value="0" max="20" id="progressBar"></progress>
+                <script type="text/javascript">
+                    var timeleft = 20;
+                    var redirectTimer = setInterval(function () {
+                        if (timeleft <= 0) {
+                            clearInterval(redirectTimer);
+                        }
+                        document.getElementById("progressBar").value = 20 - timeleft;
+                        timeleft -= 1;
+                    }, 1000);
+                </script>
+                <script>
+                    var timer = setTimeout(function () {
+                        window.location = '../index.html'
+                    }, 20000);
+                </script>
+            </div>
+            <div class="sectionButton">
+                <a href="../index.html"><button>welkom pagina</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footerText">
+            <p>JIVC | het IT-bedrijf van Defensie</p>
+            <p>Copyright | Disclaimer</p>
+        </div>
+    </div>
+</body>
+
+</html>
