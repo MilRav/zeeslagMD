@@ -31,6 +31,20 @@ h1 {
     font-family: rijksoverheidSansHeading;
 }
 
+button {
+    background-color: #2f767e;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin-top: 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
 /* Header styling */
 
 .logo {
@@ -135,28 +149,13 @@ progress::-moz-progress-bar {
 
 /* game styling */
 
-/* .grid {
-    width: 50vw;
-    height: 50vh;
-    display: grid;
-    grid-template-columns: repeat(10, 20px);
-    grid-template-rows: repeat(10, 20px);
-    grid-gap: 40px;
-    margin: 0 auto;
-    max-width: 500px;
+.gameInfo {
+    font-size: 50px;
+    margin-bottom: 30px;
 }
 
-.grid-item {
-    background-color: #eee;
-    text-align: center;
-    font-size: 14px;
-    cursor: pointer;
-    height: 50px;
-    width: 50px;
-} */
-
 .gameContainer {
-    width: 500px;
+    width: 1000px;
     margin: auto;
     padding: 10%;
     text-align: center;
@@ -165,21 +164,21 @@ progress::-moz-progress-bar {
 
 
 #gamesBoardContainer {
-    width: 500px;
+    width: 1000px;
     display: flex;
     justify-content: space-between;
 }
 
 .gameBoard {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     display: flex;
     flex-wrap: wrap;
 }
 
 .block {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     border: solid 1px black;
     box-sizing: border-box;
 }
@@ -242,7 +241,8 @@ progress::-moz-progress-bar {
 }
 
 #computer:hover {
-    cursor: crosshair;
+    cursor: url('../media/gunpointer.png')17.5 17.5, auto;
+    background-color: white;
 }
 
 #computer .destroyer,
@@ -250,7 +250,7 @@ progress::-moz-progress-bar {
 #computer .cruiser,
 #computer .battleship,
 #computer .carrier {
-    background-color: lightgrey;
+    background-color: lightblue;
 }
 
 
@@ -261,10 +261,16 @@ progress::-moz-progress-bar {
 }
 
 .boom {
-    background-color: red !important;
+    background-image: url('../media/boom.gif') !important;
+    background-size: cover;
+    background-position: center;
+    /* background-color: lightgrey; */
+    pointer-events: none;
 }
 
 .empty {
-    background-color: white !important;
     pointer-events: none;
+    background-image: url('../media/empty.gif') !important;
+    background-size: cover;
+    background-position: center;
 }
