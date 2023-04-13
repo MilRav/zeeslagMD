@@ -1,60 +1,48 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styling/style.css">
-    <link rel="icon" type="image/x-icon" href="../media/faviconJivc.ico">
+    <link rel="icon" type="image/x-icon" href="../media/guardionLogo.svg">
     <title>Game</title>
 </head>
+
 <body>
-    <div class="logo">
-        <img src="../media/jivcLogo.jpg" alt="JIVC logo">
-    </div>
     <div class="header">
-        <h1>Zeeslag</h1>
+        <nav>
+            <section class="headerLogo">
+                <img src="../media/guardionLogo.svg" alt="Logo guardian" style="margin-left: 10px;">
+                <span>ZEE - SLAG</span>
+            </section>
+        </nav>
     </div>
-        <div class="gameContainer">
-            <div class="gameInfo">
-                <p>Ronde: <span id="turnDisplay"></span></p>
-                <p>Info: <span id="info"></span></p>
-            </div>
-
-            <div id="gamesBoardContainer"></div>
-
-            <div class="optionContainer">
-                <div id="0" class="destroyerPreview destroyer" draggable="true"></div>
-                <div id="1" class="submarinePreview submarine" draggable="true"></div>
-                <div id="2" class="cruiserPreview cruiser" draggable="true"></div>
-                <div id="3" class="battleshipPreview battleship" draggable="true"></div>
-                <div id="4" class="carrierPreview carrier" draggable="true"></div>
-            </div>
-
-            <button id="flipButton">Draai</button>
-            <button id="startButton">Start</button>
-            <button id="resetButton" onClick="window.location.reload()">Reset</button>
+    <div class="gameContainer">
+        <div class="gameInfo">
+            <p>Ronde: <span id="turnDisplay"></span></p>
+            <p>Info: <span id="info"></span></p>
         </div>
+
+        <div id="gamesBoardContainer"></div>
+        
+        <div class="optionContainer">
+            <div id="0" class="destroyerPreview destroyer" draggable="true"></div>
+            <div id="1" class="submarinePreview submarine" draggable="true"></div>
+            <div id="2" class="cruiserPreview cruiser" draggable="true"></div>
+            <div id="3" class="battleshipPreview battleship" draggable="true"></div>
+            <div id="4" class="carrierPreview carrier" draggable="true"></div>
+        </div>
+
+        <button id="flipButton">Draai</button>
+        <button id="startButton">Start</button>
+        <button id="resetButton" onClick="window.location.reload()">Reset</button>
+    </div>
 
     <script src="../scripts/script.js"></script>
-    <!-- <div class="grid">
-        <script>
-            for (var i = 0; i < 100; i++) {
-                var item = document.createElement("div");
-                item.classList.add("grid-item");
-                item.innerHTML = i + 1;
-                item.addEventListener("click", function () {
-                    alert("You clicked on " + this.innerHTML);
-                });
-                document.querySelector(".grid").appendChild(item);
-            }
-        </script> -->
+
     </div>
-    <div class="footer">
-        <div class="footerText">
-          <p>JIVC | het IT-bedrijf van Defensie</p>
-          <p>Copyright | Disclaimer</p>
-        </div>
-      </div>
 </body>
+
 </html>

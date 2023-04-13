@@ -177,7 +177,7 @@ function dropShip(e) {
     }
 }
 
-// Add highlight
+//Add highlight
 function highlightArea(startIndex, ship) {
     const allBoardBlocks = document.querySelectorAll("#player div");
     let isHorizontal = angle === 0;
@@ -192,10 +192,14 @@ function highlightArea(startIndex, ship) {
     if (valid && notTaken) {
         shipBlocks.forEach((shipBlock) => {
             shipBlock.classList.add("hover");
-            setTimeout(() => shipBlock.classList.remove("hover"), 1000);
+            setTimeout(() => shipBlock.classList.remove("hover"), 200);
         });
     }
 }
+
+
+  
+
 
 let gameOver = false;
 let playerTurn;
@@ -242,7 +246,7 @@ function handleClick(e) {
         playerTurn = false;
         const allBoardBlocks = document.querySelectorAll("#computer div");
         allBoardBlocks.forEach(block => block.replaceWith(block.cloneNode(true)));
-        setTimeout(computerGo, 500);
+        setTimeout(computerGo, 50);
     }
 }
 
@@ -255,10 +259,10 @@ function computerGo() {
         setTimeout(() => {
             let randomGo = Math.floor(Math.random() * width * width);
             const allBoardBlocks = document.querySelectorAll("#player div");
-
+            console.log(randomGo); 
             if (
                 allBoardBlocks[randomGo].classList.contains("taken") &&
-                allBoardBlocks[randomGo].classList.contains("boom")
+                allBoardBlocks[randomGo].classList.contains("boom") 
             ) {
                 computerGo();
                 return;
@@ -278,7 +282,7 @@ function computerGo() {
                 infoDisplay.textContent = "Nothing hit this time.";
                 allBoardBlocks[randomGo].classList.add("empty");
             }
-        }, 500);
+        }, 50);
 
         setTimeout(() => {
             playerTurn = true;
@@ -288,7 +292,7 @@ function computerGo() {
             allBoardBlocks.forEach((block) =>
                 block.addEventListener("click", handleClick)
             );
-        }, 1000);
+        }, 100);
     }
 }
 
@@ -312,10 +316,12 @@ function checkScore(user, userHits, userSunkShips) {
         if (playerSunkShips.length === 5) {
             infoDisplay.textContent = 'You sunk all the computers ships. YOU WON!';
             gameOver = true;
+            window.open("../pages/win.html","_self")
         }
         if (computerSunkShips.length === 5) {
             infoDisplay.textContent = 'The computer has sunk all your ships. YOU LOST!';
             gameOver = true;
+            window.open("../pages/gameover.html","_self")
         }
     }
 
@@ -324,4 +330,15 @@ function checkScore(user, userHits, userSunkShips) {
     checkShip('cruiser', 3)
     checkShip('battleship', 4)
     checkShip('carrier', 5)
+}
+
+function win() {
+    infoDisplay.textContent = 'You sunk all the computers ships. YOU WON!';
+    gameOver = true;
+    window.open("../pages/win.html","_self")
+}
+function lose() {
+    infoDisplay.textContent = 'The computer has sunk all your ships. YOU LOST!';
+    gameOver = true;
+    window.open("../pages/gameover.html","_self")
 }
