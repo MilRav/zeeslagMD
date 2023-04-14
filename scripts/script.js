@@ -261,7 +261,7 @@ function computerGo() {
             const allBoardBlocks = document.querySelectorAll("#player div");
             console.log(randomGo); 
             if (
-                allBoardBlocks[randomGo].classList.contains("taken") &&
+                allBoardBlocks[randomGo].classList.contains("empty") ||
                 allBoardBlocks[randomGo].classList.contains("boom") 
             ) {
                 computerGo();
@@ -282,7 +282,7 @@ function computerGo() {
                 infoDisplay.textContent = "Nothing hit this time.";
                 allBoardBlocks[randomGo].classList.add("empty");
             }
-        }, 50);
+        }, 25);
 
         setTimeout(() => {
             playerTurn = true;

@@ -20,7 +20,7 @@
 * {
     margin: 0;
     padding: 0;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 body {
@@ -233,7 +233,9 @@ progress::-webkit-progress-value {
     background-color: lightblue;
 }
 
-
+#computer .block:hover {
+    border: solid white 5px;
+}
 
 
 .hover {
