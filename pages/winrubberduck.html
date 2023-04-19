@@ -46,6 +46,11 @@
             <div class="sectionText">
                 <h1>gefeliciteerd u heeft een prijs gewonnen!!</h1>
                 <p>Bedankt voor het spelen!</p>
+                <p id="score"></p>
+                <script>
+                    document.getElementById("score").innerHTML = 
+                    window.location.search.split("=")[1] + "% van de schoten waren raak!";
+                </script>
             </div>
             <br>
             <img src="../media/weighted-ducky-duck-for-rubber-duck-race-85-cm.jpeg"/>

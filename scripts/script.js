@@ -222,6 +222,7 @@ function startGame() {
 }
 startButton.addEventListener("click", startGame);
 
+var roundCount = 0;
 let playerHits = [];
 let computerHits = [];
 const playerSunkShips = [];
@@ -229,6 +230,7 @@ const computerSunkShips = [];
 
 function handleClick(e) {
     if (!gameOver) {
+        roundCount ++;
         if (e.target.classList.contains("taken")) {
             e.target.classList.add("boom");
             infoDisplay.textContent = "You hit this computers ship!";
@@ -259,7 +261,6 @@ function computerGo() {
         setTimeout(() => {
             let randomGo = Math.floor(Math.random() * width * width);
             const allBoardBlocks = document.querySelectorAll("#player div");
-            console.log(randomGo); 
             if (
                 allBoardBlocks[randomGo].classList.contains("taken") &&
                 allBoardBlocks[randomGo].classList.contains("boom") 
@@ -296,6 +297,13 @@ function computerGo() {
     }
 }
 
+function score() {
+    var totaal = roundCount;
+    var maxHits = 17;
+    var procent = Math.round((maxHits/totaal) * 100);
+    //console.log("Score: " + procent + " %"); 
+    return procent;
+}   
 
 function checkScore(user, userHits, userSunkShips) {
     function checkShip(shipName, shipLength) {
@@ -316,7 +324,8 @@ function checkScore(user, userHits, userSunkShips) {
         if (playerSunkShips.length === 5) {
             infoDisplay.textContent = 'You sunk all the computers ships. YOU WON!';
             gameOver = true;
-            window.open("../pages/win.html","_self")
+            var winscore = score();
+            window.open("../pages/win.html?win-score=" + winscore,"_self")
         }
         if (computerSunkShips.length === 5) {
             infoDisplay.textContent = 'The computer has sunk all your ships. YOU LOST!';
@@ -335,10 +344,16 @@ function checkScore(user, userHits, userSunkShips) {
 function win() {
     infoDisplay.textContent = 'You sunk all the computers ships. YOU WON!';
     gameOver = true;
-    window.open("../pages/win.html","_self")
+    // if (score => 80) {
+    //     location.replace("../pages/winrubberduck.html?win-score=" + winscore,"_self");
+    // } else { 
+    //     window.open("../pages/win.html?win-score=" + winscore,"_self");
+    // }
+    infoDisplay.textContent = 'You sunk all the computers ships. YOU WON!';
+    window.open("../pages/win.html?win-score=" + winscore,"_self");
 }
 function lose() {
     infoDisplay.textContent = 'The computer has sunk all your ships. YOU LOST!';
     gameOver = true;
-    window.open("../pages/gameover.html","_self")
+    window.open("../pages/gameover.html","_self");
 }

@@ -230,7 +230,7 @@ progress::-webkit-progress-value {
 #computer .cruiser,
 #computer .battleship,
 #computer .carrier {
-    background-color: lightblue;
+    background-color: transparant;
 }
 
 
