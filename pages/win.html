@@ -24,12 +24,17 @@
         <div class="sectionContent">
             <div class="sectionText">
                 <h1>gefeliciteerd u heeft gewonnen.</h1>
-                <p>Bedankt voor het spelen!</p><br>
+                <p>Bedankt voor het spelen!</p>
+                <p id="score"></p>
+                <script>
+                    document.getElementById("score").innerHTML = 
+                        window.location.search.split("=")[1] + "% van de schoten waren raak!";
+                </script>
             </div>
+            <br>
             <img src="../media/lcf.jpg" alt="Lcf" height="500px">
             <div class="redirectionIndexPage">
-                
-                <p>U word na 20 seconde terug gestuurd naar welkom pagina.</p><br>
+                <p>U word na 20 seconde terug gestuurd naar welkoms pagina.</p><br>
                 <progress value="0" max="20" id="progressBar"></progress>
                 <script type="text/javascript">
                     var timeleft = 20;
@@ -41,11 +46,11 @@
                         timeleft -= 1;
                     }, 1000);
                 </script>
-                <script>
+                <!-- <script>
                     var timer = setTimeout(function () {
                         window.location = '../index.html'
                     }, 20000);
-                </script>
+                </script> -->
             </div>
             <div class="sectionButton">
                 <a href="../index.html"><button>welkom pagina</button></a>
