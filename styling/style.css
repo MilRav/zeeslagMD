@@ -242,6 +242,11 @@ progress::-webkit-progress-value {
     background-color: black;
 }
 
+#player div {
+    transition: background-color 200ms;
+    transition-delay: 50ms;
+}
+
 .boom {
     background-image: url('../media/boom.gif') !important;
     background-size: cover;

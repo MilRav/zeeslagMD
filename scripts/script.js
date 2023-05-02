@@ -136,15 +136,22 @@ ships.forEach((ship) => addShipPiece("computer", ship));
 // Drag player ships
 let draggedShip;
 const optionShips = Array.from(optionContainer.children);
-optionShips.forEach((optionShip) =>
+optionShips.forEach((optionShip) => {
     optionShip.addEventListener("dragstart", dragStart)
-);
+});
 
 const allPlayerBlocks = document.querySelectorAll("#player div");
 allPlayerBlocks.forEach((playerBlock) => {
     playerBlock.addEventListener("dragover", dragOver);
     playerBlock.addEventListener("drop", dropShip);
 });
+
+const playerBoard = document.querySelector('#player');
+playerBoard.addEventListener('dragleave', dragLeave);
+
+function dragLeave(e){
+    removeHighlightArea();
+}
 
 function dragStart(e) {
     notDropped = false;
@@ -175,12 +182,16 @@ function dropShip(e) {
             draggedShip.remove();
         }
     }
+    
+    removeHighlightArea();
 }
 
 //Add highlight
 function highlightArea(startIndex, ship) {
     const allBoardBlocks = document.querySelectorAll("#player div");
+    const allHoverBlocks = document.querySelectorAll("#player div.hover");
     let isHorizontal = angle === 0;
+    let _aHoverBlocks = []
 
     const { shipBlocks, valid, notTaken } = getValibility(
         allBoardBlocks,
@@ -192,12 +203,29 @@ function highlightArea(startIndex, ship) {
     if (valid && notTaken) {
         shipBlocks.forEach((shipBlock) => {
             shipBlock.classList.add("hover");
-            setTimeout(() => shipBlock.classList.remove("hover"), 200);
+            _aHoverBlocks.push(shipBlock.id);
         });
     }
+
+    //remove other hover marked blocks
+    allHoverBlocks.forEach((_elBlock) => {
+        if (_aHoverBlocks) {
+            if (!_aHoverBlocks.includes(_elBlock.id)){
+                _elBlock.classList.remove("hover"); 
+            }
+        } else {
+            _elBlock.classList.remove("hover"); 
+        }
+    });
 }
 
-
+function removeHighlightArea() {
+    //remove hover class
+    const allHoverBlocks = document.querySelectorAll("#player div.hover");
+    allHoverBlocks.forEach((_elBlock) => {
+            _elBlock.classList.remove("hover");
+    });
+}
   
 
 
@@ -258,33 +286,20 @@ function computerGo() {
         turnDisplay.textContent = 'Computers Go!';
         infoDisplay.textContent = "The computer is thinking...";
 
+        //computer turn
         setTimeout(() => {
-            let randomGo = Math.floor(Math.random() * width * width);
-            const allBoardBlocks = document.querySelectorAll("#player div");
-            if (
-                allBoardBlocks[randomGo].classList.contains("empty") ||
-                allBoardBlocks[randomGo].classList.contains("boom") 
-            ) {
-                computerGo();
-                return;
-            } else if (
-                allBoardBlocks[randomGo].classList.contains("taken") &&
-                !allBoardBlocks[randomGo].classList.contains("boom")
-            ) {
-                allBoardBlocks[randomGo].classList.add("boom");
-                infoDisplay.textContent = "The computer hit your ship!";
-                let classes = Array.from(allBoardBlocks[randomGo].classList);
-                classes = classes.filter((className) => className !== "block");
-                classes = classes.filter((className) => className !== "boom");
-                classes = classes.filter((className) => className !== "taken");
-                computerHits.push(...classes);
-                checkScore('computer', computerHits, computerSunkShips);
-            } else {
-                infoDisplay.textContent = "Nothing hit this time.";
-                allBoardBlocks[randomGo].classList.add("empty");
+            // first find an "obvious target"
+            targetBlockId = findObviousTarget();
+            if (targetBlockId == -1){
+                // no obvious target, so try random instead
+                targetBlockId = findRandomTarget();
             }
+
+            engageTarget(targetBlockId);
+
         }, 25);
 
+        //player turn
         setTimeout(() => {
             playerTurn = true;
             turnDisplay.textContent = "Your Go!";
@@ -295,6 +310,43 @@ function computerGo() {
             );
         }, 100);
     }
+}
+// "fire" at a certain target block
+function engageTarget(blockID){
+    if (
+        allPlayerBlocks[blockID].classList.contains("taken") &&
+        !allPlayerBlocks[blockID].classList.contains("boom")
+    ) {
+        allPlayerBlocks[blockID].classList.add("boom");
+        infoDisplay.textContent = "The computer hit your ship!";
+        let classes = Array.from(allPlayerBlocks[blockID].classList);
+        classes = classes.filter((className) => className !== "block");
+        classes = classes.filter((className) => className !== "boom");
+        classes = classes.filter((className) => className !== "taken");
+        computerHits.push(...classes);
+        checkScore('computer', computerHits, computerSunkShips);
+    } else {
+        infoDisplay.textContent = "Nothing hit this time.";
+        allPlayerBlocks[blockID].classList.add("empty");
+    }
+}
+// find an obvious target: this is any block that is adjecent to a hit and has not been checked
+function findObviousTarget(){
+    let blockId = -1;
+    // here we should do something a little bit more intelligent
+    return blockId
+}
+// generate a random, empty, target
+function findRandomTarget(){
+    let blockId = Math.floor(Math.random() * width * width);
+    if (
+        allPlayerBlocks[blockId].classList.contains("empty") ||
+        allPlayerBlocks[blockId].classList.contains("boom") 
+    ) {
+        // if this is not an unknown block, retry until we get one
+        blockId = findRandomTarget();  
+    }
+    return blockId
 }
 
 function score() {
