@@ -1,3 +1,7 @@
+:root {
+    --backgroundColor: transparent;
+  }
+
 /* Font import */
 
 @font-face {
@@ -222,7 +226,7 @@ progress::-webkit-progress-value {
 
 #computer:hover {
     cursor: url('../media/gunpointer.png')17.5 17.5, auto;
-    background-color: white;
+    /* background-color: white; */
 }
 
 #computer .destroyer,
@@ -230,7 +234,7 @@ progress::-webkit-progress-value {
 #computer .cruiser,
 #computer .battleship,
 #computer .carrier {
-    background-color: transparant;
+    background-color: var(--backgroundColor);
 }
 
 #computer .block:hover {
@@ -240,6 +244,11 @@ progress::-webkit-progress-value {
 
 .hover {
     background-color: black;
+}
+
+#player div {
+    transition: background-color 200ms;
+    transition-delay: 50ms;
 }
 
 .boom {

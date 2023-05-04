@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../media/guardionLogo.svg" />
     <link rel="stylesheet" href="../styling/style.css" />
-    <script src="../scripts/script.js"></script>
+    <script src="../scripts/game.js"></script>
     <title>Gewonnen of verloren</title>
 </head>
 
@@ -32,8 +32,8 @@
                 <p>U word na 20 seconde terug gestuurd naar welkom pagina.</p><br>
                 <progress value="0" max="20" id="progressBar"></progress>
                 <script type="text/javascript">
-                    var timeleft = 20;
-                    var redirectTimer = setInterval(function () {
+                    let timeleft = 20;
+                    let redirectTimer = setInterval(function () {
                         if (timeleft <= 0) {
                             clearInterval(redirectTimer);
                         }
@@ -42,7 +42,7 @@
                     }, 1000);
                 </script>
                 <script>
-                    var timer = setTimeout(function () {
+                    let timer = setTimeout(function () {
                         window.location = '../index.html'
                     }, 20000);
                 </script>
