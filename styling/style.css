@@ -27,13 +27,20 @@
     overflow-y: hidden;
 }
 
+table h1 {
+    font-size: 11vw;
+}
+
 body {
     background-color: rgb(29, 36, 44);
     font-family: Roboto, Arial;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-button {
-    background-color: #4EF2F6;
+button, .button {
+    background-color: #0a9bd8;
     border: none;
     color: black;
     padding: 8px 32px;
@@ -45,6 +52,25 @@ button {
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
+}
+
+table {
+    margin: auto auto 10px;
+    color:white;
+}
+
+td {
+    padding: 20px;
+}
+
+.sectionButton {
+    display: flex;
+    margin: 0 auto auto;
+}
+
+.sectionButton .button {
+    margin: 0 auto auto;
+    height: 50%;
 }
 
 /* Header styling */
@@ -82,7 +108,7 @@ button {
     justify-content: center;
     align-items: center;
     height: 95vh;
-    /* background-image: url("../media/lcf.jpg");
+    /* background-image: url("../media/backgroundShips.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center; */
@@ -114,7 +140,7 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-    background: #2f767e;
+    background: #0a9bd8;
     border-radius: 15px;
 }
 
@@ -135,7 +161,7 @@ progress::-webkit-progress-value {
 
 .gameContainer button {
     margin-top: 0px;
-    background-color: #4EF2F6;
+    background-color: #0a9bd8;
     color: black;
 }
 
@@ -241,7 +267,6 @@ progress::-webkit-progress-value {
     border: solid white 5px;
 }
 
-
 .hover {
     background-color: black;
 }
@@ -255,7 +280,6 @@ progress::-webkit-progress-value {
     background-image: url('../media/boom.gif') !important;
     background-size: cover;
     background-position: center;
-    /* background-color: lightgrey; */
     pointer-events: none;
 }
 
