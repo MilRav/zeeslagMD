@@ -15,7 +15,7 @@ HTML, CSS en JavaScript.
 Download het project en open de index.html in uw favoriete browser na keuze.
 
 ## Codering conventies
-* Gebruik van camelCase voor variabelen en namen.
+* Gebruik van camelCase voor letiabelen en namen.
 * Commits in het engels.
 * Zo nodig comments toevoegen aan grote onderdelen.
 
