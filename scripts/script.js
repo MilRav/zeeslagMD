@@ -217,7 +217,6 @@ function startGame() {
             turnDisplay.textContent = 'Your Go!';
             infoDisplay.textContent = 'The game has started!';
         }
-
     }
 }
 startButton.addEventListener("click", startGame);
