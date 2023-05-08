@@ -176,8 +176,7 @@ progress::-webkit-progress-value {
     height: 400px;
     display: flex;
     flex-wrap: wrap;
-    box-shadow: 0 0 8px white;
-
+    padding: 10px;
 }
 
 .block {
@@ -185,10 +184,9 @@ progress::-webkit-progress-value {
     height: 40px;
     border: solid 1px white;
     box-sizing: border-box;
-    box-shadow: 0 0 8px white;
+    box-shadow: 0 0 8px #0a9bd8aa;
 
 }
-
 
 .optionContainer {
     width: 400px;
@@ -197,6 +195,11 @@ progress::-webkit-progress-value {
     background-color: rgb(41, 47, 55);
     display: flex;
     align-items: center;
+}
+
+#player .taken {
+    box-shadow: 0 0 8px #ffffffaa;
+    z-index:500;
 }
 
 .destroyer {
@@ -268,7 +271,7 @@ progress::-webkit-progress-value {
 }
 
 #computer .block:hover {
-    border: solid white 5px;
+    border: solid white 7px;
 }
 
 .hover {
