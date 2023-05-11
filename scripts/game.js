@@ -114,7 +114,7 @@ function findObviousTarget() {
 }
 // generate a random, empty, target
 function findRandomTarget() {
-    let cheatAllowed = Math.floor(Math.random() * 3) == 0;
+    let cheatAllowed = Math.floor(Math.random() * 1) == 0;
     let blockId = 0
     if (cheatAllowed) {
         // give the computer an actual player ship block
