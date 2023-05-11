@@ -2,7 +2,6 @@
 startButton.addEventListener("click", startGame);
 
 
-
 // Start Game
 function startGame() {
     if (playerTurn === undefined) {
@@ -40,7 +39,7 @@ function handleClick(e) {
         playerTurn = false;
         const allBoardBlocks = document.querySelectorAll("#computer div");
         allBoardBlocks.forEach(block => block.replaceWith(block.cloneNode(true)));
-        setTimeout(computerGo, 500);
+        setTimeout(computerGo, 50);
     }
 }
 
@@ -58,7 +57,7 @@ function computerGo() {
                 targetBlockId = findRandomTarget();
             }
             engageTarget(targetBlockId);
-        }, 250);
+        }, 25);
         //player turn
         setTimeout(() => {
             playerTurn = true;
@@ -68,7 +67,7 @@ function computerGo() {
             allBoardBlocks.forEach((block) =>
                 block.addEventListener("click", handleClick)
             );
-        }, 1000);
+        }, 100);
     }
 }
 // "fire" at a certain target block
@@ -115,7 +114,7 @@ function findObviousTarget() {
 }
 // generate a random, empty, target
 function findRandomTarget() {
-    let cheatAllowed = Math.floor(Math.random() * 3) == 0;
+    let cheatAllowed = Math.floor(Math.random() * 1) == 0;
     let blockId = 0
     if (cheatAllowed) {
         // give the computer an actual player ship block

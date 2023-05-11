@@ -24,23 +24,49 @@
         <div class="gameInfo">
             <p>Ronde: <span id="turnDisplay"></span></p>
             <p>Info: <span id="info"></span></p>
+            <!-- <p>Accuratie: <span id="accuracy"></span></p> -->
         </div>
 
         <div id="gamesBoardContainer"></div>
         
-        <div class="optionContainer">
-            <div id="0" class="destroyerPreview destroyer" draggable="true"></div>
-            <div id="1" class="submarinePreview submarine" draggable="true"></div>
-            <div id="2" class="cruiserPreview cruiser" draggable="true"></div>
-            <div id="3" class="battleshipPreview battleship" draggable="true"></div>
-            <div id="4" class="carrierPreview carrier" draggable="true"></div>
+        <div class="container">
+            <p>Plaats u schepen op het speel veld.</p>
+            <div class="flex">
+                <div class="optionContainer">
+                    <div id="0" class="destroyerPreview destroyer" draggable="true"></div>
+                    <div id="1" class="submarinePreview submarine" draggable="true"></div>
+                    <div id="2" class="cruiserPreview cruiser" draggable="true"></div>
+                    <div id="3" class="battleshipPreview battleship" draggable="true"></div>
+                    <div id="4" class="carrierPreview carrier" draggable="true"></div>
+                </div>
+                <div id="flipButton"><img src="../media/turnButtonWhite.PNG" height="40px"></div>
+            </div>
+        </div>
+        <div class="shipLists">
+            <div id="playerShipList">
+                <p>Speler's schepen:</p>
+                <div class="destroyerPreview destroyer"></div>
+                <div class="submarinePreview submarine"></div>
+                <div class="cruiserPreview cruiser"></div>
+                <div class="battleshipPreview battleship"></div>
+                <div class="carrierPreview carrier"></div>
+            </div>
+            <div id="computerShipList">
+                <p>Guardian's schepen:</p>
+                <div class="destroyerPreview destroyer"></div>
+                <div class="submarinePreview submarine"></div>
+                <div class="cruiserPreview cruiser"></div>
+                <div class="battleshipPreview battleship"></div>
+                <div class="carrierPreview carrier"></div>
+            </div>
         </div>
 
-        <button id="flipButton">Draai</button>
+        <!-- <button id="flipButton">Draai</button> -->
         <button id="startButton">Start</button>
         <button id="resetButton" onClick="window.location.reload()">Reset</button>
     </div>
     </div>
+    
     <script src="../scripts/setup.js"></script>
     <script src="../scripts/game.js"></script>
     <script src="../scripts/hover.js"></script>

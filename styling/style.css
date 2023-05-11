@@ -34,6 +34,7 @@ table h1 {
 body {
     background-color: rgb(29, 36, 44);
     font-family: Roboto, Arial;
+    color:white;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -148,7 +149,7 @@ progress::-webkit-progress-value {
 
 .gameInfo {
     font-size: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     color: white;
 }
 
@@ -176,25 +177,63 @@ progress::-webkit-progress-value {
     height: 400px;
     display: flex;
     flex-wrap: wrap;
+    padding: 10px;
 }
 
 .block {
     width: 40px;
     height: 40px;
-    border: solid 1px black;
+    border: solid 1px white;
     box-sizing: border-box;
+    box-shadow: 0 0 8px #0a9bd8aa;
+
 }
 
-
 .optionContainer {
-    width: 400px;
-    height: 60px;
-    margin: 30px 0;
-    background-color: rgb(41, 47, 55);
+    width: 300px;
+    height: 90px;
+    margin: 0px 10px;
     display: flex;
     align-items: center;
 }
 
+.container{
+    width: 400px;
+    /* height: 80px; */
+    /* height: 150px; */
+    margin: 10px 10px;
+    padding-top: 10px;
+    background-color: rgb(41, 47, 55);
+    box-shadow: 0 0 8px black;
+}
+
+#flipButton {
+    width: 40px;
+    margin: 25px 10px;
+    overflow: hidden;
+    /* margin: 10px 10px; */
+}
+
+/* #player .taken {
+    box-shadow: 0 0 8px #ffffffaa;
+    z-index:500;
+} */
+
+#player .destroyer {
+    box-shadow: 0 0 8px #3FA7A7;
+}
+#player .submarine {
+    box-shadow: 0 0 8px #2196F4;
+}
+#player .cruiser {
+    box-shadow: 0 0 8px #4B40BF;
+}
+#player .battleship {
+    box-shadow: 0 0 8px #9540BF;
+}
+#player .carrier {
+    box-shadow: 0 0 8px #74A145;
+}
 .destroyer {
     background-color: #3FA7A7;
 }
@@ -216,36 +255,36 @@ progress::-webkit-progress-value {
 }
 
 .destroyerPreview {
-    width: 20px;
-    height: 10px;
+    width: 40px;
+    height: 20px;
     margin: 3px;
     cursor: grab;
 }
 
 .submarinePreview {
-    width: 30px;
-    height: 10px;
+    width: 60px;
+    height: 20px;
     margin: 3px;
     cursor: grab;
 }
 
 .cruiserPreview {
-    width: 30px;
-    height: 10px;
+    width: 60px;
+    height: 20px;
     margin: 3px;
     cursor: grab;
 }
 
 .battleshipPreview {
-    width: 40px;
-    height: 10px;
+    width: 80px;
+    height: 20px;
     margin: 3px;
     cursor: grab;
 }
 
 .carrierPreview {
-    width: 50px;
-    height: 10px;
+    width: 100px;
+    height: 20px;
     margin: 3px;
     cursor: grab;
 }
@@ -264,11 +303,11 @@ progress::-webkit-progress-value {
 }
 
 #computer .block:hover {
-    border: solid white 5px;
+    border: solid white 7px;
 }
 
 .hover {
-    background-color: black;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 #player div {
@@ -288,4 +327,28 @@ progress::-webkit-progress-value {
     background-image: url('../media/empty.gif') !important;
     background-size: cover;
     background-position: center;
+}
+
+.sunk {
+    background-color: red!important;
+}
+
+.shipLists {
+    display: flex;
+    justify-content:space-between;
+    color: white;
+    background-color: rgb(41, 47, 55);
+    padding: 10px;
+    pointer-events: none;
+}
+.shipLists p{
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+.flex {
+    display: flex;
+}
+
+.hide {
+    display: none;
 }

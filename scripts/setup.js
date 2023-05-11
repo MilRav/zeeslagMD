@@ -4,7 +4,9 @@ const flipButton = document.querySelector("#flipButton");
 const startButton = document.querySelector("#startButton");
 const infoDisplay = document.querySelector("#info");
 const turnDisplay = document.querySelector("#turnDisplay");
+const scoreDisplay = document.querySelector("accuracy");
 const width = 10;
+
 
 
 
@@ -39,11 +41,10 @@ function flip() {
 
 
 //Create a 10 * 10 gameboard
-function createBoard(color, user) {
+function createBoard(user) {
     sessionStorage.removeItem('droppedShips');
     const gameBoardContainer = document.createElement("div");
     gameBoardContainer.classList.add("gameBoard");
-    gameBoardContainer.style.backgroundColor = color;
     gameBoardContainer.id = user;
     for (let i = 0; i < width * width; i++) {
         const block = document.createElement("div");
@@ -53,8 +54,8 @@ function createBoard(color, user) {
     }
     gamesBoardContainer.append(gameBoardContainer);
 }
-createBoard("lightblue", "player");
-createBoard("lightblue", "computer");
+createBoard("player");
+createBoard("computer");
 
 
 
