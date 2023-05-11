@@ -4,7 +4,9 @@ const flipButton = document.querySelector("#flipButton");
 const startButton = document.querySelector("#startButton");
 const infoDisplay = document.querySelector("#info");
 const turnDisplay = document.querySelector("#turnDisplay");
+const scoreDisplay = document.querySelector("accuracy");
 const width = 10;
+
 
 
 

@@ -3,9 +3,11 @@ function score() {
     let totaal = roundCount;
     let maxHits = 17;
     let procent = Math.round((maxHits / totaal) * 100);
-    //console.log("Score: " + procent + " %"); 
+    // console.log("Score: " + procent + " %"); 
     return procent;
 }
+
+
 function checkScore(user, userHits, userSunkShips) {
     function checkShip(shipName, shipLength) {
         if (
@@ -14,10 +16,15 @@ function checkScore(user, userHits, userSunkShips) {
             if (user === 'player') {
                 infoDisplay.textContent = `you sunk the computers's ${shipName}`;
                 playerHits = userHits.filter(storedShipName => storedShipName !== shipName);
+                console.log(shipName)
+                let computerShipList = document.getElementById('computerShipList').getElementsByClassName(`${shipName}`);
+                computerShipList[0].classList.add('sunk')
             }
             if (user === 'computer') {
                 infoDisplay.textContent = `the computer sunk the players's ${shipName}`;
                 computerHits = userHits.filter(storedShipName => storedShipName !== shipName);
+                let playerShipList = document.getElementById('playerShipList').getElementsByClassName(`${shipName}`);
+                playerShipList[0].classList.add('sunk')
             }
             userSunkShips.push(shipName);
         }

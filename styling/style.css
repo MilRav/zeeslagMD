@@ -293,3 +293,20 @@ progress::-webkit-progress-value {
     background-size: cover;
     background-position: center;
 }
+
+.sunk {
+    background-color: red!important;
+}
+
+.shipLists {
+    display: flex;
+    justify-content:space-between;
+    color: white;
+    background-color: rgb(41, 47, 55);
+    padding: 10px;
+    pointer-events: none;
+}
+.shipLists p{
+    padding-bottom: 10px;
+    font-weight: bold;
+}
