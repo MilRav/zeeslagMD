@@ -1,0 +1,65 @@
+<svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" overflow="hidden" >
+<defs>
+  <linearGradient  id="line-arg-1" x1="0%" y1="50%" x2="100%" y2="50%"> 
+   <stop offset="5%" style="stop-color:#ffff00;stop-opacity:1.00"></stop>
+   <stop offset="12%" style="stop-color:#f118b6;stop-opacity:1.00"></stop>
+   <stop offset="25%" style="stop-color:#2196F4;stop-opacity:1.00"></stop> 
+   <stop offset="30%" style="stop-color:#2196F4;stop-opacity:0.70"></stop>
+  </linearGradient >
+  <linearGradient  id="line-arg-2">
+    <stop offset="5%" style="stop-color:#292f37;stop-opacity:0.50"></stop>
+    <stop offset="30%" style="stop-color:#2196F4;stop-opacity:0.20"></stop>
+  </linearGradient >
+  <path id="streak" d="M 50 50 L 250 50 L 247.53766811902756 81.28689300804618"/>
+</defs>
+  <g>
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(0, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(9, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(18, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(27, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(36, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(45, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(54, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(63, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(72, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(81, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(90, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(99, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(108, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(117, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(126, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(135, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(144, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(153, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(162, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(171, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(180, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(189, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(198, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(207, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(216, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(225, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(234, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(243, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(252, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(261, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(270, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(279, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(288, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(297, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(306, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(315, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(324, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(333, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-1)" transform-origin="50 50" transform="rotate(342, 0, 0)" />
+  <use href="#streak" fill="url(#line-arg-2)" transform-origin="50 50" transform="rotate(351, 0, 0)" />
+  <animateTransform
+	attributeName="transform"
+	attributeType="XML"
+	type="rotate"
+	from="0 50 50"
+	to="360 50 50"
+	dur="50s"
+	repeatCount="indefinite" />    
+  </g>
+</svg>

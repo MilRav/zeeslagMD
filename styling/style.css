@@ -1,5 +1,13 @@
 :root {
     --backgroundColor: transparent;
+    --body-background-color: #1d242c;
+    --content-background-color: #292f37;
+    /* ship color */
+    --color-destroyer: #3FA7A7;
+    --color-submarine: #2196F4;
+    --color-cruiser: #4B40BF;
+    --color-battleship: #9540BF;
+    --color-carrier: #74A145;
   }
 
 /* Font import */
@@ -32,7 +40,7 @@ table h1 {
 }
 
 body {
-    background-color: rgb(29, 36, 44);
+    background-color: var(--body-background-color);
     font-family: Roboto, Arial;
     color:white;
     display: flex;
@@ -122,7 +130,7 @@ td {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: rgb(41, 47, 55);
+    background-color: var(--content-background-color);
     padding: 50px;
     border-radius: 5px;
     box-shadow: 0px 3px 20px #0000001a;
@@ -203,7 +211,7 @@ progress::-webkit-progress-value {
     /* height: 150px; */
     margin: 10px 10px;
     padding-top: 10px;
-    background-color: rgb(41, 47, 55);
+    background-color: var(--content-background-color);
     box-shadow: 0 0 8px black;
 }
 
@@ -219,41 +227,14 @@ progress::-webkit-progress-value {
     z-index:500;
 } */
 
+/* SHIPS */
+/*destroyer*/
 #player .destroyer {
-    box-shadow: 0 0 8px #3FA7A7;
-}
-#player .submarine {
-    box-shadow: 0 0 8px #2196F4;
-}
-#player .cruiser {
-    box-shadow: 0 0 8px #4B40BF;
-}
-#player .battleship {
-    box-shadow: 0 0 8px #9540BF;
-}
-#player .carrier {
-    box-shadow: 0 0 8px #74A145;
+    box-shadow: 0 0 8px var(--color-destroyer);
 }
 .destroyer {
-    background-color: #3FA7A7;
+    background-color: var(--color-destroyer);
 }
-
-.submarine {
-    background-color: #2196F4;
-}
-
-.cruiser {
-    background-color: #4B40BF;
-}
-
-.battleship {
-    background-color: #9540BF;
-}
-
-.carrier {
-    background-color: #74A145;
-}
-
 .destroyerPreview {
     width: 40px;
     height: 20px;
@@ -261,6 +242,13 @@ progress::-webkit-progress-value {
     cursor: grab;
 }
 
+/*submarine*/
+#player .submarine {
+    box-shadow: 0 0 8px var(--color-submarine);
+}
+.submarine {
+    background-color: var(--color-submarine);
+}
 .submarinePreview {
     width: 60px;
     height: 20px;
@@ -268,6 +256,13 @@ progress::-webkit-progress-value {
     cursor: grab;
 }
 
+/*cruiser*/
+#player .cruiser {
+    box-shadow: 0 0 8px var(--color-cruiser);
+}
+.cruiser {
+    background-color: var(--color-cruiser);
+}
 .cruiserPreview {
     width: 60px;
     height: 20px;
@@ -275,13 +270,26 @@ progress::-webkit-progress-value {
     cursor: grab;
 }
 
-.battleshipPreview {
+/*battleship*/
+#player .battleship {
+    box-shadow: 0 0 8px var(--color-battleship);
+}
+.battleship {
+    background-color: var(--color-battleship);
+}.battleshipPreview {
     width: 80px;
     height: 20px;
     margin: 3px;
     cursor: grab;
 }
 
+/*carrier*/
+#player .carrier {
+    box-shadow: 0 0 8px var(--color-carrier);
+}
+.carrier {
+    background-color: var(--color-carrier);
+}
 .carrierPreview {
     width: 100px;
     height: 20px;
@@ -337,7 +345,7 @@ progress::-webkit-progress-value {
     display: flex;
     justify-content:space-between;
     color: white;
-    background-color: rgb(41, 47, 55);
+    background-color: var(--content-background-color);
     padding: 10px;
     pointer-events: none;
 }
