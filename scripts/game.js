@@ -8,11 +8,26 @@ function startGame() {
         if (optionContainer.children.length != 0) {
             infoDisplay.textContent = "Please place all your pieces first!";
         } else {
-            const allBoardBlocks = document.querySelectorAll("#computer div");
-            allBoardBlocks.forEach((block) =>
+            // add and remove event listeners
+            const allComputerBoardBlocks = document.querySelectorAll("#computer div");
+            const allPlayerBoardBlocks = document.querySelectorAll("#player div");
+            allComputerBoardBlocks.forEach((block) =>
                 block.addEventListener("click", handleClick));
+
+            allPlayerBoardBlocks.forEach((block) => {
+                block.removeEventListener("dragstart",dragStartFromBoard)
+                block.removeEventListener("dragover",dragOver)
+                block.removeEventListener("drop",dropShip)
+            });
+
+            let _elContainer = document.querySelector('#gameContainer');
+            _elContainer.classList.remove('setup')
+            _elContainer.classList.add('playing')
+            
+            document.querySelector('#gameContainer .container').classList.add('hide')
+
             playerTurn = true;
-            turnDisplay.textContent = 'Your Go!';
+            turnDisplay.textContent = 'Your turn!';
             infoDisplay.textContent = 'The game has started!';
         }
 
@@ -46,7 +61,7 @@ function handleClick(e) {
 // Define the computers go
 function computerGo() {
     if (!gameOver) {
-        turnDisplay.textContent = 'Computers Go!';
+        turnDisplay.textContent = "Guardion's turn";
         infoDisplay.textContent = "The computer is thinking...";
         //computer turn
         setTimeout(() => {
