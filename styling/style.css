@@ -161,17 +161,23 @@ progress::-webkit-progress-value {
     color: white;
 }
 
-.gameContainer {
+#gameContainer {
     width: 1000px;
     margin: auto;
     padding: 2%;
     text-align: center;
 }
 
-.gameContainer button {
+#gameContainer button {
     margin-top: 0px;
     background-color: #0a9bd8;
     color: black;
+}
+
+.gameContainer .container p{
+    -webkit-user-select: none;
+    user-select: none;
+    -ms-user-select: none;
 }
 
 #gamesBoardContainer {
@@ -317,6 +323,9 @@ progress::-webkit-progress-value {
 .hover {
     background-color: rgba(255, 255, 255, 0.8);
 }
+.hover.error {
+    background-color: rgba(255, 60, 60, 0.8);
+}
 
 #player div {
     transition: background-color 200ms;
@@ -341,15 +350,16 @@ progress::-webkit-progress-value {
     background-color: red!important;
 }
 
-.shipLists {
+#shipLists {
     display: flex;
     justify-content:space-between;
     color: white;
     background-color: var(--content-background-color);
     padding: 10px;
     pointer-events: none;
+    /* display: none; */
 }
-.shipLists p{
+#shipLists p{
     padding-bottom: 10px;
     font-weight: bold;
 }
