@@ -6,14 +6,15 @@ startButton.addEventListener("click", startGame);
 function startGame() {
     if (playerTurn === undefined) {
         if (optionContainer.children.length != 0) {
-            infoDisplay.textContent = "Please place all your pieces first!";
+            infoDisplay.textContent = "Plaats eerst al je schepen!";
         } else {
             const allBoardBlocks = document.querySelectorAll("#computer div");
             allBoardBlocks.forEach((block) =>
                 block.addEventListener("click", handleClick));
             playerTurn = true;
-            turnDisplay.textContent = 'Your Go!';
-            infoDisplay.textContent = 'The game has started!';
+            turnDisplay.textContent = 'Jou beurt!';
+            infoDisplay.textContent = 'Het spel is begonnen!';
+            hideElement()
         }
 
     }
@@ -24,7 +25,7 @@ function handleClick(e) {
         roundCount++;
         if (e.target.classList.contains("taken")) {
             e.target.classList.add("boom");
-            infoDisplay.textContent = "You hit this computers ship!";
+            infoDisplay.textContent = "Je hebt een schip geraakt!";
             let classes = Array.from(e.target.classList);
             classes = classes.filter((className) => className !== "block");
             classes = classes.filter((className) => className !== "boom");
@@ -33,7 +34,7 @@ function handleClick(e) {
             checkScore('player', playerHits, playerSunkShips);
         }
         if (!e.target.classList.contains("taken")) {
-            infoDisplay.textContent = "Nothing hit this time.";
+            infoDisplay.textContent = "Je hebt niks geraakt.";
             e.target.classList.add("empty");
         }
         playerTurn = false;
@@ -46,8 +47,8 @@ function handleClick(e) {
 // Define the computers go
 function computerGo() {
     if (!gameOver) {
-        turnDisplay.textContent = 'Computers Go!';
-        infoDisplay.textContent = "The computer is thinking...";
+        turnDisplay.textContent = 'Guardian\'s beurt!';
+        infoDisplay.textContent = "Guardian is aan het denken...";
         //computer turn
         setTimeout(() => {
             // first find an "obvious target"
@@ -61,8 +62,8 @@ function computerGo() {
         //player turn
         setTimeout(() => {
             playerTurn = true;
-            turnDisplay.textContent = "Your Go!";
-            infoDisplay.textContent = "Please take your go.";
+            turnDisplay.textContent = "Jou beurt!";
+            infoDisplay.textContent = "Neem je beurt.";
             const allBoardBlocks = document.querySelectorAll("#computer div");
             allBoardBlocks.forEach((block) =>
                 block.addEventListener("click", handleClick)
@@ -77,7 +78,7 @@ function engageTarget(blockID) {
         !allPlayerBlocks[blockID].classList.contains("boom")
     ) {
         allPlayerBlocks[blockID].classList.add("boom");
-        infoDisplay.textContent = "The computer hit your ship!";
+        infoDisplay.textContent = "Guardian heeft jou schip geraakt!";
         let classes = Array.from(allPlayerBlocks[blockID].classList);
         classes = classes.filter((className) => className !== "block");
         classes = classes.filter((className) => className !== "boom");
@@ -85,7 +86,7 @@ function engageTarget(blockID) {
         computerHits.push(...classes);
         checkScore('computer', computerHits, computerSunkShips);
     } else {
-        infoDisplay.textContent = "Nothing hit this time.";
+        infoDisplay.textContent = "Er is niks geraakt.";
         allPlayerBlocks[blockID].classList.add("empty");
     }
 }
@@ -114,7 +115,7 @@ function findObviousTarget() {
 }
 // generate a random, empty, target
 function findRandomTarget() {
-    let cheatAllowed = Math.floor(Math.random() * 1) == 0;
+    let cheatAllowed = Math.floor(Math.random() * 8) == 0;
     let blockId = 0
     if (cheatAllowed) {
         // give the computer an actual player ship block

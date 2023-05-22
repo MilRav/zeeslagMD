@@ -4,10 +4,8 @@ const flipButton = document.querySelector("#flipButton");
 const startButton = document.querySelector("#startButton");
 const infoDisplay = document.querySelector("#info");
 const turnDisplay = document.querySelector("#turnDisplay");
-const scoreDisplay = document.querySelector("accuracy");
+const shipList = document.querySelector('.shipList');
 const width = 10;
-
-
 
 
 let draggedShip;
@@ -37,7 +35,6 @@ function flip() {
         (optionShip) => (optionShip.style.transform = `rotate(${angle}deg)`)
     );
 }
-
 
 
 //Create a 10 * 10 gameboard
@@ -114,6 +111,26 @@ function getValibility(allBoardBlocks, isHorizontal, startIndex, ship) {
 
 
 
+// Hide elements when not needed
+function hideElement() {
+    var x = document.getElementById("shipLists");
+    if (x.style.display === "none") {
+      x.style.display = "flex";
+    } else {
+      x.style.display = "none";
+    }
+    var y = document.getElementById("container");
+    if (y.style.display === "block") {
+      y.style.display = "none";
+    } else {
+      y.style.display = "block";
+    }
+  }
+
+  hideElement()
+
+
+
 
 //Add a ship piece to the player or computers board
 function addShipPiece(user, ship, startId) {
@@ -151,7 +168,6 @@ function dragLeave(e) {
     removeHighlightArea();
 }
 
-
 function dragStart(e) {
     notDropped = false;
     draggedShip = e.target;
@@ -181,7 +197,5 @@ function dropShip(e) {
     }
     removeHighlightArea();
 }
-
-//Load all other scripts
 
 
