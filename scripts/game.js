@@ -24,7 +24,7 @@ function startGame() {
             _elContainer.classList.remove('setup')
             _elContainer.classList.add('playing')
             
-            document.querySelector('#gameContainer .container').classList.add('hide')
+            // document.querySelector('#gameContainer .container').classList.add('hide')
 
             playerTurn = true;
             turnDisplay.textContent = 'Jou beurt!';
