@@ -8,9 +8,24 @@ function startGame() {
         if (optionContainer.children.length != 0) {
             infoDisplay.textContent = "Plaats eerst al je schepen!";
         } else {
-            const allBoardBlocks = document.querySelectorAll("#computer div");
-            allBoardBlocks.forEach((block) =>
+            // add and remove event listeners
+            const allComputerBoardBlocks = document.querySelectorAll("#computer div");
+            const allPlayerBoardBlocks = document.querySelectorAll("#player div");
+            allComputerBoardBlocks.forEach((block) =>
                 block.addEventListener("click", handleClick));
+
+            allPlayerBoardBlocks.forEach((block) => {
+                block.removeEventListener("dragstart",dragStartFromBoard)
+                block.removeEventListener("dragover",dragOver)
+                block.removeEventListener("drop",dropShip)
+            });
+
+            let _elContainer = document.querySelector('#gameContainer');
+            _elContainer.classList.remove('setup')
+            _elContainer.classList.add('playing')
+            
+            document.querySelector('#gameContainer .container').classList.add('hide')
+
             playerTurn = true;
             turnDisplay.textContent = 'Jou beurt!';
             infoDisplay.textContent = 'Het spel is begonnen!';
