@@ -1,0 +1,196 @@
+/* game styling */
+:root {
+    --board-width: 400px;
+}
+
+.gameInfo {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+#gameContainer {
+    width: 95%;
+    margin: auto;
+    padding: 2%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gameContainer button {
+    margin-top: 0px;
+    background-color: #0a9bd8;
+    color: black;
+}
+
+.gameContainer .container p{
+    -webkit-user-select: none;
+    user-select: none;
+    -ms-user-select: none;
+}
+
+#gameBoardHeader {
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#gameBoardHeader .boardTitle {
+    font-size: 14pt;
+    width: var(--board-width);
+    padding: 8px;
+}
+
+#gamesBoardContainer {
+    display: flex;
+}
+
+/* player panel */
+.playerPanel {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+}
+#playerSide {
+    justify-content: flex-end;
+}
+#computerSide {
+    justify-content: flex-start;
+}
+
+.shipList {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    column-gap: 0;
+    width: var(--board-width);
+}
+
+#playerShipList {
+    align-items: end;
+    padding-right: 16px;
+}
+
+#playerShipList.vertical{
+    flex-direction: row;
+    align-items: flex-start;
+    column-gap: 8px;
+    row-gap: 0;
+}
+
+/* computer panel */
+#computerShipList {
+    align-items: start;
+    padding-left: 16px;
+}
+#computerShipList img {
+    transform: scaleX(-1);
+    pointer-events: none;
+}
+
+.gameBoard {
+    width: 400px;
+    height: 400px;
+    margin: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0;
+}
+
+.block {
+    width: 40px;
+    height: 40px;
+    border: solid 1px white;
+    box-sizing: border-box;
+    box-shadow: 0 0 8px #0a9bd8aa;
+
+}
+
+.optionContainer {
+    width: 300px;    
+    margin: 0px 10px;
+    align-items: center;
+}
+
+.container{
+    width: 400px;
+    margin: 10px 10px;
+    padding-top: 10px;
+    background-color: var(--content-background-color);
+    box-shadow: 0 0 8px black;
+    display: block;
+}
+
+#flipButton {
+    width: 40px;
+    margin: 25px 10px;
+    overflow: hidden;
+    /* margin: 10px 10px; */
+}
+
+#computer:hover {
+    cursor: url('../media/gunpointer.png')17.5 17.5, auto;
+    /* background-color: white; */
+}
+
+#computer .destroyer,
+#computer .submarine,
+#computer .cruiser,
+#computer .battleship,
+#computer .carrier {
+    background-color: var(--backgroundColor);
+}
+
+#computer .block:hover {
+    border: solid white 7px;
+}
+
+.hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.hover.error {
+    background-color: rgba(255, 60, 60, 0.8);
+}
+
+#player div {
+    transition: background-color 200ms;
+    transition-delay: 50ms;
+}
+
+.boom {
+    background-image: url('../media/boom.gif') !important;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+}
+
+.empty {
+    pointer-events: none;
+    background-image: url('../media/empty.gif') !important;
+    background-size: cover;
+    background-position: center;
+}
+
+.sunk {
+    background-color: red!important;
+}
+
+#shipLists {
+    display: flex;
+    justify-content:space-between;
+    color: white;
+    background-color: var(--content-background-color);
+    padding: 10px;
+    pointer-events: none;
+    /* display: none; */
+}
+#shipLists p{
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+#gameContainer.setup #computerShipList div {
+    background-color: var(--content-background-color);
+}

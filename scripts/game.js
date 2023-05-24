@@ -4,7 +4,7 @@ startButton.addEventListener("click", startGame);
 
 // Start Game
 function startGame() {
-    if (playerTurn === undefined) {
+    if (gameStats.playerTurn === undefined) {
         if (optionContainer.children.length != 0) {
             infoDisplay.textContent = "Plaats eerst al je schepen!";
         } else {
@@ -26,18 +26,18 @@ function startGame() {
             
             document.querySelector('#gameContainer .container').classList.add('hide')
 
-            playerTurn = true;
-            turnDisplay.textContent = 'Jou beurt!';
+            gameStats.playerTurn = true;
+            turnDisplay.textContent = 'Jouw beurt!';
             infoDisplay.textContent = 'Het spel is begonnen!';
-            hideElement()
+            //hideElement()
         }
 
     }
 }
 //Check the selected block and change values
 function handleClick(e) {
-    if (!gameOver) {
-        roundCount++;
+    if (!gameStats.gameOver) {
+        gameStats.round++;
         if (e.target.classList.contains("taken")) {
             e.target.classList.add("boom");
             infoDisplay.textContent = "Je hebt een schip geraakt!";
@@ -45,25 +45,25 @@ function handleClick(e) {
             classes = classes.filter((className) => className !== "block");
             classes = classes.filter((className) => className !== "boom");
             classes = classes.filter((className) => className !== "taken");
-            playerHits.push(...classes);
-            checkScore('player', playerHits, playerSunkShips);
+            gameStats.playerHits.push(...classes);
+            checkScore();
         }
         if (!e.target.classList.contains("taken")) {
             infoDisplay.textContent = "Je hebt niks geraakt.";
             e.target.classList.add("empty");
         }
-        playerTurn = false;
+        gameStats.playerTurn = false;
         const allBoardBlocks = document.querySelectorAll("#computer div");
         allBoardBlocks.forEach(block => block.replaceWith(block.cloneNode(true)));
-        setTimeout(computerGo, 50);
+        setTimeout(computerTurn, 50);
     }
 }
 
 // Define the computers go
-function computerGo() {
-    if (!gameOver) {
-        turnDisplay.textContent = 'Guardian\'s beurt!';
-        infoDisplay.textContent = "Guardian is aan het denken...";
+function computerTurn() {
+    if (!gameStats.gameOver) {
+        turnDisplay.textContent = 'Guardion\'s beurt!';
+        infoDisplay.textContent = "Guardion is aan het denken...";
         //computer turn
         setTimeout(() => {
             // first find an "obvious target"
@@ -76,7 +76,7 @@ function computerGo() {
         }, 25);
         //player turn
         setTimeout(() => {
-            playerTurn = true;
+            gameStats.playerTurn = true;
             turnDisplay.textContent = "Jou beurt!";
             infoDisplay.textContent = "Neem je beurt.";
             const allBoardBlocks = document.querySelectorAll("#computer div");
@@ -98,8 +98,8 @@ function engageTarget(blockID) {
         classes = classes.filter((className) => className !== "block");
         classes = classes.filter((className) => className !== "boom");
         classes = classes.filter((className) => className !== "taken");
-        computerHits.push(...classes);
-        checkScore('computer', computerHits, computerSunkShips);
+        gameStats.computerHits.push(...classes);
+        checkScore();
     } else {
         infoDisplay.textContent = "Er is niks geraakt.";
         allPlayerBlocks[blockID].classList.add("empty");

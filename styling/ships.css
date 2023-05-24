@@ -1,0 +1,109 @@
+:root {
+    --preview-height: 48px;
+    /* ship color */
+    --color-destroyer: #3FA7A7;
+    --color-submarine: #2196F4;
+    --color-cruiser: #4B40BF;
+    --color-battleship: #9540BF;
+    --color-carrier: #74A145;
+}
+/* SHIPS */
+.preview {
+    width: fit-content;
+    height: var(--preview-height);
+    margin: 3px;
+    padding: 6px;
+    cursor: grab;
+    display: flex;
+    align-items: flex-end
+}
+.preview img {
+    max-height: var(--preview-height);    
+}
+
+/*destroyer*/
+#player .destroyer {
+    box-shadow: 0 0 8px var(--color-destroyer);
+}
+.destroyer {
+    background-color: var(--color-destroyer);
+}
+.destroyerPreview, 
+.destroyerPreview img {
+    width: calc(3 * var(--preview-height));
+}
+
+
+/*submarine*/
+#player .submarine {
+    box-shadow: 0 0 8px var(--color-submarine);
+}
+.submarine {
+    background-color: var(--color-submarine);
+}
+
+.submarinePreview,
+.submarinePreview img {
+    width: calc(2 * var(--preview-height));
+}
+
+/*cruiser*/
+#player .cruiser {
+    box-shadow: 0 0 8px var(--color-cruiser);
+}
+.cruiser {
+    background-color: var(--color-cruiser);
+}
+.cruiserPreview,
+.cruiserPreview img {
+    width: calc(3 * var(--preview-height));
+}
+
+/*battleship*/
+#player .battleship {
+    box-shadow: 0 0 8px var(--color-battleship);
+}
+.battleship {
+    background-color: var(--color-battleship);
+}
+.battleshipPreview,
+.battleshipPreview img {
+    width: calc(4 * var(--preview-height));
+}
+
+/*carrier*/
+#player .carrier {
+    box-shadow: 0 0 8px var(--color-carrier);
+}
+.carrier {
+    background-color: var(--color-carrier);
+}
+.carrierPreview, 
+.carrierPreview img{
+    width: calc(5 * var(--preview-height));
+}
+
+/* rotated*/
+/* #playerShipList.vertical .preview img {
+    transform-origin: center;
+    transform: rotate(90deg);
+    max-width: var(--preview-height);
+    max-height: 1000px;
+} */
+#playerShipList.vertical img {
+    transform-origin: center;
+    transform: rotate(90deg);
+    align-items: flex-end;
+    flex-direction: row;
+    width: var(--preview-height);
+    max-height: 100%;
+}
+#playerShipList.vertical .preview {
+    
+    width: var(--preview-height);
+}
+
+#playerShipList.vertical .carrierPreview {
+    height: calc(5 * var(--preview-height));
+}
+
