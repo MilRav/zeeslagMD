@@ -15,7 +15,9 @@
     padding: 6px;
     cursor: grab;
     display: flex;
-    align-items: flex-end
+    align-items: flex-end;
+    background-color: var(--content-background-color);
+
 }
 .preview img {
     max-height: var(--preview-height);    
@@ -38,8 +40,8 @@
 #player .submarine {
     box-shadow: 0 0 8px var(--color-submarine);
 }
-.submarine {
-    background-color: var(--color-submarine);
+.submarine #omtrek {
+    fill: var(--color-submarine);
 }
 
 .submarinePreview,
