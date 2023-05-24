@@ -37,20 +37,20 @@
         <div id="gamesBoardContainer">
             <div id="playerSide" class="playerPanel">
                 <div id="playerShipList" class="shipList">
-                  <div id="0" class="submarinePreview submarine preview">
-                        <img id="subSvg" src="../media/IPW.svg" type="image/svg+xml"></img>
+                    <div id="0" class="submarinePreview submarine preview">
+                        <load-file replaceWith id="subSvg" src="../media/IPW.svg"></load-file>
                     </div>
                     <div id="1" class="destroyerPreview destroyer preview">
-                        <img id="opvSvg" src="../media/OPV.svg" type="image/svg+xml"></img>
+                        <load-file replaceWith id="opvSvg" src="../media/OPV.svg"></load-file>
                     </div>
                     <div id="2" class="cruiserPreview cruiser preview">
-                        <img id="mffSvg" src="../media/MFF.svg" type="image/svg+xml"></img>
+                        <load-file replaceWith id="mffSvg" src="../media/MFF.svg"></load-file>
                     </div>
                     <div id="3" class="battleshipPreview battleship preview">
-                        <img id="lcfSvg" src="../media/LCF.svg" type="image/svg+xml"></img>
+                        <load-file replaceWith id="lcfSvg" src="../media/LCF.svg"></load-file>
                     </div>
                     <div id="4" class="carrierPreview carrier preview">
-                        <img id="dmanSvg" src="../media/DMAN.svg" type="image/svg+xml"></img>
+                        <load-file replaceWith id="dmanSvg" src="../media/DMAN.svg"></load-file>
                     </div>  
                 </div>
                 <div id="player" class="gameBoard"></div>
@@ -58,21 +58,21 @@
             <div id="computerSide" class="playerPanel">
                 <div id="computer" class="gameBoard"></div>
                 <div id="computerShipList" class="shipList">
-                    <div class="submarinePreview submarine preview">
-                        <img id="subSvg" src="../media/IPW.svg" type="image/svg+xml"></img>
+                    <div id="0" class="submarinePreview submarine preview">
+                        <load-file replaceWith id="subSvg" src="../media/IPW.svg"></load-file>
                     </div>
-                    <div class="destroyerPreview destroyer preview">
-                        <img id="opvSvg" src="../media/OPV.svg" type="image/svg+xml"></img>
+                    <div id="1" class="destroyerPreview destroyer preview">
+                        <load-file replaceWith id="opvSvg" src="../media/OPV.svg"></load-file>
                     </div>
-                    <div class="cruiserPreview cruiser preview">
-                        <img id="mffSvg" src="../media/MFF.svg" type="image/svg+xml"></img>
+                    <div id="2" class="cruiserPreview cruiser preview">
+                        <load-file replaceWith id="mffSvg" src="../media/MFF.svg"></load-file>
                     </div>
-                    <div class="battleshipPreview battleship preview">
-                        <img id="lcfSvg" src="../media/LCF.svg" type="image/svg+xml"></img>
+                    <div id="3" class="battleshipPreview battleship preview">
+                        <load-file replaceWith id="lcfSvg" src="../media/LCF.svg"></load-file>
                     </div>
-                    <div class="carrierPreview carrier preview">
-                        <img id="dmanSvg" src="../media/DMAN.svg" type="image/svg+xml"></img>
-                    </div>
+                    <div id="4" class="carrierPreview carrier preview">
+                        <load-file replaceWith id="dmanSvg" src="../media/DMAN.svg"></load-file>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -109,6 +109,7 @@
     <script src="../scripts/setup.js"></script>
     <script src="../scripts/game.js"></script>
     <script src="../scripts/score.js"></script>
+    <script src="../scripts/loadfile.js"></script>
 </body>
 
 </html>
