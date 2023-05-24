@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="nl">
 
 <head>
@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styling/style.css">
+    <link rel="stylesheet" href="../styling/game.css">
+    <link rel="stylesheet" href="../styling/ships.css">
     <link rel="icon" type="image/x-icon" href="../media/guardionLogo.svg">
     <title>Game</title>
 </head>
@@ -25,41 +27,79 @@
             <p>Ronde: <span id="turnDisplay"></span></p>
             <p>Info: <span id="info"></span></p>
         </div>
-
-        <div id="gamesBoardContainer"></div>
+        
+        <div id="gameBoardHeader">
+            <div></div>
+            <div class="boardTitle">Speler</div>
+            <div class="boardTitle">Guardion</div>
+            <div></div>
+        </div>
+        <div id="gamesBoardContainer">
+            <div id="playerSide" class="playerPanel">
+                <div id="playerShipList" class="shipList">
+                  <div id="0" class="submarinePreview submarine preview">
+                        <img id="subSvg" src="../media/IPW.svg" type="image/svg+xml"></img>
+                    </div>
+                    <div id="1" class="destroyerPreview destroyer preview">
+                        <img id="opvSvg" src="../media/OPV.svg" type="image/svg+xml"></img>
+                    </div>
+                    <div id="2" class="cruiserPreview cruiser preview">
+                        <img id="mffSvg" src="../media/MFF.svg" type="image/svg+xml"></img>
+                    </div>
+                    <div id="3" class="battleshipPreview battleship preview">
+                        <img id="lcfSvg" src="../media/LCF.svg" type="image/svg+xml"></img>
+                    </div>
+                    <div id="4" class="carrierPreview carrier preview">
+                        <img id="dmanSvg" src="../media/DMAN.svg" type="image/svg+xml"></img>
+                    </div>  
+                </div>
+                <div id="player" class="gameBoard"></div>
+            </div>
+            <div id="computerSide" class="playerPanel">
+                <div id="computer" class="gameBoard"></div>
+                <div id="computerShipList" class="shipList">
+                    <div class="submarinePreview submarine preview">
+                        <img id="subSvg" src="../media/IPW.svg" type="image/svg+xml"></img>
+                    </div>
+                    <div class="destroyerPreview destroyer preview">
+                        <img id="opvSvg" src="../media/OPV.svg" type="image/svg+xml"></img>
+                    </div>
+                    <div class="cruiserPreview cruiser preview">
+                        <img id="mffSvg" src="../media/MFF.svg" type="image/svg+xml"></img>
+                    </div>
+                    <div class="battleshipPreview battleship preview">
+                        <img id="lcfSvg" src="../media/LCF.svg" type="image/svg+xml"></img>
+                    </div>
+                    <div class="carrierPreview carrier preview">
+                        <img id="dmanSvg" src="../media/DMAN.svg" type="image/svg+xml"></img>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="container">
             <p>Plaats je schepen op het speel veld.</p>
             <div class="flex">
                 <div class="optionContainer">
-                    <div id="0" class="destroyerPreview destroyer" draggable="true"></div>
-                    <div id="1" class="submarinePreview submarine" draggable="true"></div>
-                    <div id="2" class="cruiserPreview cruiser" draggable="true"></div>
-                    <div id="3" class="battleshipPreview battleship" draggable="true"></div>
-                    <div id="4" class="carrierPreview carrier" draggable="true"></div>
+                    <div id="0" class="submarinePreview submarine preview">
+                        <!-- <img id="subSvg" src="../media/IPW.svg" type="image/svg+xml"></img> -->
+                    </div>
+                    <div id="1" class="destroyerPreview destroyer preview">
+                        <!-- <img id="opvSvg" src="../media/OPV.svg" type="image/svg+xml"></img> -->
+                    </div>
+                    <div id="2" class="cruiserPreview cruiser preview">
+                        <!-- <img id="mffSvg" src="../media/MFF.svg" type="image/svg+xml"></img> -->
+                    </div>
+                    <div id="3" class="battleshipPreview battleship preview">
+                        <!-- <img id="lcfSvg" src="../media/LCF.svg" type="image/svg+xml"></img> -->
+                    </div>
+                    <div id="4" class="carrierPreview carrier preview">
+                        <!-- <img id="dmanSvg" src="../media/DMAN.svg" type="image/svg+xml"></img> -->
+                    </div>
                 </div>
                 <div id="flipButton"><img src="../media/turnButtonWhite.PNG" height="40px"></div>
             </div>
         </div>
-        <div id="shipLists">
-            <div id="playerShipList">
-                <p>Speler</p>
-                <div class="destroyerPreview destroyer"></div>
-                <div class="submarinePreview submarine"></div>
-                <div class="cruiserPreview cruiser"></div>
-                <div class="battleshipPreview battleship"></div>
-                <div class="carrierPreview carrier"></div>
-            </div>
-            <div id="computerShipList">
-                <p>Guardion</p>
-                <div class="destroyerPreview destroyer"></div>
-                <div class="submarinePreview submarine"></div>
-                <div class="cruiserPreview cruiser"></div>
-                <div class="battleshipPreview battleship"></div>
-                <div class="carrierPreview carrier"></div>
-            </div>
-        </div>
-
         <!-- <button id="flipButton">Draai</button> -->
         <button id="startButton">Start</button>
         <button id="resetButton" onClick="window.location.reload()">Reset</button>

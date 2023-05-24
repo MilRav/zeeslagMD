@@ -17,25 +17,30 @@ class Ship {
     }
 }
 
-const destroyer = new Ship("0", "destroyer", 2);
-const submarine = new Ship("1", "submarine", 3);
+
+const submarine = new Ship("0", "submarine", 2);
+const destroyer = new Ship("1", "destroyer", 3);
 const cruiser = new Ship("2", "cruiser", 3);
 const battleship = new Ship("3", "battleship", 4);
 const carrier = new Ship("4", "carrier", 5);
-const ships = [destroyer, submarine, cruiser, battleship, carrier];
+const ships = [submarine, destroyer, cruiser, battleship, carrier];
 const optionShips = Array.from(optionContainer.children);
 
 // vars
 let draggedShip;
 let angle = 0;
 let notDropped;
-let gameOver = false;
-let playerTurn;
-let roundCount = 0;
-let playerHits = [];
-let computerHits = [];
-let playerSunkShips = [];
-let computerSunkShips = [];
+let gameStats = {
+    round: 0,
+    gameOver: false,
+    playerTurn: undefined,
+    playerHits: [],
+    computerHits: [],
+    playerSunkShips: [],
+    computerSunkShips: [],
+    playerHitPercentage: 0,
+    computerHitPercentage: 0,
+}
 
 /* SETUP BOARDS */
 document.querySelector('#gameContainer').classList.add('setup')
@@ -62,24 +67,26 @@ playerBoard.addEventListener('dragleave', dragLeave);
 function flip() {
     const optionShips = Array.from(optionContainer.children);
     angle = angle === 0 ? 90 : 0;
+
     optionShips.forEach(
         (optionShip) => (optionShip.style.transform = `rotate(${angle}deg)`)
     );
+
+    const _elPlayerShipList = document.querySelector('#playerShipList');
+    _elPlayerShipList.classList.remove(angle === 90 ? 'horizontal' : 'vertical')
+    _elPlayerShipList.classList.add(angle === 0 ? 'horizontal' : 'vertical')
 }
 
 //Create a 10 * 10 gameboard
 function createBoard(user) {
     sessionStorage.removeItem('droppedShips');
-    const gameBoardContainer = document.createElement("div");
-    gameBoardContainer.classList.add("gameBoard");
-    gameBoardContainer.id = user;
+    const gameBoardContainer = document.querySelector(`#${user}.gameBoard`)
     for (let i = 0; i < width * width; i++) {
         const block = document.createElement("div");
         block.classList.add("block");
         block.id = i;
         gameBoardContainer.append(block);
     }
-    gamesBoardContainer.append(gameBoardContainer);
 }
 
 //Check if a ship has a correct spot
@@ -133,30 +140,6 @@ function checkPlacement(allBoardBlocks, isHorizontal, startIndex, ship) {
     );
     return { shipBlocks, valid, notTaken };
 }
-
-
-
-
-// Hide elements when not needed
-function hideElement() {
-    var x = document.getElementById("shipLists");
-    if (x.style.display === "none") {
-      x.style.display = "flex";
-    } else {
-      x.style.display = "none";
-    }
-    var y = document.getElementById("container");
-    if (y.style.display === "block") {
-      y.style.display = "none";
-    } else {
-      y.style.display = "block";
-    }
-  }
-
-  hideElement()
-
-
-
 
 //Add a ship piece to the player or computers board
 function addShipPiece(user, ship, startId) {
@@ -220,7 +203,7 @@ function dropShip(e) {
     if (xxx !== undefined && xxx !== null) {
         droppedShips = xxx;
     }
-    const ship = ships[draggedShip.id];
+    const ship = ships.filter(obj => {return obj.id === draggedShip.id})[0];
 
     if (droppedShips.includes(draggedShip.id)) {
         removeShipPiece(ship)
