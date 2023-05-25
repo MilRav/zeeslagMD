@@ -15,7 +15,7 @@ function startGame() {
                 block.addEventListener("click", handleClick));
 
             allPlayerBoardBlocks.forEach((block) => {
-                block.removeEventListener("dragstart",dragStartFromBoard)
+                block.removeEventListener("dragstart",dragStart)
                 block.removeEventListener("dragover",dragOver)
                 block.removeEventListener("drop",dropShip)
             });
