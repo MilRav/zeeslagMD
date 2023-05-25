@@ -5,7 +5,12 @@ startButton.addEventListener("click", startGame);
 // Start Game
 function startGame() {
     if (gameStats.playerTurn === undefined) {
-        if (optionContainer.children.length != 0) {
+        let _oDroppedShipsFromSession = JSON.parse(sessionStorage.getItem('droppedShips'));
+        let droppedShips = [];
+        if (_oDroppedShipsFromSession !== undefined && _oDroppedShipsFromSession !== null) {
+            droppedShips = _oDroppedShipsFromSession;
+        }
+        if (droppedShips.length < 5) {
             infoDisplay.textContent = "Plaats eerst al je schepen!";
         } else {
             // add and remove event listeners
@@ -15,7 +20,7 @@ function startGame() {
                 block.addEventListener("click", handleClick));
 
             allPlayerBoardBlocks.forEach((block) => {
-                block.removeEventListener("dragstart",dragStartFromBoard)
+                block.removeEventListener("dragstart",dragStart)
                 block.removeEventListener("dragover",dragOver)
                 block.removeEventListener("drop",dropShip)
             });
@@ -24,12 +29,9 @@ function startGame() {
             _elContainer.classList.remove('setup')
             _elContainer.classList.add('playing')
             
-            document.querySelector('#gameContainer .container').classList.add('hide')
-
             gameStats.playerTurn = true;
             turnDisplay.textContent = 'Jouw beurt!';
             infoDisplay.textContent = 'Het spel is begonnen!';
-            //hideElement()
         }
 
     }
@@ -45,13 +47,13 @@ function handleClick(e) {
             classes = classes.filter((className) => className !== "block");
             classes = classes.filter((className) => className !== "boom");
             classes = classes.filter((className) => className !== "taken");
-            gameStats.playerHits.push(...classes);
-            checkScore();
+            gameStats.player.hits.push(...classes);
         }
         if (!e.target.classList.contains("taken")) {
             infoDisplay.textContent = "Je hebt niks geraakt.";
             e.target.classList.add("empty");
         }
+        checkScore();
         gameStats.playerTurn = false;
         const allBoardBlocks = document.querySelectorAll("#computer div");
         allBoardBlocks.forEach(block => block.replaceWith(block.cloneNode(true)));
@@ -98,7 +100,7 @@ function engageTarget(blockID) {
         classes = classes.filter((className) => className !== "block");
         classes = classes.filter((className) => className !== "boom");
         classes = classes.filter((className) => className !== "taken");
-        gameStats.computerHits.push(...classes);
+        gameStats.computer.hits.push(...classes);
         checkScore();
     } else {
         infoDisplay.textContent = "Er is niks geraakt.";

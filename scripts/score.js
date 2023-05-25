@@ -1,33 +1,33 @@
 function checkScore() {
     ships.forEach((ship) => {
-        if (gameStats.playerHits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {
+        if (gameStats.player.hits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {
             infoDisplay.textContent = `you sunk the computers's ${ship.name}`;
             console.log(ship.name)
             let computerShipList = document.getElementById('computerShipList').getElementsByClassName(`${ship.name}`);
             computerShipList[0].classList.add('sunk')
-            if (gameStats.computerSunkShips.indexOf(ship.name) == -1) {
-                gameStats.computerSunkShips.push(ship.name);
+            if (gameStats.computer.shipsSunk.indexOf(ship.name) == -1) {
+                gameStats.computer.shipsSunk.push(ship.name);
             }
         }
-        if (gameStats.computerHits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {   
+        if (gameStats.computer.hits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {   
             infoDisplay.textContent = `the computer sunk the players's ${ship.name}`;
             let playerShipList = document.getElementById('playerShipList').getElementsByClassName(`${ship.name}`);
             playerShipList[0].classList.add('sunk')
-            if (gameStats.playerSunkShips.indexOf(ship.name) == -1) {
-                gameStats.playerSunkShips.push(ship.name);
+            if (gameStats.player.shipsSunk.indexOf(ship.name) == -1) {
+                gameStats.player.shipsSunk.push(ship.name);
             }
         }
     })
 
     // update score stats
     let maxHits = 17; 
-    gameStats.computerHitPercentage = Math.round((gameStats.computerHits.length / gameStats.round) * 100);
-    gameStats.playerHitPercentage = Math.round((gameStats.playerHits.length / gameStats.round) * 100);
+    gameStats.computer.hitPercentage = Math.round((gameStats.computer.hits.length / gameStats.round) * 100);
+    gameStats.player.hitPercentage = Math.round((gameStats.player.hits.length / gameStats.round) * 100);
 
-    if (gameStats.playerSunkShips.length === 5) {
+    if (gameStats.player.shipsSunk.length === 5) {
         lose()
     }
-    if (gameStats.computerSunkShips.length === 5) {
+    if (gameStats.computer.shipsSunk.length === 5) {
         win()
     }
 }
@@ -37,7 +37,7 @@ function checkScore() {
 function win() {
     infoDisplay.textContent = 'You sunk all the computers ships. YOU WON!';
     gameStats.gameOver = true;
-    window.open("../pages/win.html?win-score=" + gameStats.playerHitPercentage, "_self");
+    window.open("../pages/win.html?win-score=" + gameStats.player.hitPercentage, "_self");
     //TODO: if percentage is high enough -> ducky!
 }
 function lose() {

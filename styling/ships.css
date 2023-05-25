@@ -12,87 +12,95 @@
     width: fit-content;
     height: var(--preview-height);
     margin: 3px;
-    padding: 6px;
+    padding: 0px 6px;
+    padding-top: 2px;
     cursor: grab;
     display: flex;
     align-items: flex-end;
     background-color: var(--content-background-color);
-
+    border-bottom: solid 2px;
+    justify-content: center;
 }
-.preview img {
-    max-height: var(--preview-height);    
+.preview svg {
+    max-height: var(--preview-height);
 }
-
-/*destroyer*/
-#player .destroyer {
-    box-shadow: 0 0 8px var(--color-destroyer);
+.preview svg #omtrek {    
+    stroke: none;
 }
-.destroyer {
-    background-color: var(--color-destroyer);
-}
-.destroyerPreview, 
-.destroyerPreview img {
-    width: calc(3 * var(--preview-height));
-}
-
 
 /*submarine*/
 #player .submarine {
     box-shadow: 0 0 8px var(--color-submarine);
+    background-color: var(--color-submarine);
 }
 .submarine #omtrek {
     fill: var(--color-submarine);
 }
 
-.submarinePreview,
-.submarinePreview img {
+.submarinePreview {
     width: calc(2 * var(--preview-height));
+    border-color: var(--color-submarine);
+}
+
+/*destroyer*/
+#player .destroyer {
+    box-shadow: 0 0 8px var(--color-destroyer);
+    background-color: var(--color-destroyer);
+}
+.destroyer #omtrek {
+    fill: var(--color-destroyer);
+}
+.destroyerPreview {
+    width: calc(3 * var(--preview-height));
+    border-color: var(--color-destroyer);
+    margin-bottom: -2px;
 }
 
 /*cruiser*/
 #player .cruiser {
     box-shadow: 0 0 8px var(--color-cruiser);
-}
-.cruiser {
     background-color: var(--color-cruiser);
 }
-.cruiserPreview,
-.cruiserPreview img {
+.cruiser #omtrek {
+    fill: var(--color-cruiser);
+}
+.cruiserPreview {
     width: calc(3 * var(--preview-height));
+    border-color: var(--color-cruiser);
 }
 
 /*battleship*/
 #player .battleship {
     box-shadow: 0 0 8px var(--color-battleship);
-}
-.battleship {
     background-color: var(--color-battleship);
 }
-.battleshipPreview,
-.battleshipPreview img {
+.battleship #omtrek {
+    fill: var(--color-battleship);
+}
+.battleshipPreview {
     width: calc(4 * var(--preview-height));
+    border-color: var(--color-battleship);
 }
 
 /*carrier*/
 #player .carrier {
     box-shadow: 0 0 8px var(--color-carrier);
-}
-.carrier {
     background-color: var(--color-carrier);
 }
-.carrierPreview, 
-.carrierPreview img{
+.carrier #omtrek {
+    fill: var(--color-carrier);
+}
+.carrierPreview {
     width: calc(5 * var(--preview-height));
+    border-color: var(--color-carrier);
 }
 
 /* rotated*/
-/* #playerShipList.vertical .preview img {
-    transform-origin: center;
-    transform: rotate(90deg);
-    max-width: var(--preview-height);
-    max-height: 1000px;
-} */
-#playerShipList.vertical img {
+#playerShipList.vertical .preview {
+    width: var(--preview-height);
+    border-bottom: none;
+} 
+#playerShipList.vertical svg {
     transform-origin: center;
     transform: rotate(90deg);
     align-items: flex-end;

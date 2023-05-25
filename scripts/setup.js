@@ -17,14 +17,12 @@ class Ship {
     }
 }
 
-
 const submarine = new Ship("0", "submarine", 2);
 const destroyer = new Ship("1", "destroyer", 3);
 const cruiser = new Ship("2", "cruiser", 3);
 const battleship = new Ship("3", "battleship", 4);
 const carrier = new Ship("4", "carrier", 5);
 const ships = [submarine, destroyer, cruiser, battleship, carrier];
-const optionShips = Array.from(optionContainer.children);
 
 // vars
 let draggedShip;
@@ -34,12 +32,16 @@ let gameStats = {
     round: 0,
     gameOver: false,
     playerTurn: undefined,
-    playerHits: [],
-    computerHits: [],
-    playerSunkShips: [],
-    computerSunkShips: [],
-    playerHitPercentage: 0,
-    computerHitPercentage: 0,
+    player: {
+        hits: [],
+        shipsSunk: [],
+        hitPercentage: 0
+    },
+    computer: {
+        hits: [],
+        shipsSunk: [],
+        hitPercentage: 0
+    }
 }
 
 /* SETUP BOARDS */
@@ -64,12 +66,7 @@ document.addEventListener('dragstart', dragStart);
 /* FUNCTIONS */
 //Flip the preview of ships
 function flip() {
-    const optionShips = Array.from(optionContainer.children);
     angle = angle === 0 ? 90 : 0;
-
-    optionShips.forEach(
-        (optionShip) => (optionShip.style.transform = `rotate(${angle}deg)`)
-    );
 
     const _elPlayerShipList = document.querySelector('#playerShipList');
     _elPlayerShipList.classList.remove(angle === 90 ? 'horizontal' : 'vertical')
@@ -79,7 +76,7 @@ function flip() {
 //Create a 10 * 10 gameboard
 function createBoard(user) {
     sessionStorage.removeItem('droppedShips');
-    const gameBoardContainer = document.querySelector(`#${user}.gameBoard`)
+    const gameBoard = document.querySelector(`#${user}.gameBoard`)
     for (let i = 0; i < width * width; i++) {
         const block = document.createElement("div");
         block.classList.add("block");
@@ -175,6 +172,7 @@ function dragLeave(e) {
 }
 
 function dragStart(e) {
+    draggedShip = ""
     console.log(e);
     if (!e.srcElement.classList.contains('draggable')){
         e.preventDefault();
@@ -190,28 +188,19 @@ function dragStart(e) {
                 
                 if (_oTheShip) {
                     draggedShip = _oTheShip //this now functions like the option container div :)
-                    return
-                } else {
-                    return
-                }
+                } 
             })
-            return 
         }
     });
-    let _elNewShips = document.querySelectorAll('.optionContainer div')
-    _elNewShips.forEach((newShip) => {
-        if (newShip == e.srcElement) {
-            notDropped = false;
-            draggedShip = e.target;
-            return
-        }
-    });
+    notDropped = false;
+    if (!draggedShip) {
+        draggedShip = ships.filter(obj => {return obj.id === e.target.id})[0];
+    }
 }
 
 function dragOver(e) {
     e.preventDefault();
-    const ship = ships[draggedShip.id];
-    highlightArea(e.target.id, ship);
+    highlightArea(e.target.id, draggedShip);
 }
 
 function dropShip(e) {
@@ -221,20 +210,19 @@ function dropShip(e) {
 
         return
     }
-    let xxx = JSON.parse(sessionStorage.getItem('droppedShips'));
+    let _oDroppedShipsFromSession = JSON.parse(sessionStorage.getItem('droppedShips'));
     let droppedShips = [];
-    if (xxx !== undefined && xxx !== null) {
-        droppedShips = xxx;
+    if (_oDroppedShipsFromSession !== undefined && _oDroppedShipsFromSession !== null) {
+        droppedShips = _oDroppedShipsFromSession;
     }
-    const ship = ships.filter(obj => {return obj.id === draggedShip.id})[0];
 
     if (droppedShips.includes(draggedShip.id)) {
-        removeShipPiece(ship)
+        removeShipPiece(draggedShip)
     }
     
     const startId = e.target.id;
     
-    addShipPiece("player", ship, startId);
+    addShipPiece("player", draggedShip, startId);
     if (!notDropped) {
         droppedShips.push(draggedShip.id);
         sessionStorage.setItem('droppedShips', JSON.stringify(droppedShips));
@@ -244,6 +232,7 @@ function dropShip(e) {
         }
     }     
     removeHighlightArea();
+    draggedShip = ""
 }
 
 
