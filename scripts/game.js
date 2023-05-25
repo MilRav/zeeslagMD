@@ -15,7 +15,7 @@ function startGame() {
                 block.addEventListener("click", handleClick));
 
             allPlayerBoardBlocks.forEach((block) => {
-                block.removeEventListener("dragstart",dragStartFromBoard)
+                block.removeEventListener("dragstart",dragStart)
                 block.removeEventListener("dragover",dragOver)
                 block.removeEventListener("drop",dropShip)
             });
@@ -109,14 +109,26 @@ function engageTarget(blockID) {
 // find an obvious target: this is any block that is adjecent to a hit and has not been checked
 function findObviousTarget() {
     let targetBlockId = -1;
+    
     for (let i = 0; i < allPlayerBlocks.length; i++) {
         if (allPlayerBlocks[i].classList.contains("boom")) {
-            let blockIdsToCheck = [
-                i - 1,   // check left
-                i + 1,   // check right
-                i - width,  // check up
-                i + width  // check down
-            ];
+            let blockIdsToCheck = [];
+            // check left
+            if (i % width !== 0) {
+              blockIdsToCheck.push(i - 1);
+            }
+            // check right
+            if (i % width !== width - 1) {
+              blockIdsToCheck.push(i + 1);
+            }
+            // check up
+            if (i >= width) {
+              blockIdsToCheck.push(i - width);
+            }
+            // check down
+            if (i < width * (width - 1)) {
+              blockIdsToCheck.push(i + width);
+            }
             for (let j = 0; j < blockIdsToCheck.length; j++) {
                 let blockId = blockIdsToCheck[j];
                 if (blockId >= 0 && blockId < allPlayerBlocks.length && !allPlayerBlocks[blockId].classList.contains("boom") && !allPlayerBlocks[blockId].classList.contains("empty")) {
