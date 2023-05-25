@@ -49,13 +49,12 @@ ships.forEach((ship) => addShipPiece("computer", ship));
 
 /* ADD EVENT LISTENERS */
 flipButton.addEventListener("click", flip);
-optionShips.forEach((optionShip) => {optionShip.addEventListener("dragstart", dragStartFromShipSelection)});
 allPlayerBlocks.forEach((playerBlock) => { 
     playerBlock.addEventListener("dragover", dragOver)
     playerBlock.addEventListener("drop", dropShip)
-    playerBlock.addEventListener("dragstart", dragStartFromBoard)
 });
 playerBoard.addEventListener('dragleave', dragLeave);
+document.addEventListener('dragstart', dragStart);
 
 /* FUNCTIONS */
 //Flip the preview of ships
@@ -70,16 +69,19 @@ function flip() {
 //Create a 10 * 10 gameboard
 function createBoard(user) {
     sessionStorage.removeItem('droppedShips');
-    const gameBoardContainer = document.createElement("div");
-    gameBoardContainer.classList.add("gameBoard");
-    gameBoardContainer.id = user;
+    const gameBoard = document.createElement("div");
+    gameBoard.classList.add("gameBoard");
+    gameBoard.id = user;
     for (let i = 0; i < width * width; i++) {
         const block = document.createElement("div");
         block.classList.add("block");
         block.id = i;
-        gameBoardContainer.append(block);
+        gameBoard.append(block);
     }
-    gamesBoardContainer.append(gameBoardContainer);
+    if (user === 'computer') {
+        gameBoard.setAttribute('draggable', "false");
+    }
+    gamesBoardContainer.append(gameBoard);
 }
 
 //Check if a ship has a correct spot
@@ -170,6 +172,7 @@ function addShipPiece(user, ship, startId) {
         shipBlocks.forEach((shipBlock) => {
             shipBlock.classList.add(ship.name);
             shipBlock.classList.add("taken");
+            if (user === "player") shipBlock.classList.add("draggable");
         });
     } else {
         if (user === "computer") addShipPiece("computer", ship, startId);
@@ -182,6 +185,7 @@ function removeShipPiece(ship) {
     shipBlocks.forEach((shipBlock) => {
         shipBlock.classList.remove(ship.name);
         shipBlock.classList.remove("taken");
+        shipBlock.classList.remove("draggable");
     });
 }
 
@@ -190,22 +194,38 @@ function dragLeave(e) {
     removeHighlightArea();
 }
 
-function dragStartFromShipSelection(e) {
-    notDropped = false;
-    draggedShip = e.target;
-}
-
-function dragStartFromBoard(e) {
-    notDropped = false;
-    draggedShip = ""
-
-    e.target.classList.forEach((classItem) =>  {
-        _oTheShip = ships.find(ship => ship.name == classItem)
-        if (_oTheShip) {
-            draggedShip = _oTheShip //this now functions like the option container div :)
+function dragStart(e) {
+    console.log(e);
+    if (!e.srcElement.classList.contains('draggable')){
+        e.preventDefault();
+        return
+    } 
+    //Are we repositioning a ship?
+    allPlayerBlocks.forEach((shipBlock) => {
+        if (shipBlock == e.srcElement) {
+            notDropped = false;
+            draggedShip = ""
+            e.target.classList.forEach((classItem) =>  {
+                _oTheShip = ships.find(ship => ship.name == classItem)
+                
+                if (_oTheShip) {
+                    draggedShip = _oTheShip //this now functions like the option container div :)
+                    return
+                } else {
+                    return
+                }
+            })
+            return 
+        }
+    });
+    let _elNewShips = document.querySelectorAll('.optionContainer div')
+    _elNewShips.forEach((newShip) => {
+        if (newShip == e.srcElement) {
+            notDropped = false;
+            draggedShip = e.target;
             return
         }
-    })
+    });
 }
 
 function dragOver(e) {
@@ -215,6 +235,12 @@ function dragOver(e) {
 }
 
 function dropShip(e) {
+    const targetError = document.querySelectorAll('#player .error');
+    if (targetError.length > 0){
+        removeHighlightArea();
+
+        return
+    }
     let xxx = JSON.parse(sessionStorage.getItem('droppedShips'));
     let droppedShips = [];
     if (xxx !== undefined && xxx !== null) {
@@ -292,3 +318,4 @@ function removeHighlightArea() {
         _elBlock.classList.remove("error");
     });
 }
+

@@ -46,6 +46,9 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
 }
 
 button, .button {
@@ -174,12 +177,6 @@ progress::-webkit-progress-value {
     color: black;
 }
 
-.gameContainer .container p{
-    -webkit-user-select: none;
-    user-select: none;
-    -ms-user-select: none;
-}
-
 #gamesBoardContainer {
     width: 1000px;
     display: flex;
@@ -192,6 +189,10 @@ progress::-webkit-progress-value {
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
+}
+
+#gameContainer.setup #computer {
+    pointer-events: none;
 }
 
 .block {
@@ -369,4 +370,9 @@ progress::-webkit-progress-value {
 
 .hide {
     display: none;
+}
+.draggable {
+    user-select: all;
+    -webkit-user-select: all;
+    -webkit-user-drag: element;
 }
