@@ -1,9 +1,6 @@
-//Event listeners
-startButton.addEventListener("click", startGame);
-
-
 // Start Game
 function startGame() {
+    
     if (gameStats.playerTurn === undefined) {
         let _oDroppedShipsFromSession = JSON.parse(sessionStorage.getItem('droppedShips'));
         let droppedShips = [];
@@ -14,23 +11,31 @@ function startGame() {
             infoDisplay.textContent = "Plaats eerst al je schepen!";
         } else {
             // add and remove event listeners
-            const allComputerBoardBlocks = document.querySelectorAll("#computer div");
-            const allPlayerBoardBlocks = document.querySelectorAll("#player div");
-            allComputerBoardBlocks.forEach((block) =>
+            document.querySelectorAll("#computer div").forEach((block) =>
                 block.addEventListener("click", handleClick));
 
-            allPlayerBoardBlocks.forEach((block) => {
+            document.querySelectorAll("#player div").forEach((block) => {
                 block.removeEventListener("dragstart",dragStart)
                 block.removeEventListener("dragover",dragOver)
                 block.removeEventListener("drop",dropShip)
             });
+
+            document.querySelector('#playerSide .shipList').classList.remove('vertical')
+
+            flipButton.classList.add('hide')
+
+            // remove draggables
+            document.querySelectorAll('.draggable').forEach((element) =>
+                element.classList.remove('draggable'))
+            // remove placed (setup phase)
+            document.querySelectorAll('.placed').forEach((element) =>
+                element.classList.remove('placed'))
 
             let _elContainer = document.querySelector('#gameContainer');
             _elContainer.classList.remove('setup')
             _elContainer.classList.add('playing')
             
             gameStats.playerTurn = true;
-            turnDisplay.textContent = 'Jouw beurt!';
             infoDisplay.textContent = 'Het spel is begonnen!';
         }
 
@@ -64,7 +69,7 @@ function handleClick(e) {
 // Define the computers go
 function computerTurn() {
     if (!gameStats.gameOver) {
-        turnDisplay.textContent = 'Guardion\'s beurt!';
+        setTurnIndicator()
         infoDisplay.textContent = "Guardion is aan het denken...";
         //computer turn
         setTimeout(() => {
@@ -76,11 +81,13 @@ function computerTurn() {
             }
             engageTarget(targetBlockId);
         }, 25);
+        //adjust difficulty
+        adjustDifficulty()
         //player turn
         setTimeout(() => {
             gameStats.playerTurn = true;
-            turnDisplay.textContent = "Jou beurt!";
-            infoDisplay.textContent = "Neem je beurt.";
+            setTurnIndicator()
+            infoDisplay.textContent = "Jouw beurt.";
             const allBoardBlocks = document.querySelectorAll("#computer div");
             allBoardBlocks.forEach((block) =>
                 block.addEventListener("click", handleClick)
@@ -144,7 +151,7 @@ function findObviousTarget() {
 }
 // generate a random, empty, target
 function findRandomTarget() {
-    let cheatAllowed = Math.floor(Math.random() * 8) == 0;
+    let cheatAllowed = Math.floor(Math.random() * gameStats.difficulty) == 0;
     let blockId = 0
     if (cheatAllowed) {
         // give the computer an actual player ship block
@@ -162,4 +169,26 @@ function findRandomTarget() {
         }
     }
     return blockId
+}
+// adjusts the amount of luck the computer has when finding a random target (aka how often the computer cheats :) )
+function adjustDifficulty() {
+    let _nScoreDiff = gameStats.computer.hits.length - gameStats.player.hits.length
+
+    if (Math.abs(_nScoreDiff) >= DIFFICULTY_THRESHOLD) {
+        // score difference is large enough to adjust the difficulty
+        gameStats.difficulty = _nScoreDiff < 0 ? HARD_DIFFICULTY : EASY_DIFFICULTY
+    } else {
+        // set difficulty to default
+        gameStats.difficulty = DEFAULT_DIFFICULTY
+    }
+}
+
+function setTurnIndicator() {
+    if (gameStats.playerTurn) {
+        document.querySelector('#computerSide').classList.remove('turn')
+        document.querySelector('#playerSide').classList.add('turn')
+    } else {
+        document.querySelector('#playerSide').classList.remove('turn')
+        document.querySelector('#computerSide').classList.add('turn')
+    }
 }

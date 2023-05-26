@@ -3,7 +3,7 @@ function checkScore() {
         if (gameStats.player.hits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {
             infoDisplay.textContent = `you sunk the computers's ${ship.name}`;
             console.log(ship.name)
-            let computerShipList = document.getElementById('computerShipList').getElementsByClassName(`${ship.name}`);
+            let computerShipList = document.querySelector('#computerSide .shipList').getElementsByClassName(`${ship.name}`);
             computerShipList[0].classList.add('sunk')
             if (gameStats.computer.shipsSunk.indexOf(ship.name) == -1) {
                 gameStats.computer.shipsSunk.push(ship.name);
@@ -11,7 +11,7 @@ function checkScore() {
         }
         if (gameStats.computer.hits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {   
             infoDisplay.textContent = `the computer sunk the players's ${ship.name}`;
-            let playerShipList = document.getElementById('playerShipList').getElementsByClassName(`${ship.name}`);
+            let playerShipList = document.querySelector('#playerSide .shipList').getElementsByClassName(`${ship.name}`);
             playerShipList[0].classList.add('sunk')
             if (gameStats.player.shipsSunk.indexOf(ship.name) == -1) {
                 gameStats.player.shipsSunk.push(ship.name);
@@ -37,8 +37,11 @@ function checkScore() {
 function win() {
     infoDisplay.textContent = 'You sunk all the computers ships. YOU WON!';
     gameStats.gameOver = true;
-    window.open("../pages/win.html?win-score=" + gameStats.player.hitPercentage, "_self");
-    //TODO: if percentage is high enough -> ducky!
+    if (gameStats.player.hitPercentage >= DUCKY_THRESHOLD) {
+        window.open("../pages/winrubberduck.html?win-score=" + gameStats.player.hitPercentage, "_self");
+    } else {
+        window.open("../pages/win.html?win-score=" + gameStats.player.hitPercentage, "_self");
+    }
 }
 function lose() {
     infoDisplay.textContent = 'The computer has sunk all your ships. YOU LOST!';

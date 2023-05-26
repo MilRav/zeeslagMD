@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 1s ease-in-out;
 }
 
 #gameContainer button {
@@ -30,34 +31,44 @@
     user-select: none;
     -ms-user-select: none;
 }
-
-#gameBoardHeader {
-    height: 24px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-#gameBoardHeader .boardTitle {
-    font-size: 14pt;
-    width: var(--board-width);
-    padding: 8px;
-}
-
-#gamesBoardContainer {
-    display: flex;
-}
-
-/* player panel */
 .playerPanel {
     display: flex;
+    flex-direction: column;
     padding: 16px;
     align-items: center;
 }
-#playerSide {
+.playerPanel.turn .boardTitle {
+    border-bottom: solid 2px white;
+}
+.panelHeader {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 16px;
+}
+
+.panelHeader .boardTitle {
+    font-size: 14pt;
+    width: var(--board-width);
+    padding-bottom: 8px;
+    height: fit-content;
+}
+.panelContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.panelFooter {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: flex-end;
 }
-#computerSide {
-    justify-content: flex-start;
+.panelFooter .boardPadding {
+    width: var(--board-width);
+    margin-left: 16px;
 }
 
 .shipList {
@@ -65,35 +76,47 @@
     flex-direction: column;
     row-gap: 8px;
     column-gap: 0;
-    width: var(--board-width);
 }
 
-#playerShipList {
+#gamesBoardContainer {
+    display: flex;
+}
+
+/* player panel */
+#playerSide,
+#playerSide .panelHeader {
+    justify-content: flex-end;
+}
+/* computer panel */
+#computerSide,
+#computerSide.panelHeader {
+    justify-content: flex-start;
+}
+
+#playerSide .shipList {
     align-items: end;
     padding-right: 16px;
 }
 
-#playerShipList.vertical{
-    flex-direction: row;
-    align-items: flex-start;
-    column-gap: 8px;
-    row-gap: 0;
+/* rotated*/
+#playerSide .shipList.vertical {
+    transform-origin: center;
+    transform: rotate(-90deg) translateY(-40px);
 }
 
 /* computer panel */
-#computerShipList {
+#computerSide .shipList {
     align-items: start;
     padding-left: 16px;
 }
-#computerShipList svg {
+#computerSide .shipList svg {
     transform: scaleX(-1);
     pointer-events: none;
 }
 
 .gameBoard {
-    width: 400px;
-    height: 400px;
-    margin: 8px;
+    width: var(--board-width);
+    height: var(--board-width);    
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 0;
@@ -188,11 +211,11 @@
     font-weight: bold;
 }
 
-#gameContainer.setup #computerShipList div {
+#gameContainer.setup #computerSide .shipList div {
     background-color: var(--content-background-color);
     border-color: black;
 }
 
-#gameContainer.setup #computerShipList svg #omtrek {
+#gameContainer.setup #computerSide .shipList svg #omtrek {
     fill: black;
 }

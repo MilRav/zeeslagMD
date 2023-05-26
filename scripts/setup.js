@@ -1,12 +1,20 @@
+// SHOULD BE LOADED LAST
+
 // board
 const gamesBoardContainer = document.querySelector("#gamesBoardContainer");
 const optionContainer = document.querySelector(".optionContainer");
 const flipButton = document.querySelector("#flipButton");
 const startButton = document.querySelector("#startButton");
-const infoDisplay = document.querySelector("#info");
-const turnDisplay = document.querySelector("#turnDisplay");
+const resetButton = document.querySelector("#resetButton");
+const infoDisplay = document.querySelector("#gameInfo");
 const shipList = document.querySelector('.shipList');
 const width = 10;
+
+const DEFAULT_DIFFICULTY = 8
+const EASY_DIFFICULTY = 12
+const HARD_DIFFICULTY = 4
+const DIFFICULTY_THRESHOLD = 3
+const DUCKY_THRESHOLD = 60
 
 // ships
 class Ship {
@@ -32,6 +40,7 @@ let gameStats = {
     round: 0,
     gameOver: false,
     playerTurn: undefined,
+    difficulty: DEFAULT_DIFFICULTY,
     player: {
         hits: [],
         shipsSunk: [],
@@ -51,11 +60,13 @@ createBoard("player");
 createBoard("computer");
 const allPlayerBlocks = document.querySelectorAll("#player div");
 const playerBoard = document.querySelector('#player');
-
+startButton.classList.add('hide');
 ships.forEach((ship) => addShipPiece("computer", ship));
 
 /* ADD EVENT LISTENERS */
 flipButton.addEventListener("click", flip);
+startButton.addEventListener("click", startGame);
+
 allPlayerBlocks.forEach((playerBlock) => { 
     playerBlock.addEventListener("dragover", dragOver)
     playerBlock.addEventListener("drop", dropShip)
@@ -63,12 +74,14 @@ allPlayerBlocks.forEach((playerBlock) => {
 playerBoard.addEventListener('dragleave', dragLeave);
 document.addEventListener('dragstart', dragStart);
 
+infoDisplay.textContent = "Plaats je schepen door ze naar het bord te slepen.";
+
 /* FUNCTIONS */
 //Flip the preview of ships
 function flip() {
     angle = angle === 0 ? 90 : 0;
 
-    const _elPlayerShipList = document.querySelector('#playerShipList');
+    const _elPlayerShipList = document.querySelector('#playerSide .shipList');
     _elPlayerShipList.classList.remove(angle === 90 ? 'horizontal' : 'vertical')
     _elPlayerShipList.classList.add(angle === 0 ? 'horizontal' : 'vertical')
 }
@@ -226,13 +239,16 @@ function dropShip(e) {
     if (!notDropped) {
         droppedShips.push(draggedShip.id);
         sessionStorage.setItem('droppedShips', JSON.stringify(droppedShips));
-        if (draggedShip.constructor.name == 'HTMLDivElement') {
-            // new from our options container, so remove from it
-            draggedShip.remove();
-        }
+        let _elShipPiece = document.querySelector(`#playerSide .shipList .${draggedShip.name}`)
+        if (_elShipPiece) _elShipPiece.classList.add('placed')
+
     }     
     removeHighlightArea();
     draggedShip = ""
+
+    // check if all ships are dropped and unhide start button
+    let _elPlacedShips = document.querySelectorAll('#playerSide .placed')
+    if (_elPlacedShips.length == 5) startButton.classList.remove('hide')
 }
 
 
