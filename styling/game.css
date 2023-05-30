@@ -147,7 +147,7 @@
     /* margin: 10px 10px; */
 }
 
-#computer:hover {
+#gameContainer.playing #computer:hover {
     cursor: url('../media/gunpointer.png')17.5 17.5, auto;
     /* background-color: white; */
 }
@@ -160,7 +160,7 @@
     background-color: var(--backgroundColor);
 }
 
-#computer .block:hover {
+#gameContainer.playing #computer .block:hover {
     border: solid white 7px;
 }
 
@@ -218,4 +218,8 @@
 
 #gameContainer.setup #computerSide .shipList svg #omtrek {
     fill: black;
+}
+
+#gameContainer.set #computer {
+    pointer-events: none;
 }
