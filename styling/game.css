@@ -168,7 +168,7 @@
     background-color: rgba(255, 255, 255, 0.8);
 }
 .hover.error {
-    background-color: rgba(255, 60, 60, 0.8);
+    background-color: rgba(255, 60, 60, 0.8) !important;
 }
 
 #player div {
