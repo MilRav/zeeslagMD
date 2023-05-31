@@ -1,3 +1,9 @@
+/* Keyframes */
+@keyframes sunkAnimation {
+    from {fill: yellow;}
+    to {fill: red;}
+  }
+
 /* game styling */
 :root {
     --board-width: 400px;
@@ -161,7 +167,7 @@
 }
 
 #gameContainer.playing #computer .block:hover {
-    border: solid white 7px;
+    border: solid yellow 7px;
 }
 
 .hover {
@@ -195,6 +201,8 @@
 }
 .sunk svg #omtrek {
     fill: red;
+    animation-name: sunkAnimation;
+    animation-duration: 4s;
 }
 
 .shipLists {
