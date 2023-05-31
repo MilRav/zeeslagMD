@@ -71,6 +71,10 @@
     margin-left: 16px;
 }
 
+#gameContainer.playing #startButton {
+    display: none;
+}
+
 .shipList {
     display: flex;
     flex-direction: column;
