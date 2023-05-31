@@ -14,7 +14,7 @@ const DEFAULT_DIFFICULTY = 8
 const EASY_DIFFICULTY = 12
 const HARD_DIFFICULTY = 4
 const DIFFICULTY_THRESHOLD = 3
-const DUCKY_THRESHOLD = 60
+const DUCKY_THRESHOLD = 40
 
 // ships
 class Ship {

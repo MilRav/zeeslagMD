@@ -114,6 +114,7 @@
 #computerSide .shipList {
     align-items: start;
     padding-left: 16px;
+    pointer-events: none;
 }
 #computerSide .shipList svg {
     transform: scaleX(-1);
