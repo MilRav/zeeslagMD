@@ -1,12 +1,20 @@
+// SHOULD BE LOADED LAST
+
 // board
 const gamesBoardContainer = document.querySelector("#gamesBoardContainer");
 const optionContainer = document.querySelector(".optionContainer");
 const flipButton = document.querySelector("#flipButton");
 const startButton = document.querySelector("#startButton");
-const infoDisplay = document.querySelector("#info");
-const turnDisplay = document.querySelector("#turnDisplay");
+const resetButton = document.querySelector("#resetButton");
+const infoDisplay = document.querySelector("#gameInfo");
 const shipList = document.querySelector('.shipList');
 const width = 10;
+
+const DEFAULT_DIFFICULTY = 8
+const EASY_DIFFICULTY = 12
+const HARD_DIFFICULTY = 4
+const DIFFICULTY_THRESHOLD = 3
+const DUCKY_THRESHOLD = 60
 
 // ships
 class Ship {
@@ -17,25 +25,33 @@ class Ship {
     }
 }
 
-const destroyer = new Ship("0", "destroyer", 2);
-const submarine = new Ship("1", "submarine", 3);
+const submarine = new Ship("0", "submarine", 2);
+const destroyer = new Ship("1", "destroyer", 3);
 const cruiser = new Ship("2", "cruiser", 3);
 const battleship = new Ship("3", "battleship", 4);
 const carrier = new Ship("4", "carrier", 5);
-const ships = [destroyer, submarine, cruiser, battleship, carrier];
-const optionShips = Array.from(optionContainer.children);
+const ships = [submarine, destroyer, cruiser, battleship, carrier];
 
 // vars
 let draggedShip;
 let angle = 0;
 let notDropped;
-let gameOver = false;
-let playerTurn;
-let roundCount = 0;
-let playerHits = [];
-let computerHits = [];
-let playerSunkShips = [];
-let computerSunkShips = [];
+let gameStats = {
+    round: 0,
+    gameOver: false,
+    playerTurn: undefined,
+    difficulty: DEFAULT_DIFFICULTY,
+    player: {
+        hits: [],
+        shipsSunk: [],
+        hitPercentage: 0
+    },
+    computer: {
+        hits: [],
+        shipsSunk: [],
+        hitPercentage: 0
+    }
+}
 
 /* SETUP BOARDS */
 document.querySelector('#gameContainer').classList.add('setup')
@@ -44,11 +60,13 @@ createBoard("player");
 createBoard("computer");
 const allPlayerBlocks = document.querySelectorAll("#player div");
 const playerBoard = document.querySelector('#player');
-
+startButton.classList.add('hide');
 ships.forEach((ship) => addShipPiece("computer", ship));
 
 /* ADD EVENT LISTENERS */
 flipButton.addEventListener("click", flip);
+startButton.addEventListener("click", startGame);
+
 allPlayerBlocks.forEach((playerBlock) => { 
     playerBlock.addEventListener("dragover", dragOver)
     playerBlock.addEventListener("drop", dropShip)
@@ -56,32 +74,28 @@ allPlayerBlocks.forEach((playerBlock) => {
 playerBoard.addEventListener('dragleave', dragLeave);
 document.addEventListener('dragstart', dragStart);
 
+infoDisplay.textContent = "Plaats je schepen door ze naar het bord te slepen.";
+
 /* FUNCTIONS */
 //Flip the preview of ships
 function flip() {
-    const optionShips = Array.from(optionContainer.children);
     angle = angle === 0 ? 90 : 0;
-    optionShips.forEach(
-        (optionShip) => (optionShip.style.transform = `rotate(${angle}deg)`)
-    );
+
+    const _elPlayerShipList = document.querySelector('#playerSide .shipList');
+    _elPlayerShipList.classList.remove(angle === 90 ? 'horizontal' : 'vertical')
+    _elPlayerShipList.classList.add(angle === 0 ? 'horizontal' : 'vertical')
 }
 
 //Create a 10 * 10 gameboard
 function createBoard(user) {
     sessionStorage.removeItem('droppedShips');
-    const gameBoard = document.createElement("div");
-    gameBoard.classList.add("gameBoard");
-    gameBoard.id = user;
+    const gameBoard = document.querySelector(`#${user}.gameBoard`)
     for (let i = 0; i < width * width; i++) {
         const block = document.createElement("div");
         block.classList.add("block");
         block.id = i;
         gameBoard.append(block);
     }
-    if (user === 'computer') {
-        gameBoard.setAttribute('draggable', "false");
-    }
-    gamesBoardContainer.append(gameBoard);
 }
 
 //Check if a ship has a correct spot
@@ -136,30 +150,6 @@ function checkPlacement(allBoardBlocks, isHorizontal, startIndex, ship) {
     return { shipBlocks, valid, notTaken };
 }
 
-
-
-
-// Hide elements when not needed
-function hideElement() {
-    var x = document.getElementById("shipLists");
-    if (x.style.display === "none") {
-      x.style.display = "flex";
-    } else {
-      x.style.display = "none";
-    }
-    var y = document.getElementById("container");
-    if (y.style.display === "block") {
-      y.style.display = "none";
-    } else {
-      y.style.display = "block";
-    }
-  }
-
-  hideElement()
-
-
-
-
 //Add a ship piece to the player or computers board
 function addShipPiece(user, ship, startId) {
     const allBoardBlocks = document.querySelectorAll(`#${user} div`);
@@ -195,6 +185,7 @@ function dragLeave(e) {
 }
 
 function dragStart(e) {
+    draggedShip = ""
     console.log(e);
     if (!e.srcElement.classList.contains('draggable')){
         e.preventDefault();
@@ -210,28 +201,19 @@ function dragStart(e) {
                 
                 if (_oTheShip) {
                     draggedShip = _oTheShip //this now functions like the option container div :)
-                    return
-                } else {
-                    return
-                }
+                } 
             })
-            return 
         }
     });
-    let _elNewShips = document.querySelectorAll('.optionContainer div')
-    _elNewShips.forEach((newShip) => {
-        if (newShip == e.srcElement) {
-            notDropped = false;
-            draggedShip = e.target;
-            return
-        }
-    });
+    notDropped = false;
+    if (!draggedShip) {
+        draggedShip = ships.filter(obj => {return obj.id === e.target.id})[0];
+    }
 }
 
 function dragOver(e) {
     e.preventDefault();
-    const ship = ships[draggedShip.id];
-    highlightArea(e.target.id, ship);
+    highlightArea(e.target.id, draggedShip);
 }
 
 function dropShip(e) {
@@ -241,29 +223,32 @@ function dropShip(e) {
 
         return
     }
-    let xxx = JSON.parse(sessionStorage.getItem('droppedShips'));
+    let _oDroppedShipsFromSession = JSON.parse(sessionStorage.getItem('droppedShips'));
     let droppedShips = [];
-    if (xxx !== undefined && xxx !== null) {
-        droppedShips = xxx;
+    if (_oDroppedShipsFromSession !== undefined && _oDroppedShipsFromSession !== null) {
+        droppedShips = _oDroppedShipsFromSession;
     }
-    const ship = ships[draggedShip.id];
 
     if (droppedShips.includes(draggedShip.id)) {
-        removeShipPiece(ship)
+        removeShipPiece(draggedShip)
     }
     
     const startId = e.target.id;
     
-    addShipPiece("player", ship, startId);
+    addShipPiece("player", draggedShip, startId);
     if (!notDropped) {
         droppedShips.push(draggedShip.id);
         sessionStorage.setItem('droppedShips', JSON.stringify(droppedShips));
-        if (draggedShip.constructor.name == 'HTMLDivElement') {
-            // new from our options container, so remove from it
-            draggedShip.remove();
-        }
+        let _elShipPiece = document.querySelector(`#playerSide .shipList .${draggedShip.name}`)
+        if (_elShipPiece) _elShipPiece.classList.add('placed')
+
     }     
     removeHighlightArea();
+    draggedShip = ""
+
+    // check if all ships are dropped and unhide start button
+    let _elPlacedShips = document.querySelectorAll('#playerSide .placed')
+    if (_elPlacedShips.length == 5) startButton.classList.remove('hide')
 }
 
 

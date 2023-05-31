@@ -1,69 +1,51 @@
-//Check the player's final score
-function score() {
-    let totaal = roundCount;
-    let maxHits = 17;
-    let procent = Math.round((maxHits / totaal) * 100);
-    // console.log("Score: " + procent + " %"); 
-    return procent;
-}
-
-
-function checkScore(user, userHits, userSunkShips) {
-    function checkShip(shipName, shipLength) {
-        if (
-            userHits.filter(storedShipName => storedShipName === shipName).length === shipLength
-        ) {
-            if (user === 'player') {
-                infoDisplay.textContent = `you sunk the computers's ${shipName}`;
-                playerHits = userHits.filter(storedShipName => storedShipName !== shipName);
-                console.log(shipName)
-                let computerShipList = document.getElementById('computerShipList').getElementsByClassName(`${shipName}`);
-                computerShipList[0].classList.add('sunk')
+function checkScore() {
+    ships.forEach((ship) => {
+        if (gameStats.player.hits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {
+            infoDisplay.textContent = `you sunk the computers's ${ship.name}`;
+            console.log(ship.name)
+            let computerShipList = document.querySelector('#computerSide .shipList').getElementsByClassName(`${ship.name}`);
+            computerShipList[0].classList.add('sunk')
+            if (gameStats.computer.shipsSunk.indexOf(ship.name) == -1) {
+                gameStats.computer.shipsSunk.push(ship.name);
             }
-            if (user === 'computer') {
-                infoDisplay.textContent = `the computer sunk the players's ${shipName}`;
-                computerHits = userHits.filter(storedShipName => storedShipName !== shipName);
-                let playerShipList = document.getElementById('playerShipList').getElementsByClassName(`${shipName}`);
-                playerShipList[0].classList.add('sunk')
+        }
+        if (gameStats.computer.hits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {   
+            infoDisplay.textContent = `the computer sunk the players's ${ship.name}`;
+            let playerShipList = document.querySelector('#playerSide .shipList').getElementsByClassName(`${ship.name}`);
+            playerShipList[0].classList.add('sunk')
+            if (gameStats.player.shipsSunk.indexOf(ship.name) == -1) {
+                gameStats.player.shipsSunk.push(ship.name);
             }
-            userSunkShips.push(shipName);
         }
-        if (playerSunkShips.length === 5) {
-            infoDisplay.textContent = 'You sunk all the computers ships. YOU WON!';
-            gameOver = true;
-            let winscore = score();
-            window.open("../pages/win.html?win-score=" + winscore, "_self")
-        }
-        if (computerSunkShips.length === 5) {
-            infoDisplay.textContent = 'The computer has sunk all your ships. YOU LOST!';
-            gameOver = true;
-            window.open("../pages/gameover.html", "_self")
-        }
+    })
+
+    // update score stats
+    let maxHits = 17; 
+    gameStats.computer.hitPercentage = Math.round((gameStats.computer.hits.length / gameStats.round) * 100);
+    gameStats.player.hitPercentage = Math.round((gameStats.player.hits.length / gameStats.round) * 100);
+
+    if (gameStats.player.shipsSunk.length === 5) {
+        lose()
     }
-    checkShip('destroyer', 2)
-    checkShip('submarine', 3)
-    checkShip('cruiser', 3)
-    checkShip('battleship', 4)
-    checkShip('carrier', 5)
+    if (gameStats.computer.shipsSunk.length === 5) {
+        win()
+    }
 }
-
 
 
 //Open the correct page's when the player wins or loses
 function win() {
     infoDisplay.textContent = 'You sunk all the computers ships. YOU WON!';
-    gameOver = true;
-    // if (score => 80) {
-    //     location.replace("../pages/winrubberduck.html?win-score=" + winscore,"_self");
-    // } else { 
-    //     window.open("../pages/win.html?win-score=" + winscore,"_self");
-    // }
-    infoDisplay.textContent = 'You sunk all the computers ships. YOU WON!';
-    window.open("../pages/win.html?win-score=" + winscore, "_self");
+    gameStats.gameOver = true;
+    if (gameStats.player.hitPercentage >= DUCKY_THRESHOLD) {
+        window.open("../pages/winrubberduck.html?win-score=" + gameStats.player.hitPercentage, "_self");
+    } else {
+        window.open("../pages/win.html?win-score=" + gameStats.player.hitPercentage, "_self");
+    }
 }
 function lose() {
     infoDisplay.textContent = 'The computer has sunk all your ships. YOU LOST!';
-    gameOver = true;
+    gameStats.gameOver = true;
     window.open("../pages/gameover.html", "_self");
 }
 

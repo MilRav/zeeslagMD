@@ -1,44 +1,50 @@
-//Event listeners
-startButton.addEventListener("click", startGame);
-
-
 // Start Game
 function startGame() {
-    if (playerTurn === undefined) {
-        if (optionContainer.children.length != 0) {
+    
+    if (gameStats.playerTurn === undefined) {
+        let _oDroppedShipsFromSession = JSON.parse(sessionStorage.getItem('droppedShips'));
+        let droppedShips = [];
+        if (_oDroppedShipsFromSession !== undefined && _oDroppedShipsFromSession !== null) {
+            droppedShips = _oDroppedShipsFromSession;
+        }
+        if (droppedShips.length < 5) {
             infoDisplay.textContent = "Plaats eerst al je schepen!";
         } else {
             // add and remove event listeners
-            const allComputerBoardBlocks = document.querySelectorAll("#computer div");
-            const allPlayerBoardBlocks = document.querySelectorAll("#player div");
-            allComputerBoardBlocks.forEach((block) =>
+            document.querySelectorAll("#computer div").forEach((block) =>
                 block.addEventListener("click", handleClick));
 
-            allPlayerBoardBlocks.forEach((block) => {
+            document.querySelectorAll("#player div").forEach((block) => {
                 block.removeEventListener("dragstart",dragStart)
                 block.removeEventListener("dragover",dragOver)
                 block.removeEventListener("drop",dropShip)
             });
 
+            document.querySelector('#playerSide .shipList').classList.remove('vertical')
+
+            flipButton.classList.add('hide')
+
+            // remove draggables
+            document.querySelectorAll('.draggable').forEach((element) =>
+                element.classList.remove('draggable'))
+            // remove placed (setup phase)
+            document.querySelectorAll('.placed').forEach((element) =>
+                element.classList.remove('placed'))
+
             let _elContainer = document.querySelector('#gameContainer');
             _elContainer.classList.remove('setup')
             _elContainer.classList.add('playing')
             
-            document.querySelector('#gameContainer .container').classList.add('hide')
-            document.querySelector('#startButton').classList.add('hide')
-
-            playerTurn = true;
-            turnDisplay.textContent = 'Jou beurt!';
+            gameStats.playerTurn = true;
             infoDisplay.textContent = 'Het spel is begonnen!';
-            hideElement()
         }
 
     }
 }
 //Check the selected block and change values
 function handleClick(e) {
-    if (!gameOver) {
-        roundCount++;
+    if (!gameStats.gameOver) {
+        gameStats.round++;
         if (e.target.classList.contains("taken")) {
             e.target.classList.add("boom");
             infoDisplay.textContent = "Je hebt een schip geraakt!";
@@ -46,25 +52,25 @@ function handleClick(e) {
             classes = classes.filter((className) => className !== "block");
             classes = classes.filter((className) => className !== "boom");
             classes = classes.filter((className) => className !== "taken");
-            playerHits.push(...classes);
-            checkScore('player', playerHits, playerSunkShips);
+            gameStats.player.hits.push(...classes);
         }
         if (!e.target.classList.contains("taken")) {
             infoDisplay.textContent = "Je hebt niks geraakt.";
             e.target.classList.add("empty");
         }
-        playerTurn = false;
+        checkScore();
+        gameStats.playerTurn = false;
         const allBoardBlocks = document.querySelectorAll("#computer div");
         allBoardBlocks.forEach(block => block.replaceWith(block.cloneNode(true)));
-        setTimeout(computerGo, 50);
+        setTimeout(computerTurn, 50);
     }
 }
 
 // Define the computers go
-function computerGo() {
-    if (!gameOver) {
-        turnDisplay.textContent = 'Guardian\'s beurt!';
-        infoDisplay.textContent = "Guardian is aan het denken...";
+function computerTurn() {
+    if (!gameStats.gameOver) {
+        setTurnIndicator()
+        infoDisplay.textContent = "Guardion is aan het denken...";
         //computer turn
         setTimeout(() => {
             // first find an "obvious target"
@@ -75,11 +81,13 @@ function computerGo() {
             }
             engageTarget(targetBlockId);
         }, 25);
+        //adjust difficulty
+        adjustDifficulty()
         //player turn
         setTimeout(() => {
-            playerTurn = true;
-            turnDisplay.textContent = "Jou beurt!";
-            infoDisplay.textContent = "Neem je beurt.";
+            gameStats.playerTurn = true;
+            setTurnIndicator()
+            infoDisplay.textContent = "Jouw beurt.";
             const allBoardBlocks = document.querySelectorAll("#computer div");
             allBoardBlocks.forEach((block) =>
                 block.addEventListener("click", handleClick)
@@ -99,8 +107,8 @@ function engageTarget(blockID) {
         classes = classes.filter((className) => className !== "block");
         classes = classes.filter((className) => className !== "boom");
         classes = classes.filter((className) => className !== "taken");
-        computerHits.push(...classes);
-        checkScore('computer', computerHits, computerSunkShips);
+        gameStats.computer.hits.push(...classes);
+        checkScore();
     } else {
         infoDisplay.textContent = "Er is niks geraakt.";
         allPlayerBlocks[blockID].classList.add("empty");
@@ -143,7 +151,7 @@ function findObviousTarget() {
 }
 // generate a random, empty, target
 function findRandomTarget() {
-    let cheatAllowed = Math.floor(Math.random() * 8) == 0;
+    let cheatAllowed = Math.floor(Math.random() * gameStats.difficulty) == 0;
     let blockId = 0
     if (cheatAllowed) {
         // give the computer an actual player ship block
@@ -161,4 +169,26 @@ function findRandomTarget() {
         }
     }
     return blockId
+}
+// adjusts the amount of luck the computer has when finding a random target (aka how often the computer cheats :) )
+function adjustDifficulty() {
+    let _nScoreDiff = gameStats.computer.hits.length - gameStats.player.hits.length
+
+    if (Math.abs(_nScoreDiff) >= DIFFICULTY_THRESHOLD) {
+        // score difference is large enough to adjust the difficulty
+        gameStats.difficulty = _nScoreDiff < 0 ? HARD_DIFFICULTY : EASY_DIFFICULTY
+    } else {
+        // set difficulty to default
+        gameStats.difficulty = DEFAULT_DIFFICULTY
+    }
+}
+
+function setTurnIndicator() {
+    if (gameStats.playerTurn) {
+        document.querySelector('#computerSide').classList.remove('turn')
+        document.querySelector('#playerSide').classList.add('turn')
+    } else {
+        document.querySelector('#playerSide').classList.remove('turn')
+        document.querySelector('#computerSide').classList.add('turn')
+    }
 }

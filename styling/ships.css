@@ -1,0 +1,103 @@
+:root {
+    --preview-height: 48px;
+    /* ship color */
+    --color-destroyer: #3FA7A7;
+    --color-submarine: #2196F4;
+    --color-cruiser: #4B40BF;
+    --color-battleship: #9540BF;
+    --color-carrier: #74A145;
+}
+/* SHIPS */
+.preview {
+    height: var(--preview-height);
+    margin: 3px;
+    padding: 0px 6px;
+    padding-top: 2px;
+    cursor: grab;
+    display: flex;
+    align-items: flex-end;
+    background-color: var(--content-background-color);
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    justify-content: center;    
+}
+.preview svg {
+    width: 100%;
+    max-height: 100%;
+}
+.preview svg #omtrek {    
+    stroke: none;
+}
+.preview.placed {
+    border-color: grey;
+}
+.preview.placed svg #omtrek {
+    fill: grey; 
+}
+
+/*submarine*/
+#player .submarine {
+    box-shadow: 0 0 8px var(--color-submarine);
+    background-color: var(--color-submarine);
+}
+.submarine #omtrek {
+    fill: var(--color-submarine);
+}
+.submarinePreview {
+    border-color: var(--color-submarine);
+    width: calc(2 * var(--preview-height));
+}
+
+
+/*destroyer*/
+#player .destroyer {
+    box-shadow: 0 0 8px var(--color-destroyer);
+    background-color: var(--color-destroyer);
+}
+.destroyer #omtrek {
+    fill: var(--color-destroyer);
+}
+.destroyerPreview {
+    border-color: var(--color-destroyer);
+    width: calc(3 * var(--preview-height));
+}
+
+/*cruiser*/
+#player .cruiser {
+    box-shadow: 0 0 8px var(--color-cruiser);
+    background-color: var(--color-cruiser);
+}
+.cruiser #omtrek {
+    fill: var(--color-cruiser);
+}
+.cruiserPreview {
+    border-color: var(--color-cruiser);
+    width: calc(3 * var(--preview-height));
+}
+
+/*battleship*/
+#player .battleship {
+    box-shadow: 0 0 8px var(--color-battleship);
+    background-color: var(--color-battleship);
+}
+.battleship #omtrek {
+    fill: var(--color-battleship);
+}
+.battleshipPreview {
+    border-color: var(--color-battleship);
+    width: calc(4 * var(--preview-height));
+}
+
+
+/*carrier*/
+#player .carrier {
+    box-shadow: 0 0 8px var(--color-carrier);
+    background-color: var(--color-carrier);
+}
+.carrierPreview #omtrek {
+    fill: var(--color-carrier);
+}
+.carrierPreview {
+    border-color: var(--color-carrier);
+    width: calc(5 * var(--preview-height));
+}
