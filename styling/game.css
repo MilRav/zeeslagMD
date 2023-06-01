@@ -71,6 +71,10 @@
     margin-left: 16px;
 }
 
+#gameContainer.playing .panelFooter {
+    display: none;
+}
+
 #gameContainer.playing #startButton {
     display: none;
 }
