@@ -51,11 +51,11 @@ function lose() {
     window.open("../pages/gameover.html", "_self");
 }
 
+// appends the score of the game to local storage
 function recordScore(){
     let result = (gameStats.computer.shipsSunk.length === 5) ? 'win' : 'loss'
-    // retreive score object from local storage
     let _oGameHistoryFromStorage = JSON.parse(localStorage.getItem('gamehistory'));
-    // append this game
+
     if (!_oGameHistoryFromStorage){
         _oGameHistoryFromStorage = { scores: []}
     }
