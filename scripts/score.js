@@ -60,9 +60,14 @@ function recordScore(){
         _oGameHistoryFromStorage = { scores: []}
     }
 
-    _oGameHistoryFromStorage.scores.push({'time': Date.now(),
+    _oGameHistoryFromStorage.scores.push({
+        'time': Date.now(),
+        'rounds': gameStats.round,
+        'duration': (Date.now() - gameStats.startTime)/1000, //in seconds
         'result': result, 
-        'playerScore': gameStats.player.hitPercentage})
+        'playerScore': gameStats.player.hitPercentage
+        
+    })
 
     localStorage.setItem('gamehistory', JSON.stringify(_oGameHistoryFromStorage))
 
@@ -75,17 +80,38 @@ function gameStatistics(){
         'wins': 0,
         'losses': 0,
         'highest score': 0,
-        'average score': 0
+        'average score': 0,
+        'average game time': 0,
+        'longest game time': 0,
+        'shortest game time': 36000, // 10 hours :)
+        'average no. rounds': 0,
+        'most rounds': 0,
+        'least rounds': 100 // maximum possible rounds for 10x10
     }
 
     let _oGameHistoryFromStorage = JSON.parse(localStorage.getItem('gamehistory'))
     _oGameHistoryFromStorage.scores.forEach((game) => {
+        // score
         if (game.playerScore > _oStats["highest score"]) _oStats["highest score"] = game.playerScore
         _oStats["average score"] += game.playerScore
+
+        // time
+        if (game.playerScore > _oStats["longest game time"]) _oStats["longest game time"] = game.duration
+        if (game.playerScore < _oStats["shortest game time"]) _oStats["shortest game time"] = game.duration
+        _oStats["average game time"] += game.duration
+
+        // rounds
+        if (game.playerScore > _oStats["most rounds"]) _oStats["most rounds"] = game.rounds
+        if (game.playerScore < _oStats["least rounds"]) _oStats["least rounds"] = game.rounds
+        _oStats["average no. rounds"] += game.rounds
+        
         game.result == 'win' ? _oStats["wins"]++ :  _oStats["losses"]++ 
     })
 
     _oStats["average score"] =  _oStats["average score"] /  _oGameHistoryFromStorage.scores.length
+    _oStats["average game time"] =  _oStats["average game time"] /  _oGameHistoryFromStorage.scores.length
+    _oStats["average no. rounds"] = _oStats["average no. rounds"] /  _oGameHistoryFromStorage.scores.length
+
     _oStats["total games enjoyed"] = _oGameHistoryFromStorage.scores.length
 
     return _oStats
