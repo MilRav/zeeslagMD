@@ -13,13 +13,15 @@
     margin: 3px;
     padding: 0px 6px;
     padding-top: 2px;
-    cursor: grab;
     display: flex;
     align-items: flex-end;
     background-color: var(--content-background-color);
     border-bottom-style: solid;
     border-bottom-width: 2px;
     justify-content: center;    
+}
+.preview .setup{
+    cursor: grab;
 }
 .preview svg {
     width: 100%;

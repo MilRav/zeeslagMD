@@ -8,13 +8,16 @@ const startButton = document.querySelector("#startButton");
 const resetButton = document.querySelector("#resetButton");
 const infoDisplay = document.querySelector("#gameInfo");
 const shipList = document.querySelector('.shipList');
+const debugButtons = document.querySelector('.debugButtons')
 const width = 10;
 
 const DEFAULT_DIFFICULTY = 8
 const EASY_DIFFICULTY = 12
 const HARD_DIFFICULTY = 4
 const DIFFICULTY_THRESHOLD = 3
-const DUCKY_THRESHOLD = 60
+const DUCKY_THRESHOLD = 40
+const NORMAL_SPEED = Math.floor(Math.random() * 3 * 1000) + 1500
+const DEBUG_SPEED = 10
 
 // ships
 class Ship {
@@ -42,6 +45,7 @@ let gameStats = {
     gameOver: false,
     playerTurn: undefined,
     difficulty: DEFAULT_DIFFICULTY,
+    speed: NORMAL_SPEED,
     player: {
         hits: [],
         shipsSunk: [],
@@ -53,6 +57,11 @@ let gameStats = {
         hitPercentage: 0
     }
 }
+
+// audio
+let hitSound = new Audio('../media/hitsound.mp3');
+let sinkSound = new Audio('../media/watersplash.mp3');
+
 
 /* SETUP BOARDS */
 document.querySelector('#gameContainer').classList.add('setup')
@@ -146,7 +155,7 @@ function checkPlacement(allBoardBlocks, isHorizontal, startIndex, ship) {
         );
     }
     const notTaken = shipBlocks.every(
-        (shipBlock) => !shipBlock.classList.contains("taken")
+        (shipBlock) => !shipBlock.classList.contains("taken") || (shipBlock.classList.contains('taken') && shipBlock.classList.contains(ship.name))
     );
     return { shipBlocks, valid, notTaken };
 }
@@ -187,7 +196,6 @@ function dragLeave(e) {
 
 function dragStart(e) {
     draggedShip = ""
-    console.log(e);
     if (!e.srcElement.classList.contains('draggable')){
         e.preventDefault();
         return
@@ -305,3 +313,7 @@ function removeHighlightArea() {
     });
 }
 
+function debugMode() {
+    gameStats.speed = DEBUG_SPEED;
+    debugButtons.classList.remove('hide');
+}

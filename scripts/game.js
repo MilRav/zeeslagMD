@@ -1,6 +1,6 @@
 // Start Game
 function startGame() {
-    
+
     if (gameStats.playerTurn === undefined) {
         let _oDroppedShipsFromSession = JSON.parse(sessionStorage.getItem('droppedShips'));
         let droppedShips = [];
@@ -15,9 +15,9 @@ function startGame() {
                 block.addEventListener("click", handleClick));
 
             document.querySelectorAll("#player div").forEach((block) => {
-                block.removeEventListener("dragstart",dragStart)
-                block.removeEventListener("dragover",dragOver)
-                block.removeEventListener("drop",dropShip)
+                block.removeEventListener("dragstart", dragStart)
+                block.removeEventListener("dragover", dragOver)
+                block.removeEventListener("drop", dropShip)
             });
 
             document.querySelector('#playerSide .shipList').classList.remove('vertical')
@@ -34,7 +34,7 @@ function startGame() {
             let _elContainer = document.querySelector('#gameContainer');
             _elContainer.classList.remove('setup')
             _elContainer.classList.add('playing')
-            
+
             gameStats.startTime = Date.now();
             gameStats.playerTurn = true;
             infoDisplay.textContent = 'Het spel is begonnen!';
@@ -48,6 +48,7 @@ function handleClick(e) {
     if (!gameStats.gameOver) {
         gameStats.round++;
         if (e.target.classList.contains("taken")) {
+            hitSound.play();
             e.target.classList.add("boom");
             infoDisplay.textContent = "Je hebt een schip geraakt!";
             let classes = Array.from(e.target.classList);
@@ -64,7 +65,7 @@ function handleClick(e) {
         gameStats.playerTurn = false;
         const allBoardBlocks = document.querySelectorAll("#computer div");
         allBoardBlocks.forEach(block => block.replaceWith(block.cloneNode(true)));
-        setTimeout(computerTurn, 50);
+        setTimeout(computerTurn, 200);
     }
 }
 
@@ -82,19 +83,20 @@ function computerTurn() {
                 targetBlockId = findRandomTarget();
             }
             engageTarget(targetBlockId);
-        }, 25);
-        //adjust difficulty
-        adjustDifficulty()
-        //player turn
-        setTimeout(() => {
-            gameStats.playerTurn = true;
-            setTurnIndicator()
-            infoDisplay.textContent = "Jouw beurt.";
-            const allBoardBlocks = document.querySelectorAll("#computer div");
-            allBoardBlocks.forEach((block) =>
-                block.addEventListener("click", handleClick)
-            );
-        }, 100);
+            //adjust difficulty
+            adjustDifficulty()
+            //player turn
+            setTimeout(() => {
+                gameStats.playerTurn = true;
+                setTurnIndicator()
+                infoDisplay.textContent = "Jouw beurt.";
+                const allBoardBlocks = document.querySelectorAll("#computer div");
+                allBoardBlocks.forEach((block) =>
+                    block.addEventListener("click", handleClick)
+                );
+            }, 10);
+        }, gameStats.speed);
+
     }
 }
 // "fire" at a certain target block
@@ -103,6 +105,7 @@ function engageTarget(blockID) {
         allPlayerBlocks[blockID].classList.contains("taken") &&
         !allPlayerBlocks[blockID].classList.contains("boom")
     ) {
+        hitSound.play();
         allPlayerBlocks[blockID].classList.add("boom");
         infoDisplay.textContent = "Guardian heeft jou schip geraakt!";
         let classes = Array.from(allPlayerBlocks[blockID].classList);
@@ -119,25 +122,25 @@ function engageTarget(blockID) {
 // find an obvious target: this is any block that is adjecent to a hit and has not been checked
 function findObviousTarget() {
     let targetBlockId = -1;
-    
+
     for (let i = 0; i < allPlayerBlocks.length; i++) {
         if (allPlayerBlocks[i].classList.contains("boom")) {
             let blockIdsToCheck = [];
             // check left
             if (i % width !== 0) {
-              blockIdsToCheck.push(i - 1);
+                blockIdsToCheck.push(i - 1);
             }
             // check right
             if (i % width !== width - 1) {
-              blockIdsToCheck.push(i + 1);
+                blockIdsToCheck.push(i + 1);
             }
             // check up
             if (i >= width) {
-              blockIdsToCheck.push(i - width);
+                blockIdsToCheck.push(i - width);
             }
             // check down
             if (i < width * (width - 1)) {
-              blockIdsToCheck.push(i + width);
+                blockIdsToCheck.push(i + width);
             }
             for (let j = 0; j < blockIdsToCheck.length; j++) {
                 let blockId = blockIdsToCheck[j];
