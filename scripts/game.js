@@ -35,8 +35,10 @@ function startGame() {
             _elContainer.classList.remove('setup')
             _elContainer.classList.add('playing')
 
+            gameStats.startTime = Date.now();
             gameStats.playerTurn = true;
             infoDisplay.textContent = 'Het spel is begonnen!';
+            
         }
 
     }

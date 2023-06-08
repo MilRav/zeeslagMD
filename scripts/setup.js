@@ -40,6 +40,7 @@ let draggedShip;
 let angle = 0;
 let notDropped;
 let gameStats = {
+    startTime: undefined,
     round: 0,
     gameOver: false,
     playerTurn: undefined,
