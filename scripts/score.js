@@ -1,19 +1,18 @@
 function checkScore() {
     ships.forEach((ship) => {
         if (gameStats.player.hits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {
-            infoDisplay.textContent = `you sunk the computers's ${ship.name}`;
-            console.log(ship.name)
             let computerShipList = document.querySelector('#computerSide .shipList').getElementsByClassName(`${ship.name}`);
             computerShipList[0].classList.add('sunk')
             if (gameStats.computer.shipsSunk.indexOf(ship.name) == -1) {
+                sinkSound.play();
                 gameStats.computer.shipsSunk.push(ship.name);
             }
         }
         if (gameStats.computer.hits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {   
-            infoDisplay.textContent = `the computer sunk the players's ${ship.name}`;
             let playerShipList = document.querySelector('#playerSide .shipList').getElementsByClassName(`${ship.name}`);
             playerShipList[0].classList.add('sunk')
             if (gameStats.player.shipsSunk.indexOf(ship.name) == -1) {
+                sinkSound.play();
                 gameStats.player.shipsSunk.push(ship.name);
             }
         }
