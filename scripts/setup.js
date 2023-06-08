@@ -16,7 +16,7 @@ const EASY_DIFFICULTY = 12
 const HARD_DIFFICULTY = 4
 const DIFFICULTY_THRESHOLD = 3
 const DUCKY_THRESHOLD = 40
-const NORMAL_SPEED = 2000;
+const NORMAL_SPEED = Math.floor(Math.random() * 3 * 1000) + 1500
 const DEBUG_SPEED = 10
 
 // ships
@@ -313,5 +313,6 @@ function removeHighlightArea() {
 }
 
 function debugMode() {
+    gameStats.speed = DEBUG_SPEED;
     debugButtons.classList.remove('hide');
 }

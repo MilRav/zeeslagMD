@@ -93,7 +93,7 @@ function computerTurn() {
                     block.addEventListener("click", handleClick)
                 );
             }, 10);
-        }, Math.floor(Math.random() * 3 * 1000) + 1500);
+        }, gameStats.speed);
 
     }
 }
