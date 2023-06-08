@@ -120,7 +120,10 @@
 }
 
 .panelFooter {
-    width: 100%;
+    width: 240px;
+    margin-top: 10px;
+    padding: 10px;
+    /* background-color: aquamarine; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -205,13 +208,6 @@
     background-color: var(--content-background-color);
     box-shadow: 0 0 8px black;
     display: block;
-}
-
-#flipButton {
-    width: 40px;
-    margin: 25px 10px;
-    overflow: hidden;
-    /* margin: 10px 10px; */
 }
 
 #gameContainer.playing #computer:hover {
