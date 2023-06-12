@@ -23,6 +23,7 @@ function startGame() {
             document.querySelector('#playerSide .shipList').classList.remove('vertical')
 
             flipButton.classList.add('hide')
+            startButton.classList.add('hide');
 
             // remove draggables
             document.querySelectorAll('.draggable').forEach((element) =>
