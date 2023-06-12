@@ -38,7 +38,7 @@ function startGame() {
             gameStats.startTime = Date.now();
             gameStats.playerTurn = true;
             infoDisplay.textContent = 'Het spel is begonnen!';
-            
+
         }
 
     }
@@ -72,31 +72,37 @@ function handleClick(e) {
 // Define the computers go
 function computerTurn() {
     if (!gameStats.gameOver) {
-        setTurnIndicator()
+        setTurnIndicator();
         infoDisplay.textContent = "Guardion is aan het denken...";
-        //computer turn
+
+        // Calculate turn delay based on debug mode
+        const turnDelay = gameStats.debug ? DEBUG_SPEED : NORMAL_SPEED();
+
+        // Computer turn
         setTimeout(() => {
-            // first find an "obvious target"
-            targetBlockId = findObviousTarget();
-            if (targetBlockId == -1) {
-                // no obvious target, so try random instead
+            // First find an "obvious target"
+            let targetBlockId = findObviousTarget();
+            if (targetBlockId === -1) {
+                // No obvious target, so try random instead
                 targetBlockId = findRandomTarget();
             }
             engageTarget(targetBlockId);
-            //adjust difficulty
-            adjustDifficulty()
-            //player turn
+
+            // Adjust difficulty
+            adjustDifficulty();
+
+            // Player turn
             setTimeout(() => {
                 gameStats.playerTurn = true;
-                setTurnIndicator()
+                setTurnIndicator();
                 infoDisplay.textContent = "Jouw beurt.";
+
                 const allBoardBlocks = document.querySelectorAll("#computer div");
                 allBoardBlocks.forEach((block) =>
                     block.addEventListener("click", handleClick)
                 );
             }, 10);
-        }, gameStats.speed);
-
+        }, turnDelay);
     }
 }
 // "fire" at a certain target block

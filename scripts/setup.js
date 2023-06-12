@@ -16,8 +16,8 @@ const EASY_DIFFICULTY = 12
 const HARD_DIFFICULTY = 4
 const DIFFICULTY_THRESHOLD = 3
 const DUCKY_THRESHOLD = 40
-const NORMAL_SPEED = Math.floor(Math.random() * 3 * 1000) + 1500
-const DEBUG_SPEED = 10
+const NORMAL_SPEED = () => Math.floor(Math.random() * 3 * 1000) + 1500;
+const DEBUG_SPEED = 10;
 
 // ships
 class Ship {
@@ -45,7 +45,7 @@ let gameStats = {
     gameOver: false,
     playerTurn: undefined,
     difficulty: DEFAULT_DIFFICULTY,
-    speed: NORMAL_SPEED,
+    debug: false,
     player: {
         hits: [],
         shipsSunk: [],
@@ -77,7 +77,7 @@ ships.forEach((ship) => addShipPiece("computer", ship));
 flipButton.addEventListener("click", flip);
 startButton.addEventListener("click", startGame);
 
-allPlayerBlocks.forEach((playerBlock) => { 
+allPlayerBlocks.forEach((playerBlock) => {
     playerBlock.addEventListener("dragover", dragOver)
     playerBlock.addEventListener("drop", dropShip)
 });
@@ -113,19 +113,19 @@ function checkPlacement(allBoardBlocks, isHorizontal, startIndex, ship) {
     let validStart = startIndex;
     let shipBlocks = [];
     let valid;
-    
+
     // check for placement bounds
     if (isHorizontal) {
         let startRow = Math.floor(startIndex / width)
-        let endRow = Math.floor( ( (startIndex+ship.length) / width) )
-        if ( startRow != endRow ) {
+        let endRow = Math.floor(((startIndex + ship.length) / width))
+        if (startRow != endRow) {
             // This means we are out-of-bounds (ship crosses into new row). Adjust startIndex.
-            let adjusting = (((startIndex+ship.length)%10))
+            let adjusting = (((startIndex + ship.length) % 10))
             validStart = startIndex - adjusting
         }
     } else {
         let startRow = Math.floor(startIndex / width)
-        let endRow = startRow+ship.length
+        let endRow = startRow + ship.length
         if (endRow >= width) {
             let adjusting = (endRow - width)
             validStart = startIndex - (adjusting * width)
@@ -140,7 +140,7 @@ function checkPlacement(allBoardBlocks, isHorizontal, startIndex, ship) {
             shipBlocks.push(allBoardBlocks[Number(validStart) + i * width]);
         }
     }
-    
+
     if (isHorizontal) {
         shipBlocks.every(
             (_shipBlock, index) =>
@@ -167,7 +167,7 @@ function addShipPiece(user, ship, startId) {
     let isHorizontal = user === "player" ? angle === 0 : randomBoolean;
     let randomStartIndex = Math.floor(Math.random() * width * width);
     let startIndex = startId ? Number(startId) : randomStartIndex;
-    const { shipBlocks, valid, notTaken } = checkPlacement(allBoardBlocks, isHorizontal, startIndex, ship );
+    const { shipBlocks, valid, notTaken } = checkPlacement(allBoardBlocks, isHorizontal, startIndex, ship);
     if (valid && notTaken) {
         shipBlocks.forEach((shipBlock) => {
             shipBlock.classList.add(ship.name);
@@ -196,27 +196,27 @@ function dragLeave(e) {
 
 function dragStart(e) {
     draggedShip = ""
-    if (!e.srcElement.classList.contains('draggable')){
+    if (!e.srcElement.classList.contains('draggable')) {
         e.preventDefault();
         return
-    } 
+    }
     //Are we repositioning a ship?
     allPlayerBlocks.forEach((shipBlock) => {
         if (shipBlock == e.srcElement) {
             notDropped = false;
             draggedShip = ""
-            e.target.classList.forEach((classItem) =>  {
+            e.target.classList.forEach((classItem) => {
                 _oTheShip = ships.find(ship => ship.name == classItem)
-                
+
                 if (_oTheShip) {
                     draggedShip = _oTheShip //this now functions like the option container div :)
-                } 
+                }
             })
         }
     });
     notDropped = false;
     if (!draggedShip) {
-        draggedShip = ships.filter(obj => {return obj.id === e.target.id})[0];
+        draggedShip = ships.filter(obj => { return obj.id === e.target.id })[0];
     }
 }
 
@@ -227,7 +227,7 @@ function dragOver(e) {
 
 function dropShip(e) {
     const targetError = document.querySelectorAll('#player .error');
-    if (targetError.length > 0){
+    if (targetError.length > 0) {
         removeHighlightArea();
 
         return
@@ -241,9 +241,9 @@ function dropShip(e) {
     if (droppedShips.includes(draggedShip.id)) {
         removeShipPiece(draggedShip)
     }
-    
+
     const startId = e.target.id;
-    
+
     addShipPiece("player", draggedShip, startId);
     if (!notDropped) {
         droppedShips.push(draggedShip.id);
@@ -251,7 +251,7 @@ function dropShip(e) {
         let _elShipPiece = document.querySelector(`#playerSide .shipList .${draggedShip.name}`)
         if (_elShipPiece) _elShipPiece.classList.add('placed')
 
-    }     
+    }
     removeHighlightArea();
     draggedShip = ""
 
@@ -313,7 +313,14 @@ function removeHighlightArea() {
     });
 }
 
-function debugMode() {
-    gameStats.speed = DEBUG_SPEED;
-    debugButtons.classList.remove('hide');
+function debug() {
+    const computerShips = Array.from(document.querySelectorAll('#computer .taken'));
+    // Enable debug mode and set the speed to DEBUG_SPEED
+    gameStats.debug = true;
+
+    computerShips.forEach((ship) => {
+        ship.classList.add("debug");
+    });
 }
+
+

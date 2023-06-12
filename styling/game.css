@@ -44,7 +44,7 @@
 
     90% {
         transform: translateX(2px) translateY(50px) rotate(-5eg);
-        
+
     }
 
     100% {
@@ -162,7 +162,8 @@
     align-items: end;
     padding-right: 16px;
 }
-#playerSide .shipList .playing{
+
+#playerSide .shipList .playing {
     cursor: none;
 }
 
@@ -258,6 +259,10 @@
     border-color: red !important;
 }
 
+.debug {
+    background-color: red !important;
+}
+
 .sunk svg #omtrek {
     fill: red;
     animation-name: sunkAnimation, buzz-out;
@@ -292,6 +297,7 @@
 #gameContainer.setup #computer {
     pointer-events: none;
 }
+
 #gameContainer.setup .preview {
     cursor: grab;
 }
