@@ -19,6 +19,11 @@
     #gameInfo {
         padding-right: 50%;
     }
+
+    .infoContainer {
+        width: 50%;
+        justify-content: left;
+    }
 }
 
 /* Font import */
@@ -280,7 +285,7 @@ progress::-webkit-progress-value {
     /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%;
+    width: 50%;
     /* Full width */
     height: 100%;
     /* Full height */
