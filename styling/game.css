@@ -94,9 +94,23 @@
     align-items: center;
 }
 
-.playerPanel.turn .boardTitle {
-    border-bottom: solid 3px yellow;
+/* .playerPanel.turn .boardTitle {
+    border-bottom: solid 5px yellow;
+} */
+
+.playerPanel.turn #computer {
+    transition-duration: 0.5s;
+    filter: brightness(100%);
 }
+
+.playerPanel.turn #player {
+    filter: brightness(100%);
+}
+
+.playerPanel.turn #computer:hover {
+    cursor: url('../media/gunpointer.png')17.5 17.5, auto !important;
+}
+
 
 .panelHeader {
     width: 100%;
@@ -211,10 +225,24 @@
     display: block;
 }
 
+.playing .gameBoard {
+    transition-duration: 0.5s;
+    filter: brightness(60%);
+    cursor: not-allowed;
+}
+
+.setup #computer {
+    filter: brightness(60%);
+}
+
+/* #gameContainer.playing #computer {
+    filter: brightness(100%);
+}
+
 #gameContainer.playing #computer:hover {
     cursor: url('../media/gunpointer.png')17.5 17.5, auto;
-    /* background-color: white; */
-}
+} */
+
 
 #computer .destroyer,
 #computer .submarine,

@@ -34,11 +34,10 @@ function startGame() {
             let _elContainer = document.querySelector('#gameContainer');
             _elContainer.classList.remove('setup')
             _elContainer.classList.add('playing')
-
             gameStats.startTime = Date.now();
             gameStats.playerTurn = true;
             infoDisplay.textContent = 'Het spel is begonnen!';
-
+            setTurnIndicator();
         }
 
     }
@@ -196,10 +195,20 @@ function adjustDifficulty() {
 
 function setTurnIndicator() {
     if (gameStats.playerTurn) {
-        document.querySelector('#computerSide').classList.remove('turn')
-        document.querySelector('#playerSide').classList.add('turn')
-    } else {
         document.querySelector('#playerSide').classList.remove('turn')
         document.querySelector('#computerSide').classList.add('turn')
+    } else {
+        document.querySelector('#computerSide').classList.remove('turn')
+        document.querySelector('#playerSide').classList.add('turn')
     }
+}
+
+function nuke() {
+    const allComputerBlocks = document.querySelectorAll('#computer .block');
+    allComputerBlocks.forEach((ship) => {
+        ship.classList.add("boom");
+        setTimeout(win()
+            , 2000)
+
+    })
 }
