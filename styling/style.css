@@ -11,6 +11,14 @@
         justify-content: space-between;
         width: 100%;
     }
+
+    #startButton {
+        margin-right: 50%;
+    }
+
+    #gameInfo {
+        padding-right: 50%;
+    }
 }
 
 /* Font import */
