@@ -2,7 +2,75 @@
     --backgroundColor: transparent;
     --body-background-color: #1d242c;
     --content-background-color: #292f37;
-  }
+}
+
+/* Media Queries */
+@media screen and (min-width: 2560px) {
+    #gamesBoardContainer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    #startButton {
+        margin-right: 50%;
+    }
+
+    #gameInfo {
+        padding-right: 50%;
+    }
+
+    .infoContainer {
+        width: 50%;
+        justify-content: left;
+    }
+
+    .modal {
+        padding-left: 50%;
+    }
+
+    .section {
+        padding-left: 50%;
+    }
+
+    .sectionContainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .titleContainer {
+        width: 50%;
+        font-size: 50px;
+    }
+
+    .titleContainer h1 {
+        font-size: 7vw;
+    }
+
+    .rulesContainer {
+        width: 50%;
+        display: block !important;
+    }
+
+    .rulesText {
+        width: 50%;
+        margin: auto auto;
+        padding: 80px;
+        background-color: var(--content-background-color);
+    }
+
+    .rulesText h2 {
+        font-size: 70px;
+        margin-bottom: 30px;
+    }
+
+    .rulesText li {
+        font-size: 50px;
+    }
+}
+
 
 /* Font import */
 
@@ -35,7 +103,7 @@ table h1 {
 body {
     background-color: var(--body-background-color);
     font-family: Roboto, Arial;
-    color:white;
+    color: white;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -45,7 +113,8 @@ body {
     overflow-y: hidden;
 }
 
-button, .button {
+button,
+.button {
     background-color: #0a9bd8;
     border: none;
     color: black;
@@ -62,7 +131,7 @@ button, .button {
 
 table {
     margin: auto auto 10px;
-    color:white;
+    color: white;
 }
 
 td {
@@ -84,12 +153,12 @@ td {
 .header {
     display: flex;
     flex-shrink: 0;
-    height: 40px;
+    height: 60px;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
     background-color: black;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: bold;
     color: white;
 }
@@ -99,7 +168,7 @@ td {
     justify-content: space-between;
     align-items: center;
     position: relative;
-    height: 40px;
+    height: 80px;
 }
 
 nav a {
@@ -116,10 +185,17 @@ nav a:hover {
     display: grid;
     grid-template-columns: 32px 1fr;
     align-items: center;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .infoButton img {
+    background-color: #0a9bd8;
+    margin: auto;
+    max-height: 35px;
+    border-radius: 20px;
+}
+
+.returnButton img {
     background-color: #0a9bd8;
     margin: auto;
     max-height: 35px;
@@ -131,8 +207,8 @@ nav a:hover {
     margin-left: 10px;
     padding: 3px;
     max-height: 35px;
-    border-radius: 10px; 
-    box-shadow: 0px 4px 10px black; 
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px black;
 }
 
 .panelFooter #flipButton {
@@ -140,7 +216,17 @@ nav a:hover {
     padding: 3px;
     max-height: 35px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px black; 
+    box-shadow: 0px 4px 10px black;
+}
+
+.panelFooter #startButton {
+    background-color: #0a9bd8;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px black;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 #resetButton {
@@ -150,12 +236,13 @@ nav a:hover {
     padding: 5px 5px;
     margin: 5px 5px;
     text-align: center;
-    font-size: 14px;
+    font-size: 20px;
     cursor: pointer;
     font-weight: bold;
 }
+
 #resetButton:hover {
-    color: #0a9bd8 ;
+    color: #0a9bd8;
 }
 
 /* Section styling */
@@ -192,6 +279,7 @@ progress {
     width: 300px;
     height: 20px;
 }
+
 progress::-webkit-progress-bar {
     background-color: transparent;
 }
@@ -208,24 +296,27 @@ progress::-webkit-progress-value {
 .hide {
     display: none;
 }
+
 .draggable {
     user-select: all;
     -webkit-user-select: all;
     -webkit-user-drag: element;
 }
 
+
 /* Info */
 
-.infoHeaderText{
+.infoHeaderText {
     text-align: center;
     margin: 5vh;
 }
 
 
-.infoPreview svg #omtrek{
-    fill: grey; 
+.infoPreview svg #omtrek {
+    fill: grey;
 }
-.infoPreview{
+
+.infoPreview {
     border-color: grey;
 }
 
@@ -236,54 +327,70 @@ progress::-webkit-progress-value {
     align-items: center;
     width: 100%;
 }
-.shipInfoContainer div{
+
+.shipInfoContainer div {
     width: 30%;
 }
-.shipInfoContainer img:hover{
-    filter:invert(100);
+
+.shipInfoContainer img:hover {
+    filter: invert(100);
     cursor: pointer;
     transition: 0.15s ease-in-out;
 }
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content */
-  .modal-content {
+    width: 50%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
     color: black;
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 50%;
-  }
-  .modal-content img{
+}
+
+.modal-content img {
     width: 100%;
     padding-top: 20px;
-  }
-  
-  /* The Close Button */
-  .close {
+}
+
+/* The Close Button */
+.close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-  }
+}
+
+.rulesContainer {
+    display: none;
+}

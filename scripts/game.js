@@ -23,6 +23,7 @@ function startGame() {
             document.querySelector('#playerSide .shipList').classList.remove('vertical')
 
             flipButton.classList.add('hide')
+            startButton.classList.add('hide');
 
             // remove draggables
             document.querySelectorAll('.draggable').forEach((element) =>
@@ -34,11 +35,10 @@ function startGame() {
             let _elContainer = document.querySelector('#gameContainer');
             _elContainer.classList.remove('setup')
             _elContainer.classList.add('playing')
-
             gameStats.startTime = Date.now();
             gameStats.playerTurn = true;
             infoDisplay.textContent = 'Het spel is begonnen!';
-            
+            setTurnIndicator();
         }
 
     }
@@ -55,6 +55,7 @@ function handleClick(e) {
             classes = classes.filter((className) => className !== "block");
             classes = classes.filter((className) => className !== "boom");
             classes = classes.filter((className) => className !== "taken");
+            classes = classes.filter((className) => className !== "debug");
             gameStats.player.hits.push(...classes);
         }
         if (!e.target.classList.contains("taken")) {
@@ -72,31 +73,37 @@ function handleClick(e) {
 // Define the computers go
 function computerTurn() {
     if (!gameStats.gameOver) {
-        setTurnIndicator()
+        setTurnIndicator();
         infoDisplay.textContent = "Guardion is aan het denken...";
-        //computer turn
+
+        // Calculate turn delay based on debug mode
+        const turnDelay = gameStats.debug ? DEBUG_SPEED : NORMAL_SPEED();
+
+        // Computer turn
         setTimeout(() => {
-            // first find an "obvious target"
-            targetBlockId = findObviousTarget();
-            if (targetBlockId == -1) {
-                // no obvious target, so try random instead
+            // First find an "obvious target"
+            let targetBlockId = findObviousTarget();
+            if (targetBlockId === -1) {
+                // No obvious target, so try random instead
                 targetBlockId = findRandomTarget();
             }
             engageTarget(targetBlockId);
-            //adjust difficulty
-            adjustDifficulty()
-            //player turn
+
+            // Adjust difficulty
+            adjustDifficulty();
+
+            // Player turn
             setTimeout(() => {
                 gameStats.playerTurn = true;
-                setTurnIndicator()
+                setTurnIndicator();
                 infoDisplay.textContent = "Jouw beurt.";
+
                 const allBoardBlocks = document.querySelectorAll("#computer div");
                 allBoardBlocks.forEach((block) =>
                     block.addEventListener("click", handleClick)
                 );
             }, 10);
-        }, gameStats.speed);
-
+        }, turnDelay);
     }
 }
 // "fire" at a certain target block
@@ -190,10 +197,20 @@ function adjustDifficulty() {
 
 function setTurnIndicator() {
     if (gameStats.playerTurn) {
-        document.querySelector('#computerSide').classList.remove('turn')
-        document.querySelector('#playerSide').classList.add('turn')
-    } else {
         document.querySelector('#playerSide').classList.remove('turn')
         document.querySelector('#computerSide').classList.add('turn')
+    } else {
+        document.querySelector('#computerSide').classList.remove('turn')
+        document.querySelector('#playerSide').classList.add('turn')
     }
+}
+
+function nuke() {
+    const allComputerBlocks = document.querySelectorAll('#computer .block');
+    allComputerBlocks.forEach((ship) => {
+        ship.classList.add("boom");
+        setTimeout(win()
+            , 2000)
+
+    })
 }

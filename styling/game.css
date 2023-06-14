@@ -44,7 +44,7 @@
 
     90% {
         transform: translateX(2px) translateY(50px) rotate(-5eg);
-        
+
     }
 
     100% {
@@ -55,7 +55,7 @@
 
 /* game styling */
 :root {
-    --board-width: 400px;
+    --board-width: 600px;
 }
 
 .gameInfo {
@@ -94,22 +94,36 @@
     align-items: center;
 }
 
-.playerPanel.turn .boardTitle {
-    border-bottom: solid 3px yellow;
+/* .playerPanel.turn .boardTitle {
+    border-bottom: solid 5px yellow;
+} */
+
+.playerPanel.turn #computer {
+    transition-duration: 0.5s;
+    filter: brightness(100%);
 }
+
+.playerPanel.turn #player {
+    filter: brightness(100%);
+}
+
+.playerPanel.turn #computer:hover {
+    cursor: url('../media/gunpointer.png')17.5 17.5, auto !important;
+}
+
 
 .panelHeader {
     width: 100%;
-    height: 24px;
+    height: 50px;
     display: flex;
     flex-direction: row;
     margin-bottom: 16px;
 }
 
 .panelHeader .boardTitle {
-    font-size: 14pt;
+    font-size: 50px;
     width: var(--board-width);
-    padding-bottom: 8px;
+    padding-bottom: 2px;
     height: fit-content;
 }
 
@@ -120,8 +134,8 @@
 }
 
 .panelFooter {
-    width: 240px;
-    margin-top: 10px;
+    width: 0px;
+    margin-top: 47%;
     padding: 10px;
     /* background-color: aquamarine; */
     display: flex;
@@ -162,7 +176,8 @@
     align-items: end;
     padding-right: 16px;
 }
-#playerSide .shipList .playing{
+
+#playerSide .shipList .playing {
     cursor: none;
 }
 
@@ -193,8 +208,8 @@
 }
 
 .block {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border: solid 1px white;
     box-sizing: border-box;
     box-shadow: 0 0 8px #0a9bd8aa;
@@ -210,10 +225,38 @@
     display: block;
 }
 
+.playing .gameBoard {
+    transition-duration: 0.5s;
+    filter: brightness(30%);
+    cursor: not-allowed;
+}
+
+.playing .boardTitle {
+    font-weight: bold;
+}
+
+.playing .boardTitle {
+    font-weight: bold;
+}
+
+.turn .panelHeader .boardTitle {
+    font-weight: normal;
+}
+
+
+
+.setup #computer {
+    filter: brightness(30%);
+}
+
+/* #gameContainer.playing #computer {
+    filter: brightness(100%);
+}
+
 #gameContainer.playing #computer:hover {
     cursor: url('../media/gunpointer.png')17.5 17.5, auto;
-    /* background-color: white; */
-}
+} */
+
 
 #computer .destroyer,
 #computer .submarine,
@@ -258,6 +301,10 @@
     border-color: red !important;
 }
 
+.debug {
+    background-color: red !important;
+}
+
 .sunk svg #omtrek {
     fill: red;
     animation-name: sunkAnimation, buzz-out;
@@ -292,6 +339,7 @@
 #gameContainer.setup #computer {
     pointer-events: none;
 }
+
 #gameContainer.setup .preview {
     cursor: grab;
 }

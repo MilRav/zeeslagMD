@@ -15,7 +15,8 @@
     <div class="header">
         <nav>
             <section class="headerLogo">
-                <a href="../index.html"><img src="../media/guardionLogo.svg" alt="Logo guardian" style="margin-left: 10px;"></a>
+                <a href="../index.html"><img src="../media/guardionLogo.svg" alt="Logo guardian"
+                        style="margin-left: 10px;"></a>
                 <span>ZEE - SLAG</span>
             </section>
         </nav>
@@ -26,7 +27,7 @@
 
         // start
         const start = () => {
-            setTimeout(function() {
+            setTimeout(function () {
                 confetti.start()
             }, 1000); // 1000 is time that after 1 second start the confetti ( 1000 = 1 sec)
         };
@@ -40,39 +41,18 @@
                 <p>Bedankt voor het spelen!</p>
                 <p id="score"></p>
                 <script>
-                    document.getElementById("score").innerHTML = 
-                    window.location.search.split("=")[1] + "% van de schoten waren raak!";
+                    document.getElementById("score").innerHTML =
+                        window.location.search.split("=")[1] + "% van de schoten waren raak!";
                 </script>
             </div>
             <br>
-            <div id="ducky">                
+            <div id="ducky">
                 <object id="sunburst" data="../media/sunburst.svg" type="image/svg+xml"></object>
-                <img src="../media/marit_eendje.png" height="320px"/> 
+                <img src="../media/marit_eendje.png" height="320px" />
             </div>
 
-            <br>
-            <div class="redirectionIndexPage">
-                
-                <p>U word na 20 seconde terug gestuurd naar welkom pagina.</p><br>
-                <progress value="0" max="20" id="progressBar"></progress>
-                <script type="text/javascript">
-                    let timeleft = 20;
-                    let redirectTimer = setInterval(function () {
-                        if (timeleft <= 0) {
-                            clearInterval(redirectTimer);
-                        }
-                        document.getElementById("progressBar").value = 20 - timeleft;
-                        timeleft -= 1;
-                    }, 1000);
-                </script>
-                <!-- <script>
-                    let timer = setTimeout(function () {
-                        window.location = '../index.html'
-                    }, 20000);
-                </script> -->
-            </div>
             <div class="sectionButton">
-                <a href="../index.html"><button>welkom pagina</button></a>
+                <a href="../index.html"><button>Home</button></a>
             </div>
         </div>
     </div>

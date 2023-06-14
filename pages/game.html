@@ -23,19 +23,19 @@
                 </section>
             </a>
             <button id="resetButton" onClick="window.location.reload()">RESET</button>
-        
+
         </nav>
     </div>
     <div id="gameContainer">
         <div id="gameInfo">
         </div>
-      
+
         <div id="gamesBoardContainer">
             <div id="playerSide" class="playerPanel">
                 <div class="panelHeader">
                     <div class="boardTitle">Speler</div>
-                 </div>
-                 <div class="panelContent">
+                </div>
+                <div class="panelContent">
                     <div class="shipList">
                         <div id="0" class="submarinePreview submarine preview draggable">
                             <load-file replaceWith id="subSvg" src="../media/IPW.svg"></load-file>
@@ -55,25 +55,28 @@
 
                         <div id="4" class="carrierPreview carrier preview draggable">
                             <load-file replaceWith id="dmanSvg" src="../media/DMAN.svg"></load-file>
-                        </div>                            
+                        </div>
                     </div>
+                    <div class="panelFooter">
+                        <button id="startButton">Start</button>
+                        <div id="flipButton">
+                            <img src="../media/flipButton.png" height="35px">
+                        </div>
+                        <section class="infoButton">
+                            <a href="../pages/info.html" target="_blank"><img src="../media/infobutton.png"
+                                    alt="info button"></a>
+                        </section>
+                        <div class="boardPadding"></div>
+                    </div>
+
                     <div id="player" class="gameBoard"></div>
-                </div>
-                <div class ="panelFooter">
-                    <div id="flipButton">    
-                        <img src="../media/flipButton.png" height="35px">
-                    </div>
-                    <section class="infoButton">
-                        <a href="../pages/info.html"><img src="../media/infobutton.png" alt="info button"></a>
-                    </section>
-                    <div class="boardPadding"></div>
                 </div>
             </div>
 
-        <div id="computerSide" class="playerPanel">
+            <div id="computerSide" class="playerPanel">
                 <div class="panelHeader">
                     <div class="boardTitle">Guardion</div>
-                 </div>
+                </div>
                 <div class="panelContent">
                     <div id="computer" class="gameBoard"></div>
                     <div class="shipList">
@@ -91,13 +94,12 @@
                         </div>
                         <div id="4" class="carrierPreview carrier preview">
                             <load-file replaceWith id="dmanSvg" src="../media/DMAN.svg"></load-file>
-                        </div>  
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <button id="startButton">Start</button>
+
     </div>
     </div>
 
