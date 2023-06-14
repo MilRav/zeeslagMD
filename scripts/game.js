@@ -55,6 +55,7 @@ function handleClick(e) {
             classes = classes.filter((className) => className !== "block");
             classes = classes.filter((className) => className !== "boom");
             classes = classes.filter((className) => className !== "taken");
+            classes = classes.filter((className) => className !== "debug");
             gameStats.player.hits.push(...classes);
         }
         if (!e.target.classList.contains("taken")) {

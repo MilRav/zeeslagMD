@@ -11,24 +11,42 @@
 </head>
 
 <body>
-  <table>
-    <tr>
-      <td><img src="/media/guardionLogo.svg" height="350px" width="100%"></td>
-      <td>
-        <h1>Guardion</h1>
-        <H1>Zeeslag</H1>
-      </td>
-    </tr>
-  </table>
-  <div class="sectionButton">
-    <a href="/pages/game.html" class="button">Klik hier om het spel te openen.</a>
+  <div class="sectionContainer">
+    <div class="titleContainer">
+      <table>
+        <tr>
+          <td><img src="/media/guardionLogo.svg" height="350px" width="100%"></td>
+          <td>
+            <h1>Guardion</h1>
+            <H1>Zeeslag</H1>
+          </td>
+        </tr>
+      </table>
+      <div class="sectionButton">
+        <a href="/pages/game.html" class="button">Klik hier om het spel te openen.</a>
+      </div>
+
+      <div class="debugButtons hide">
+        <a href="pages/gameover.html"><button>Game Over</button></a>
+        <a href="pages/win.html"><button>Win</button></a>
+        <a href="pages/winrubberduck.html"><button>Win rubber duck</button></a>
+      </div>
+    </div>
+    <div class="rulesContainer">
+      <div class="rulesText">
+        <h2>Uitleg</h2>
+        <ol>
+          <li>Plaats je schepen.</li>
+          <li>Klik op start.</li>
+          <li>Schiet er op los.</li>
+          <li>Win of verlies.</li>
+          <li>Duck</li>
+        </ol>
+      </div>
+    </div>
   </div>
 
-  <div class="debugButtons hide">
-    <a href="pages/gameover.html"><button>Game Over</button></a>
-    <a href="pages/win.html"><button>Win</button></a>
-    <a href="pages/winrubberduck.html"><button>Win rubber duck</button></a>
-  </div>
+
   <script src="../scripts/score.js"></script>
   <script src="../scripts/setup.js"></script>
 </body>

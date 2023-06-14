@@ -6,6 +6,7 @@ const optionContainer = document.querySelector(".optionContainer");
 const flipButton = document.querySelector("#flipButton");
 const startButton = document.querySelector("#startButton");
 const resetButton = document.querySelector("#resetButton");
+const returnButton = document.querySelector("#returnButton");
 const infoDisplay = document.querySelector("#gameInfo");
 const shipList = document.querySelector('.shipList');
 const debugButtons = document.querySelector('.debugButtons')
@@ -322,5 +323,3 @@ function debug() {
         ship.classList.add("debug");
     });
 }
-
-

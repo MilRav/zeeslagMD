@@ -114,16 +114,16 @@
 
 .panelHeader {
     width: 100%;
-    height: 24px;
+    height: 50px;
     display: flex;
     flex-direction: row;
     margin-bottom: 16px;
 }
 
 .panelHeader .boardTitle {
-    font-size: 14pt;
+    font-size: 50px;
     width: var(--board-width);
-    padding-bottom: 8px;
+    padding-bottom: 2px;
     height: fit-content;
 }
 
@@ -134,8 +134,8 @@
 }
 
 .panelFooter {
-    width: 240px;
-    margin-top: 10px;
+    width: 0px;
+    margin-top: 47%;
     padding: 10px;
     /* background-color: aquamarine; */
     display: flex;
@@ -227,12 +227,26 @@
 
 .playing .gameBoard {
     transition-duration: 0.5s;
-    filter: brightness(60%);
+    filter: brightness(30%);
     cursor: not-allowed;
 }
 
+.playing .boardTitle {
+    font-weight: bold;
+}
+
+.playing .boardTitle {
+    font-weight: bold;
+}
+
+.turn .panelHeader .boardTitle {
+    font-weight: normal;
+}
+
+
+
 .setup #computer {
-    filter: brightness(60%);
+    filter: brightness(30%);
 }
 
 /* #gameContainer.playing #computer {
