@@ -100,6 +100,14 @@ table h1 {
     font-size: 11vw;
 }
 
+h1{
+    font-size: 40px;
+}
+
+p {
+font-size: 20px;
+}
+
 body {
     background-color: var(--body-background-color);
     font-family: Roboto, Arial;
@@ -197,9 +205,9 @@ nav a:hover {
 
 .returnButton img {
     background-color: #0a9bd8;
-    margin: auto;
-    max-height: 35px;
-    border-radius: 20px;
+    margin-left: 50%;
+    max-height: 50px;
+    border-radius: 30px;
 }
 
 .panelFooter .infoButton img {
@@ -326,6 +334,14 @@ progress::-webkit-progress-value {
     justify-content: center;
     align-items: center;
     width: 100%;
+    text-align: center;
+}
+.shipInfoContainer p {
+    margin-top: 10px;
+    font-size: 20px;
+}
+.shipImg {
+    margin: 40px;
 }
 
 .shipInfoContainer div {
@@ -333,7 +349,7 @@ progress::-webkit-progress-value {
 }
 
 .shipInfoContainer img:hover {
-    filter: invert(100);
+    filter: grayscale() brightness(255);
     cursor: pointer;
     transition: 0.15s ease-in-out;
 }
