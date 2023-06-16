@@ -57,11 +57,16 @@
 :root {
     --board-width: 600px;
 }
-
+#gameInfo {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 #gameInfo .text{
     font-size: 20px;
     color: white;
-    width: var(--board-width);
 }
 #gameInfo {    
     width: 100%;
@@ -76,9 +81,8 @@
 }
 
 #gameContainer {
-    width: 95%;
+    width: 100%;
     margin: auto;
-    padding: 2%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -148,6 +152,7 @@
     width: 0px;
     margin-top: 47%;
     padding: 16px;
+    margin-left: -18px;
     /* background-color: aquamarine; */
     display: flex;
     flex-direction: row;

@@ -66,7 +66,8 @@ function handleClick(e) {
         gameStats.playerTurn = false;
         const allBoardBlocks = document.querySelectorAll("#computer div");
         allBoardBlocks.forEach(block => block.replaceWith(block.cloneNode(true)));
-        setTimeout(computerTurn, 200);
+        let _nDelay  = gameStats.debug ? 10 : AFTER_TURN_TIME
+        setTimeout(computerTurn, _nDelay);
     }
 }
 
@@ -93,6 +94,7 @@ function computerTurn() {
             adjustDifficulty();
 
             // Player turn
+            let _nDelay  = gameStats.debug ? 10 : AFTER_TURN_TIME
             setTimeout(() => {
                 gameStats.playerTurn = true;
                 setTurnIndicator();
@@ -102,7 +104,7 @@ function computerTurn() {
                 allBoardBlocks.forEach((block) =>
                     block.addEventListener("click", handleClick)
                 );
-            }, 10);
+            }, _nDelay);
         }, turnDelay);
     }
 }

@@ -19,6 +19,7 @@ const DIFFICULTY_THRESHOLD = 3
 const DUCKY_THRESHOLD = 40
 const NORMAL_SPEED = () => Math.floor(Math.random() * 3 * 1000) + 1500;
 const DEBUG_SPEED = 10;
+const AFTER_TURN_TIME = 1000; // defines the time after a turn is complete 
 
 // ships
 class Ship {
