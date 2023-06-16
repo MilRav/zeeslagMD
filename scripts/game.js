@@ -37,7 +37,7 @@ function startGame() {
             _elContainer.classList.add('playing')
             gameStats.startTime = Date.now();
             gameStats.playerTurn = true;
-            infoDisplay.textContent = 'Het spel is begonnen!';
+            infoDisplay.textContent = 'Het spel is begonnen! Kies een vakje om aan te vallen.';
             setTurnIndicator();
         }
 

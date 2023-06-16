@@ -16,7 +16,8 @@
         margin-right: 50%;
     }
 
-    #gameInfo {
+    #gameInfo .text {
+        padding-left: 16px;
         padding-right: 50%;
     }
 
@@ -53,12 +54,17 @@
         width: 50%;
         display: block !important;
     }
+    .rulesContainer ol {
+        list-style-position:inside;
+    }
+    
 
     .rulesText {
         width: 50%;
         margin: auto auto;
         padding: 80px;
         background-color: var(--content-background-color);
+        border-radius: 8px;
     }
 
     .rulesText h2 {
@@ -169,6 +175,8 @@ td {
     align-items: center;
     position: relative;
     height: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 nav a {
@@ -394,5 +402,5 @@ progress::-webkit-progress-value {
 }
 
 .rulesContainer {
-    display: none;
+    display: none;    
 }

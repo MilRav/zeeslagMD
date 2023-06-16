@@ -58,11 +58,21 @@
     --board-width: 600px;
 }
 
-.gameInfo {
-    font-size: 30px;
-    margin-bottom: 16px;
+#gameInfo .text{
+    font-size: 20px;
     color: white;
-    background-color: var(--content-background);
+    width: var(--board-width);
+}
+#gameInfo {    
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: var(--content-background-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 1s ease-in-out;
 }
 
 #gameContainer {
@@ -118,7 +128,7 @@
     height: 50px;
     display: flex;
     flex-direction: row;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 .panelHeader .boardTitle {
