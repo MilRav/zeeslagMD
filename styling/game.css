@@ -60,8 +60,9 @@
 
 .gameInfo {
     font-size: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     color: white;
+    background-color: var(--content-background);
 }
 
 #gameContainer {
@@ -136,7 +137,7 @@
 .panelFooter {
     width: 0px;
     margin-top: 47%;
-    padding: 10px;
+    padding: 16px;
     /* background-color: aquamarine; */
     display: flex;
     flex-direction: row;
@@ -174,7 +175,6 @@
 
 #playerSide .shipList {
     align-items: end;
-    padding-right: 16px;
 }
 
 #playerSide .shipList .playing {
