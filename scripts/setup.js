@@ -196,6 +196,7 @@ function dragLeave(e) {
 }
 
 function dragStart(e) {
+    console.log("started draging: " + e)
     draggedShip = ""
     if (!e.srcElement.classList.contains('draggable')) {
         e.preventDefault();
