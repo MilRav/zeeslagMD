@@ -2,6 +2,7 @@
     --backgroundColor: transparent;
     --body-background-color: #1d242c;
     --content-background-color: #292f37;
+    --guardion-blue: #0a9bd8;
 }
 
 /* Media Queries */
@@ -59,29 +60,42 @@
     }
 
     .rulesContainer {
-        width: 50%;
+        width: 25%;
         display: block !important;
-    }
-    .rulesContainer ol {
-        list-style-position:inside;
-    }
-    
-
-    .rulesText {
-        width: 50%;
         margin: auto auto;
         padding: 80px;
         background-color: var(--content-background-color);
         border-radius: 8px;
     }
 
-    .rulesText h2 {
-        font-size: 70px;
+    .rulesContainer h2 {
+        font-size: 64px;
         margin-bottom: 30px;
     }
-
-    .rulesText li {
-        font-size: 50px;
+    .rulesContainer .ruleText {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .rulesContainer .rule {
+        padding-bottom: 16px;
+        display: flex;
+        flex-direction: row;
+        
+    }
+    .rulesContainer .ruleNumber {
+        font-size: 80px;
+        font-weight: bold;
+        padding-right: 16px;
+        margin-top: -11px;
+        color: var(--guardion-blue);
+    }
+    .rulesContainer .ruleHeader {
+        font-size: 36px;
+        font-weight: bold;
+    }
+    .rulesContainer .ruleExplainer {
+        font-size: 20px;
     }
 }
 
@@ -129,7 +143,7 @@ body {
 
 button,
 .button {
-    background-color: #0a9bd8;
+    background-color: var(--guardion-blue);
     border: none;
     color: black;
     padding: 8px 32px;
@@ -205,21 +219,21 @@ nav a:hover {
 }
 
 .infoButton img {
-    background-color: #0a9bd8;
+    background-color: var(--guardion-blue);
     margin: auto;
     max-height: 35px;
     border-radius: 20px;
 }
 
 .returnButton img {
-    background-color: #0a9bd8;
+    background-color: var(--guardion-blue);
     margin: auto;
     max-height: 35px;
     border-radius: 20px;
 }
 
 .panelFooter .infoButton img {
-    background-color: #0a9bd8;
+    background-color: var(--guardion-blue);
     margin-left: 10px;
     padding: 3px;
     max-height: 35px;
@@ -228,7 +242,7 @@ nav a:hover {
 }
 
 .panelFooter #flipButton {
-    background-color: #0a9bd8;
+    background-color: var(--guardion-blue);
     padding: 3px;
     max-height: 35px;
     border-radius: 10px;
@@ -236,7 +250,7 @@ nav a:hover {
 }
 
 .panelFooter #startButton {
-    background-color: #0a9bd8;
+    background-color: var(--guardion-blue);
     height: 40px;
     margin-right: 10px;
     border-radius: 10px;
@@ -301,7 +315,7 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-    background: #0a9bd8;
+    background: var(--guardion-blue);
     border-radius: 15px;
 }
 
@@ -411,4 +425,9 @@ progress::-webkit-progress-value {
 
 .rulesContainer {
     display: none;    
+}
+
+/*win-lose screens*/
+.sectionText p {
+    line-height: 32px;
 }

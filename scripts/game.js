@@ -1,24 +1,34 @@
+import { checkScore } from "./score.js"
+import { constants as consts, ships, sounds } from "./constants.js" 
+
+let allPlayerBlocks;
+let gameState;
+// audio
+
+const width = consts.BOARD_WIDTH
+
+window.enableDebugMode = debug
+
+//EXPORT
+export {startGame, setInfoText}
+
 // Start Game
 function startGame() {
+    allPlayerBlocks = document.querySelectorAll("#player div")
+    gameState = window.gameState
 
-    if (gameStats.playerTurn === undefined) {
+    if (gameState.playerTurn === undefined) {
         let _oDroppedShipsFromSession = JSON.parse(sessionStorage.getItem('droppedShips'));
         let droppedShips = [];
         if (_oDroppedShipsFromSession !== undefined && _oDroppedShipsFromSession !== null) {
             droppedShips = _oDroppedShipsFromSession;
         }
         if (droppedShips.length < 5) {
-            infoDisplay.textContent = "Plaats eerst al je schepen!";
+            setInfoText("Plaats eerst al je schepen!")
         } else {
             // add and remove event listeners
             document.querySelectorAll("#computer div").forEach((block) =>
                 block.addEventListener("click", handleClick));
-
-            document.querySelectorAll("#player div").forEach((block) => {
-                block.removeEventListener("dragstart", dragStart)
-                block.removeEventListener("dragover", dragOver)
-                block.removeEventListener("drop", dropShip)
-            });
 
             document.querySelector('#playerSide .shipList').classList.remove('vertical')
 
@@ -35,9 +45,9 @@ function startGame() {
             let _elContainer = document.querySelector('#gameContainer');
             _elContainer.classList.remove('setup')
             _elContainer.classList.add('playing')
-            gameStats.startTime = Date.now();
-            gameStats.playerTurn = true;
-            infoDisplay.textContent = 'Het spel is begonnen! Kies een vakje om aan te vallen.';
+            gameState.startTime = Date.now();
+            gameState.playerTurn = true;
+            setInfoText('Het spel is begonnen! Kies een vakje om aan te vallen.')
             setTurnIndicator();
         }
 
@@ -45,40 +55,40 @@ function startGame() {
 }
 //Check the selected block and change values
 function handleClick(e) {
-    if (!gameStats.gameOver) {
-        gameStats.round++;
+    if (!gameState.gameOver) {
+        gameState.round++;
         if (e.target.classList.contains("taken")) {
-            hitSound.play();
+            sounds.hitSound.play();
             e.target.classList.add("boom");
-            infoDisplay.textContent = "Je hebt een schip geraakt!";
+            setInfoText("Je hebt een schip geraakt!");
             let classes = Array.from(e.target.classList);
             classes = classes.filter((className) => className !== "block");
             classes = classes.filter((className) => className !== "boom");
             classes = classes.filter((className) => className !== "taken");
             classes = classes.filter((className) => className !== "debug");
-            gameStats.player.hits.push(...classes);
+            gameState.player.hits.push(...classes);
         }
         if (!e.target.classList.contains("taken")) {
-            infoDisplay.textContent = "Je hebt niks geraakt.";
+            setInfoText("Je hebt niks geraakt.")
             e.target.classList.add("empty");
         }
         checkScore();
-        gameStats.playerTurn = false;
+        gameState.playerTurn = false;
         const allBoardBlocks = document.querySelectorAll("#computer div");
         allBoardBlocks.forEach(block => block.replaceWith(block.cloneNode(true)));
-        let _nDelay  = gameStats.debug ? 10 : AFTER_TURN_TIME
+        let _nDelay  = gameState.debug ? 10 : consts.AFTER_TURN_TIME
         setTimeout(computerTurn, _nDelay);
     }
 }
 
 // Define the computers go
 function computerTurn() {
-    if (!gameStats.gameOver) {
-        setTurnIndicator();
-        infoDisplay.textContent = "Guardion is aan het denken...";
+    if (!gameState.gameOver) {
+        setTurnIndicator()
+        setInfoText("Guardion is aan het denken...")
 
         // Calculate turn delay based on debug mode
-        const turnDelay = gameStats.debug ? DEBUG_SPEED : NORMAL_SPEED();
+        const turnDelay = gameState.debug ? consts.DEBUG_SPEED : consts.NORMAL_SPEED();
 
         // Computer turn
         setTimeout(() => {
@@ -94,11 +104,11 @@ function computerTurn() {
             adjustDifficulty();
 
             // Player turn
-            let _nDelay  = gameStats.debug ? 10 : AFTER_TURN_TIME
+            let _nDelay  = gameState.debug ? 10 : consts.AFTER_TURN_TIME
             setTimeout(() => {
-                gameStats.playerTurn = true;
+                gameState.playerTurn = true;
                 setTurnIndicator();
-                infoDisplay.textContent = "Jouw beurt.";
+                setInfoText("Jouw beurt");
 
                 const allBoardBlocks = document.querySelectorAll("#computer div");
                 allBoardBlocks.forEach((block) =>
@@ -114,17 +124,17 @@ function engageTarget(blockID) {
         allPlayerBlocks[blockID].classList.contains("taken") &&
         !allPlayerBlocks[blockID].classList.contains("boom")
     ) {
-        hitSound.play();
+        sounds.hitSound.play();
         allPlayerBlocks[blockID].classList.add("boom");
-        infoDisplay.textContent = "Guardian heeft jou schip geraakt!";
+        setInfoText("Guardion heeft jou schip geraakt!")
         let classes = Array.from(allPlayerBlocks[blockID].classList);
         classes = classes.filter((className) => className !== "block");
         classes = classes.filter((className) => className !== "boom");
         classes = classes.filter((className) => className !== "taken");
-        gameStats.computer.hits.push(...classes);
+        gameState.computer.hits.push(...classes);
         checkScore();
     } else {
-        infoDisplay.textContent = "Er is niks geraakt.";
+        setInfoText("Er is niks geraakt.")
         allPlayerBlocks[blockID].classList.add("empty");
     }
 }
@@ -165,7 +175,7 @@ function findObviousTarget() {
 }
 // generate a random, empty, target
 function findRandomTarget() {
-    let cheatAllowed = Math.floor(Math.random() * gameStats.difficulty) == 0;
+    let cheatAllowed = Math.floor(Math.random() * gameState.difficulty) == 0;
     let blockId = 0
     if (cheatAllowed) {
         // give the computer an actual player ship block
@@ -186,19 +196,19 @@ function findRandomTarget() {
 }
 // adjusts the amount of luck the computer has when finding a random target (aka how often the computer cheats :) )
 function adjustDifficulty() {
-    let _nScoreDiff = gameStats.computer.hits.length - gameStats.player.hits.length
+    let _nScoreDiff = gameState.computer.hits.length - gameState.player.hits.length
 
-    if (Math.abs(_nScoreDiff) >= DIFFICULTY_THRESHOLD) {
+    if (Math.abs(_nScoreDiff) >= consts.DIFFICULTY_THRESHOLD) {
         // score difference is large enough to adjust the difficulty
-        gameStats.difficulty = _nScoreDiff < 0 ? HARD_DIFFICULTY : EASY_DIFFICULTY
+        gameState.difficulty = _nScoreDiff < 0 ? consts.HARD_DIFFICULTY : consts.EASY_DIFFICULTY
     } else {
         // set difficulty to default
-        gameStats.difficulty = DEFAULT_DIFFICULTY
+        gameState.difficulty = consts.DEFAULT_DIFFICULTY
     }
 }
 
 function setTurnIndicator() {
-    if (gameStats.playerTurn) {
+    if (gameState.playerTurn) {
         document.querySelector('#playerSide').classList.remove('turn')
         document.querySelector('#computerSide').classList.add('turn')
     } else {
@@ -215,4 +225,20 @@ function nuke() {
             , 2000)
 
     })
+}
+
+// sets the info text and corresponding icon
+function setInfoText(text, icon = 'info') {
+    const _elInfoDisplay = document.querySelector("#gameInfo .text")
+    _elInfoDisplay.textContent = text
+}
+
+function debug() {
+    const computerShips = Array.from(document.querySelectorAll('#computer .taken'));
+    // Enable debug mode and set the speed to DEBUG_SPEED
+    gameState.debug = true;
+
+    computerShips.forEach((ship) => {
+        ship.classList.add("debug");
+    });
 }

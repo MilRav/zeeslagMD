@@ -1,69 +1,37 @@
-// SHOULD BE LOADED LAST
+import { startGame, setInfoText } from "./game.js";
+import { constants, constants as consts, ships } from "./constants.js" 
 
 // board
-const gamesBoardContainer = document.querySelector("#gamesBoardContainer");
-const optionContainer = document.querySelector(".optionContainer");
-const flipButton = document.querySelector("#flipButton");
-const startButton = document.querySelector("#startButton");
-const resetButton = document.querySelector("#resetButton");
-const returnButton = document.querySelector("#returnButton");
-const infoDisplay = document.querySelector("#gameInfo .text");
-const shipList = document.querySelector('.shipList');
-const debugButtons = document.querySelector('.debugButtons')
-const width = 10;
-
-const DEFAULT_DIFFICULTY = 8
-const EASY_DIFFICULTY = 12
-const HARD_DIFFICULTY = 4
-const DIFFICULTY_THRESHOLD = 3
-const DUCKY_THRESHOLD = 40
-const NORMAL_SPEED = () => Math.floor(Math.random() * 3 * 1000) + 1500;
-const DEBUG_SPEED = 10;
-const AFTER_TURN_TIME = 1000; // defines the time after a turn is complete 
-
-// ships
-class Ship {
-    constructor(id, name, length) {
-        this.id = id;
-        this.name = name;
-        this.length = length;
-    }
-}
-
-const submarine = new Ship("0", "submarine", 2);
-const destroyer = new Ship("1", "destroyer", 3);
-const cruiser = new Ship("2", "cruiser", 3);
-const battleship = new Ship("3", "battleship", 4);
-const carrier = new Ship("4", "carrier", 5);
-const ships = [submarine, destroyer, cruiser, battleship, carrier];
+const flipButton = document.querySelector("#flipButton")
+const startButton = document.querySelector("#startButton")
+const width = consts.BOARD_WIDTH
 
 // vars
-let draggedShip;
-let angle = 0;
-let notDropped;
-let gameStats = {
+let draggedShip
+let angle = 0
+let notDropped
+
+//global
+window.gameState = {
     startTime: undefined,
     round: 0,
     gameOver: false,
     playerTurn: undefined,
-    difficulty: DEFAULT_DIFFICULTY,
+    difficulty: consts.DEFAULT_DIFFICULTY,
     debug: false,
     player: {
         hits: [],
         shipsSunk: [],
-        hitPercentage: 0
+        hitPercentage: 0,
+        score: 0
     },
     computer: {
         hits: [],
         shipsSunk: [],
-        hitPercentage: 0
+        hitPercentage: 0,
+        score: 0
     }
 }
-
-// audio
-let hitSound = new Audio('../media/hitsound.mp3');
-let sinkSound = new Audio('../media/watersplash.mp3');
-
 
 /* SETUP BOARDS */
 document.querySelector('#gameContainer').classList.add('setup')
@@ -72,23 +40,44 @@ createBoard("player");
 createBoard("computer");
 const allPlayerBlocks = document.querySelectorAll("#player div");
 const playerBoard = document.querySelector('#player');
+
 startButton.classList.add('hide');
 ships.forEach((ship) => addShipPiece("computer", ship));
 
+setSetupEventListeners()
+
 /* ADD EVENT LISTENERS */
-flipButton.addEventListener("click", flip);
-startButton.addEventListener("click", startGame);
+function setSetupEventListeners () {
+    flipButton.addEventListener("click", flip);
+    startButton.addEventListener("click", startTheGame);
 
-allPlayerBlocks.forEach((playerBlock) => {
-    playerBlock.addEventListener("dragover", dragOver)
-    playerBlock.addEventListener("drop", dropShip)
-});
-playerBoard.addEventListener('dragleave', dragLeave);
-document.addEventListener('dragstart', dragStart);
+    allPlayerBlocks.forEach((playerBlock) => {
+        playerBlock.addEventListener("dragover", dragOver)
+        playerBlock.addEventListener("drop", dropShip)
+    });
+    playerBoard.addEventListener('dragleave', dragLeave);
+    document.addEventListener('dragstart', dragStart);
+}
+function removeSetupEventListeners () {
+    flipButton.removeEventListener("click", flip);
+    startButton.removeEventListener("click", startTheGame);
 
-infoDisplay.textContent = "Plaats je schepen door ze naar het bord te slepen.";
+    allPlayerBlocks.forEach((playerBlock) => {
+        playerBlock.removeEventListener("dragover", dragOver)
+        playerBlock.removeEventListener("drop", dropShip)
+    });
+    playerBoard.removeEventListener('dragleave', dragLeave);
+    document.removeEventListener('dragstart', dragStart);
+}
+
+setInfoText("Plaats je schepen door ze naar het bord te slepen.")
 
 /* FUNCTIONS */
+function startTheGame (){
+    removeSetupEventListeners()
+    startGame()
+}
+
 //Flip the preview of ships
 function flip() {
     angle = angle === 0 ? 90 : 0;
@@ -313,15 +302,5 @@ function removeHighlightArea() {
     allHoverBlocks.forEach((_elBlock) => {
         _elBlock.classList.remove("hover");
         _elBlock.classList.remove("error");
-    });
-}
-
-function debug() {
-    const computerShips = Array.from(document.querySelectorAll('#computer .taken'));
-    // Enable debug mode and set the speed to DEBUG_SPEED
-    gameStats.debug = true;
-
-    computerShips.forEach((ship) => {
-        ship.classList.add("debug");
     });
 }
