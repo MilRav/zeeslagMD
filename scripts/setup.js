@@ -3,6 +3,7 @@ import { constants, constants as consts, ships } from "./constants.js"
 
 // board
 const flipButton = document.querySelector("#flipButton")
+const infoButton = document.querySelector("#infoButton")
 const startButton = document.querySelector("#startButton")
 const width = consts.BOARD_WIDTH
 
@@ -49,6 +50,7 @@ setSetupEventListeners()
 /* ADD EVENT LISTENERS */
 function setSetupEventListeners () {
     flipButton.addEventListener("click", flip);
+    infoButton.addEventListener("click", openInfoPage);
     startButton.addEventListener("click", startTheGame);
 
     allPlayerBlocks.forEach((playerBlock) => {
@@ -76,6 +78,11 @@ setInfoText("Plaats je schepen door ze naar het bord te slepen.")
 function startTheGame (){
     removeSetupEventListeners()
     startGame()
+}
+
+//Open info page
+function openInfoPage(){
+    window.open("../pages/info.html", '_blank').focus();
 }
 
 //Flip the preview of ships
@@ -198,7 +205,7 @@ function dragStart(e) {
             notDropped = false;
             draggedShip = ""
             e.target.classList.forEach((classItem) => {
-                _oTheShip = ships.find(ship => ship.name == classItem)
+                let _oTheShip = ships.find(ship => ship.name == classItem)
 
                 if (_oTheShip) {
                     draggedShip = _oTheShip //this now functions like the option container div :)

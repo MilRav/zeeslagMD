@@ -73,6 +73,7 @@ function _recordScore(){
         _oGameStats = {
             'total games enjoyed': 0,
             'wins': 0,
+            'duckies': 0, //special kind of win
             'losses': 0,
             'highest score': 0,
             'average score': 0,
@@ -87,10 +88,14 @@ function _recordScore(){
 
     let _nGames = ++_oGameStats['total games enjoyed']
     let _nDuration = (Date.now() - gameState.startTime)/1000 //in seconds
-    let _nPlayerScore = gameState.player.hitPercentage
+    let _nPlayerScore = gameState.player.score
     let _nRounds = gameState.round
 
     let _bResult = (gameState.computer.shipsSunk.length === 5) ? ++_oGameStats['wins'] : ++_oGameStats['losses']
+
+    if (_bResult && (gameState.player.hitPercentage >= consts.DUCKY_THRESHOLD) ) {
+        ++_oGameStats['duckies']        
+    }
 
     // score
     if (_nPlayerScore > _oGameStats["highest score"]) _oGameStats["highest score"] = _nPlayerScore

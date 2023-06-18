@@ -32,6 +32,11 @@
             <div id="playerSide" class="playerPanel">
                 <div class="panelHeader">
                     <div class="boardTitle">Speler</div>
+                    <div class="scoreCard">
+                        <div id="hit"></div>
+                        <div id="miss"></div>
+                        <div id="score"></div>
+                    </div>
                 </div>
                 <div class="panelContent">
                     <div class="shipList">
@@ -56,14 +61,19 @@
                         </div>
                     </div>
                     <div class="panelFooter">
-                        <button id="startButton">Start</button>
-                        <div id="flipButton">
-                            <img src="../media/flipButton.png" height="35px">
+                        <div id="allButtons">
+                            <div id="setupButtons">
+                                <button id="flipButton">
+                                    <img src="../media/flipButton.png"/>
+                                    Roteer
+                                </button>
+                                <button id="infoButton">
+                                    <img src="../media/infobutton.png"/>
+                                    Scheepsinfo
+                                </button>
+                            </div>
+                            <button id="startButton">Start</button>
                         </div>
-                        <section class="infoButton">
-                            <a href="../pages/info.html" target="_blank"><img src="../media/infobutton.png"
-                                    alt="info button"></a>
-                        </section>
                     </div>
 
                     <div id="player" class="gameBoard"></div>
@@ -73,6 +83,11 @@
             <div id="computerSide" class="playerPanel">
                 <div class="panelHeader">
                     <div class="boardTitle">Guardion</div>
+                    <div class="scoreCard">
+                        <div id="hit"></div>
+                        <div id="miss"></div>
+                        <div id="score"></div>
+                    </div>
                 </div>
                 <div class="panelContent">
                     <div id="computer" class="gameBoard"></div>

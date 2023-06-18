@@ -24,7 +24,9 @@
     <script src="../scripts/confetti.js"></script>
     <!-- Confetti  JS-->
     <script>
-
+        function gotoHomePage() {
+            window.open('../index.html','_self')
+        }
         // start
         const start = () => {
             setTimeout(function () {
@@ -40,10 +42,10 @@
                 <h1>Gefeliciteerd, u heeft een prijs gewonnen!!</h1>
                 <p id="score"></p>
                 <script>
-                    document.getElementById("score").innerHTML = "Bedankt voor het spelen. Uw heeft " + 
-                        window.location.search.split("=")[1] + " punten gescoord!";
+                    document.getElementById("score").innerHTML = "Bedankt voor het spelen. Uw heeft <b>" + 
+                        window.location.search.split("=")[1] + "</b> punten gescoord!";
                 </script>
-                <p>Spreek een medewerker in de tent aan en laat dit scherm zien om uw Maritieme IT ducky te ontvangen.</p>
+                <p id="helperText">Spreek een medewerker in de tent aan en laat dit scherm zien<br>om uw Maritieme IT ducky te ontvangen.</p>
             </div>
             <br>
             <div id="ducky">
@@ -52,7 +54,7 @@
             </div>
 
             <div class="sectionButton">
-                <a href="../index.html"><button>Home</button></a>
+                <button onclick="gotoHomePage()">Home</button>
             </div>
         </div>
     </div>

@@ -3,6 +3,8 @@
     --body-background-color: #1d242c;
     --content-background-color: #292f37;
     --guardion-blue: #0a9bd8;
+    --button-border-radius: 4px;
+    --button-height: 42px;
 }
 
 /* Media Queries */
@@ -53,6 +55,9 @@
     .titleContainer {
         width: 50%;
         font-size: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .titleContainer h1 {
@@ -146,15 +151,23 @@ button,
     background-color: var(--guardion-blue);
     border: none;
     color: black;
-    padding: 8px 32px;
+    padding: 8px;
     margin-top: 25px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-size: 16px;
     text-align: center;
-    border-radius: 5px;
+    border-radius: var(--button-border-radius);
+    box-shadow: 0px 2px 4px black;
     cursor: pointer;
+    height: var(--button-height);
+}
+button img {
+    height: 24px;
+    margin-right: 8px;
 }
 
 table {
@@ -219,45 +232,18 @@ nav a:hover {
 }
 
 .infoButton img {
-    background-color: var(--guardion-blue);
     margin: auto;
-    max-height: 35px;
+    height: var(--button-height);
     border-radius: 20px;
 }
 
 .returnButton img {
     background-color: var(--guardion-blue);
     margin: auto;
-    max-height: 35px;
+    height: var(--button-height);
     border-radius: 20px;
 }
 
-.panelFooter .infoButton img {
-    background-color: var(--guardion-blue);
-    margin-left: 10px;
-    padding: 3px;
-    max-height: 35px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px black;
-}
-
-.panelFooter #flipButton {
-    background-color: var(--guardion-blue);
-    padding: 3px;
-    max-height: 35px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px black;
-}
-
-.panelFooter #startButton {
-    background-color: var(--guardion-blue);
-    height: 40px;
-    margin-right: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px black;
-    font-size: 20px;
-    font-weight: bold;
-}
 
 #resetButton {
     background-color: transparent;
@@ -299,6 +285,20 @@ nav a:hover {
     padding: 50px;
     border-radius: 5px;
     box-shadow: 0px 3px 20px #0000001a;
+}
+.statsHeader {
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 64px;
+}
+.gameStatistics {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: fit-content;
+    padding: 8px;
 }
 
 /* Progess bar result page */
@@ -429,5 +429,5 @@ progress::-webkit-progress-value {
 
 /*win-lose screens*/
 .sectionText p {
-    line-height: 32px;
+    padding-top: 16px;
 }
