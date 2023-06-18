@@ -386,14 +386,15 @@ progress::-webkit-progress-value {
 .modal {
     display: none;
     /* Hidden by default */
-    position: fixed;
+    position: absolute;
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    padding-top: 100px;
+    padding-top: 12.5%;
     /* Location of the box */
-    left: 0;
-    top: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 50%;
     /* Full width */
     height: 100%;
@@ -458,6 +459,10 @@ progress::-webkit-progress-value {
     padding-top: 16px;
 }
 
+#duckyExplainer {
+    font-style: italic;
+}
+
 #duckyExplainer:hover,
 #duckyExplainer:focus {
     cursor: pointer;
@@ -475,4 +480,8 @@ progress::-webkit-progress-value {
 #duckyExplainerModal p {
     margin-bottom: 16px;
     width: 100%
+}
+
+#duckyExplainerModal .modal-content {
+    width: 40%
 }
