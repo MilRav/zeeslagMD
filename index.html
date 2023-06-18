@@ -23,9 +23,9 @@
         </tr>
       </table>
 
-      <div class="sectionButton">
-        <a href="/pages/game.html" class="button">Klik hier om te spelen</a>
-      </div>
+      <button id="btnNewGame">
+        Klik hier om te spelen
+      </button>
       <div class="statsHeader">Spelstatistieken</div>
       <div class="gameStatistics">        
       </div>
@@ -75,11 +75,44 @@
         <div class="ruleNumber">5</div>
         <div class="ruleText">
           <div class="ruleHeader">Meer dan 100 punten? Ducky!</div>
-          <div class="ruleExplainer">Heb je meer dan 100 punten gescoord? Dan heb je een kleine prijs gewonnen: de Maritieme IT Ducky! Een super leuk programmeermaatje.</div>
+          <div class="ruleExplainer">Heb je meer dan 100 punten gescoord? Dan heb je een kleine prijs gewonnen: de Maritieme IT Ducky! Een super leuk programmeermaatje.             
+            <br/></br>
+            <div id="duckyExplainer">Waarom een rubber eendje? Klik hier om het te weten te komen.</div>
+          </div>
         </div>
       </div>
 
     </div>
+
+    <div id="duckyExplainerModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Rubber Duck Debugging</h2>
+        </div>
+        <div class="modal-actual-content">
+          <p>In software engineering is rubber duck debugging (of rubberducking) een methode om code te debuggen door een probleem in 
+            gesproken of geschreven natuurlijke taal te verwoorden. De naam is een verwijzing naar een verhaal in het boek The Pragmatic 
+            Programmer. 
+          </p>
+          <p><b>Hoe werkt het?</b>
+            <ol>
+              <li>Smeek, leen, steel, koop, fabriceer, win of verkrijg op een andere manier een rubbereend (van de badeend variant).</li>
+              <li>Zet het badeendje op je bureau. Vertel het dat je graag wat code met het eendje wil doornemen, als dat goed is.</li>
+              <li>Leg aan de eend uit wat jouw code moet doen. Ga dan in detail en leg regel voor regel je code uit.</li>
+              <li>Op een gegeven moment vertel je de eend wat je nu gaat doen en realiseer je je dan dat dat in feite niet is wat je eigenlijk aan het doen bent. 
+                De eend zal rustig blijven zitten, blij in de wetenschap dat hij je op weg heeft geholpen.</li>
+            </ol>
+          </p>
+          <p>Opmerking: in geval van nood kan een collega de eend vervangen, maar het heeft vaak de voorkeur om fouten aan de eend toe te vertrouwen in plaats 
+            van aan je collega. Er zijn trouwens veel andere termen voor deze techniek, waarbij vaak verschillende objecten of 
+            huisdieren zoals een hond of kat betrokken zijn. Teddyberen worden naar verluid ook veel gebruikt.
+          </p>
+          <img src="../media/marit_eendje.png" alt="Ducky!">
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script type="module" src="../scripts/index.js"></script>
