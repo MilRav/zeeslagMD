@@ -27,37 +27,38 @@ window.onclick = function(event) {
 
 //stats
 let _oTheStats = getStatistics()
-let _elStatsPart = document.querySelector('.gameStatistics')
+let _elStatsPart = document.querySelector('.gameStatistics table')
 let _elStatsHeader = document.querySelector('.statsHeader')
 
 if (_elStatsPart) {
     if (_oTheStats) {
         _elStatsHeader.classList.remove('hide')
-        // create individual elements for render
-        let _elTotalRounds = document.createElement("div")
-        _elTotalRounds.textContent = `Aantal spellen genoten: ${_oTheStats["total games enjoyed"]}`
-        _elStatsPart.appendChild(_elTotalRounds)
 
-        let _elWinRounds = document.createElement("div")
-        _elWinRounds.textContent = `Gewonnen: ${_oTheStats["wins"]}`
-        _elStatsPart.appendChild(_elWinRounds)
+        _appendStatsData("Aantal spellen genoten", _oTheStats["total games enjoyed"])
+        _appendStatsData("Gewonnen", _oTheStats["wins"])
+        _appendStatsData("Verloren", _oTheStats["losses"])
+        _appendStatsData("Hoogste score", _oTheStats["highest score"])
+        _appendStatsData("Duckies gewonnen", _oTheStats["duckies"])
 
-        let _elLossRounds = document.createElement("div")
-        _elLossRounds.textContent = `Verloren: ${_oTheStats["losses"]}`
-        _elStatsPart.appendChild(_elLossRounds)
-
-        let _elHighScore = document.createElement("div")
-        _elHighScore.textContent = `Hoogste score: ${_oTheStats["highest score"]}`
-        _elStatsPart.appendChild(_elHighScore)
-
-        let _elDuckies = document.createElement("div")
-        _elDuckies.textContent = `Duckies gewonnen: ${_oTheStats["duckies"]}`
-        _elStatsPart.appendChild(_elDuckies)
     }
     else {
         // no stats yet: hide header
         _elStatsHeader.classList.add('hide')
     }
+}
+
+function _appendStatsData (_sRowText, _sRowNumber) {
+        // create individual elements for render
+        let _elRow = document.createElement("tr")
+        let _elText = document.createElement("td")
+        let _elNumber = document.createElement("td")
+
+        _elText.textContent = _sRowText
+        _elNumber.textContent = _sRowNumber
+
+        _elRow.appendChild(_elText)
+        _elRow.appendChild(_elNumber)
+        _elStatsPart.appendChild(_elRow)
 }
 
 function newGame(){
