@@ -11,8 +11,12 @@
 @media screen and (min-width: 2560px) {
     #gamesBoardContainer {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
         width: 100%;
+    }
+
+    #centerPadding {
+        width: calc(2*274px) !important; /* twice width of the ship list */
     }
 
     #startButton {

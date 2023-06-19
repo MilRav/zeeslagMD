@@ -96,6 +96,10 @@
     color: black;
 }
 
+#centerPadding {
+    width: 0px;
+}
+
 .gameContainer .container p {
     -webkit-user-select: none;
     user-select: none;
