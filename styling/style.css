@@ -105,7 +105,7 @@ h1{
 }
 
 p {
-font-size: 20px;
+    font-size: 20px;
 }
 
 body {
@@ -348,7 +348,7 @@ progress::-webkit-progress-value {
     width: 30%;
 }
 
-.shipInfoContainer img:hover {
+.shipInfoContainer .shipImg:hover {
     filter: grayscale() brightness(255);
     cursor: pointer;
     transition: 0.15s ease-in-out;
