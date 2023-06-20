@@ -254,14 +254,11 @@ nav a:hover {
     height: var(--button-height);
     border-radius: 20px;
 }
-
-.returnButton img {
-    background-color: var(--guardion-blue);
-    margin: auto;
-    height: var(--button-height);
-    border-radius: 20px;
+.infoContainer {
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
 }
-
 
 #resetButton {
     background-color: transparent;

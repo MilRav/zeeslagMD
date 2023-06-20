@@ -26,7 +26,7 @@
     <div class="infoContainer">
         <div class="infoHeaderText">
             <h1>Informatie</h1>
-            <p>Selecteer een schip:</p>
+            <p>Selecteer een schip voor meer informatie.</p>
         </div>
         <div class="shipInfoContainer">
             <div class="shipImg submarine" data-modal="myModal1">
@@ -50,10 +50,13 @@
                 <p>Joint logistic Support Ship (JSS)</p>
             </div>
         </div>
-        <section class="returnButton">
-            <a href="javascript:window.open('','_self').close();"><img src="../media/returnbutton.png"
-                    alt="info button"></a>
-        </section>
+        <div class="returnButton">
+            <button id="infoButton" onclick="javascript:window.open('','_self').close();">
+                <img src="../media/returnbutton.png"/>
+                Terug
+            </button>
+        </div>
+
     </div>
 
     <!-- Modals -->
