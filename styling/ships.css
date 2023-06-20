@@ -49,7 +49,10 @@
     border-color: var(--color-submarine);
     width: calc(2 * var(--preview-height));
 }
-
+.shipInfoContainer .submarine #omtrek { 
+    stroke: var(--color-submarine);
+    fill: var(--color-submarine); 
+}
 
 /*destroyer*/
 #player .destroyer {
@@ -62,6 +65,10 @@
 .destroyerPreview {
     border-color: var(--color-destroyer);
     width: calc(3 * var(--preview-height));
+}
+.shipInfoContainer .destroyer #omtrek { 
+    stroke: var(--color-destroyer);
+    fill: var(--color-destroyer); 
 }
 
 /*cruiser*/
@@ -76,6 +83,10 @@
     border-color: var(--color-cruiser);
     width: calc(3 * var(--preview-height));
 }
+.shipInfoContainer .cruiser #omtrek { 
+    stroke: var(--color-cruiser);
+    fill: var(--color-cruiser); 
+}
 
 /*battleship*/
 #player .battleship {
@@ -89,7 +100,10 @@
     border-color: var(--color-battleship);
     width: calc(4 * var(--preview-height));
 }
-
+.shipInfoContainer .battleship #omtrek {
+    stroke: var(--color-battleship); 
+    fill: var(--color-battleship); 
+}
 
 /*carrier*/
 #player .carrier {
@@ -102,4 +116,8 @@
 .carrierPreview {
     border-color: var(--color-carrier);
     width: calc(5 * var(--preview-height));
+}
+.shipInfoContainer .carrier #omtrek {
+    stroke: var(--color-carrier);
+    fill: var(--color-carrier); 
 }

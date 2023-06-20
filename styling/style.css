@@ -137,6 +137,14 @@ table h1 {
     font-size: 11vw;
 }
 
+h1{
+    font-size: 40px;
+}
+
+p {
+    font-size: 20px;
+}
+
 body {
     background-color: var(--body-background-color);
     font-family: Roboto, Arial;
@@ -381,14 +389,22 @@ progress::-webkit-progress-value {
     justify-content: center;
     align-items: center;
     width: 100%;
+    text-align: center;
+}
+.shipInfoContainer p {
+    margin-top: 10px;
+    font-size: 20px;
+}
+.shipImg {
+    margin: 40px;
 }
 
 .shipInfoContainer div {
     width: 30%;
 }
 
-.shipInfoContainer img:hover {
-    filter: invert(100);
+.shipInfoContainer .shipImg:hover {
+    filter: grayscale() brightness(255);
     cursor: pointer;
     transition: 0.15s ease-in-out;
 }
