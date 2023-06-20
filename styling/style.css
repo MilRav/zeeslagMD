@@ -41,8 +41,8 @@
         justify-content: left;
     }
 
-    .modal {
-        padding-left: 50%;
+    .modal-content {
+        margin-left: 50% !important;
     }
 
     .section {
@@ -193,7 +193,15 @@ td {
 
 .titleContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
+    align-items: center;
+}
+
+.sectionContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -408,17 +416,14 @@ progress::-webkit-progress-value {
 
 .modal {
     display: none;
-    /* Hidden by default */
+    /* Hidden by default; flex when enabled */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     /* Stay in place */
     z-index: 1;
-    /* Sit on top. Is there a better solution? */
-    padding-top: 152px; 
-    /* Location of the box */
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
+    width: 100%;
     /* Full width */
     height: 100%;
     /* Full height */
@@ -434,10 +439,9 @@ progress::-webkit-progress-value {
 .modal-content {
     color: black;
     background-color: #fefefe;
-    margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 40%;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -493,18 +497,15 @@ progress::-webkit-progress-value {
     font-weight: bold;
 }
 #duckyExplainerModal img {
-    width: 50%;
-    height: 50%;
+    width: 25%;
+    height: 25%;
 }
 
 #duckyExplainerModal ol {
     list-style-position: inside;
+    font-size: 20px;
 }
 #duckyExplainerModal p {
     margin-bottom: 16px;
     width: 100%
-}
-
-#duckyExplainerModal .modal-content {
-    width: 40%
 }
