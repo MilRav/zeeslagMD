@@ -21,10 +21,6 @@
                         style="margin-left: 10px;"></a>
                 <span>ZEE - SLAG</span>
             </section>
-            <section class="returnButton">
-                <a href="javascript:window.open('','_self').close();"><img src="../media/returnbutton.png"
-                        alt="info button"></a>
-            </section>
         </nav>
     </div>
     <div class="infoContainer">
@@ -33,12 +29,31 @@
             <p>Selecteer een schip:</p>
         </div>
         <div class="shipInfoContainer">
-            <div class="shipImg" data-modal="myModal1"><img src="../media/IPW.svg" alt=""></div>
-            <div class="shipImg" data-modal="myModal2"><img src="../media/OPV.svg" alt=""></div>
-            <div class="shipImg" data-modal="myModal3"><img src="../media/MFF.svg" alt=""></div>
-            <div class="shipImg" data-modal="myModal4"><img src="../media/LCF.svg" alt=""></div>
-            <div class="shipImg" data-modal="myModal5"><img src="../media/DMAN.svg" alt=""></div>
+            <div class="shipImg submarine" data-modal="myModal1">
+                <load-file replaceWith id="subSvg" src="../media/IPW.svg"></load-file>
+                <p>Onderzeeër</p>
+            </div>
+            <div class="shipImg destroyer" data-modal="myModal2">
+                <load-file replaceWith id="opvSvg" src="../media/OPV.svg"></load-file>
+                <p>Patrouilleschip (OPV)</p>
+            </div>
+            <div class="shipImg cruiser" data-modal="myModal3">
+                <load-file replaceWith id="mffSvg" src="../media/MFF.svg"></load-file>
+                <p>Multipurposefregat (M-fregat)</p>
+            </div>
+            <div class="shipImg battleship" data-modal="myModal4">
+                <load-file replaceWith id="lcfSvg" src="../media/LCF.svg"></load-file>
+                <p>Luchtverdedigings- en commandofregat (LCF)</p>
+            </div>
+            <div class="shipImg carrier" data-modal="myModal5">
+                <load-file replaceWith id="dmanSvg" src="../media/DMAN.svg"></load-file>
+                <p>Joint logistic Support Ship (JSS)</p>
+            </div>
         </div>
+        <section class="returnButton">
+            <a href="javascript:window.open('','_self').close();"><img src="../media/returnbutton.png"
+                    alt="info button"></a>
+        </section>
     </div>
 
     <!-- Modals -->
@@ -97,7 +112,7 @@
     </div>
 
 
-
+    <script src="../scripts/loadfile.js"></script>
     <script src="../scripts/info.js"></script>
 </body>
 
