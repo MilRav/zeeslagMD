@@ -12,12 +12,12 @@ for (var i = 0; i < ships.length; i++) {
     ship.onclick = function() {
         var modalId = this.getAttribute("data-modal");
         var modal = document.getElementById(modalId);
-        modal.style.display = "block";
+        modal.style.display = "flex";
     };
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-        var modal = this.parentNode.parentNode;
+        var modal = this.parentNode.parentNode.parentNode;
         modal.style.display = "none";
     };
 

@@ -22,8 +22,14 @@
           </td>
         </tr>
       </table>
-      <div class="sectionButton">
-        <a href="/pages/game.html" class="button">Klik hier om het spel te openen.</a>
+
+      <button id="btnNewGame">
+        Klik hier om te spelen
+      </button>
+      <div class="statsHeader">Spelstatistieken</div>
+      <div class="gameStatistics"> 
+        <table>          
+        </table>
       </div>
 
       <div class="debugButtons hide">
@@ -33,22 +39,87 @@
       </div>
     </div>
     <div class="rulesContainer">
-      <div class="rulesText">
-        <h2>Uitleg</h2>
-        <ol>
-          <li>Plaats je schepen.</li>
-          <li>Klik op start.</li>
-          <li>Schiet er op los.</li>
-          <li>Win of verlies.</li>
-          <li>Duck</li>
-        </ol>
+      <h2>Uitleg</h2>
+
+      <div class="rule">
+        <div class="ruleNumber">1</div>
+        <div>
+          <div class="ruleHeader">Plaats je schepen.</div>
+          <div class="ruleExplainer">Sleep je schepen op het bord om ze te plaatsen.</div>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="ruleNumber">2</div>
+        <div class="ruleText">
+          <div class="ruleHeader">Klik op start.</div>
+          <div class="ruleExplainer">Tevreden over je opstelling? Dan is het tijd voor de zeeslag.</div>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="ruleNumber">3</div>
+        <div class="ruleText">
+          <div class="ruleHeader">Schiet er op los.</div>
+          <div class="ruleExplainer">Klik op het bord van Guardion om een positie aan te vallen.</div>
+        </div>
+      </div>
+      
+      <div class="rule">
+        <div class="ruleNumber">4</div>
+        <div class="ruleText">
+          <div class="ruleHeader">Win of verlies.</div>
+          <div class="ruleExplainer">Kijk of je Guardion kunt verslaan.</div>
+        </div>
+      </div>
+      
+      <div class="rule">
+        <div class="ruleNumber">5</div>
+        <div class="ruleText">
+          <div class="ruleHeader">Meer dan 100 punten? Ducky!</div>
+          <div class="ruleExplainer">Heb je meer dan 100 punten gescoord? Dan heb je een kleine prijs gewonnen: de Maritieme IT Ducky! Een super leuk programmeermaatje.             
+            <br/></br>
+            <div id="duckyExplainer">Waarom een rubber eendje? Klik hier om het te weten te komen.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="duckyExplainerModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Rubber Duck Debugging</h2>
+        </div>
+        <div class="modal-actual-content">
+          <p>In software engineering is rubber duck debugging (of rubberducking) een methode om code te debuggen door een probleem in 
+            gesproken of geschreven natuurlijke taal te verwoorden. De naam is een verwijzing naar een verhaal in het boek The Pragmatic 
+            Programmer. 
+          </p>
+          <p><b>Hoe werkt het?</b>
+            <ol>
+              <li>Smeek, leen, steel, koop, fabriceer, win of verkrijg op een andere manier een rubbereend (van de badeend variant).</li>
+              <li>Zet het badeendje op je bureau. Vertel het dat je graag wat code met het eendje wil doornemen, als dat goed is.</li>
+              <li>Leg aan de eend uit wat jouw code moet doen. Ga dan in detail en leg regel voor regel je code uit.</li>
+              <li>Op een gegeven moment vertel je de eend wat je nu gaat doen en realiseer je je dan dat dat in feite niet is wat je eigenlijk aan het doen bent. 
+                De eend zal rustig blijven zitten, blij in de wetenschap dat hij je op weg heeft geholpen.</li>
+            </ol>
+          </p>
+          <p>Opmerking: in geval van nood kan een collega de eend vervangen, maar het heeft vaak de voorkeur om fouten aan de eend toe te vertrouwen in plaats 
+            van aan je collega. Er zijn trouwens veel andere termen voor deze techniek, waarbij vaak verschillende objecten of 
+            huisdieren zoals een hond of kat betrokken zijn. Teddyberen worden naar verluid ook veel gebruikt.
+          </p>
+          <img src="../media/marit_eendje.png" alt="Ducky!">
+        </div>
       </div>
     </div>
+
   </div>
 
-
-  <script src="../scripts/score.js"></script>
-  <script src="../scripts/setup.js"></script>
+  <script type="module" src="../scripts/index.js"></script>
+  <script type="module" src="../scripts/score.js"></script>
+  
 </body>
 
 </html>

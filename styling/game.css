@@ -57,17 +57,32 @@
 :root {
     --board-width: 600px;
 }
-
-.gameInfo {
-    font-size: 30px;
-    margin-bottom: 10px;
+#gameInfo {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#gameInfo .text{
+    font-size: 20px;
     color: white;
+}
+#gameInfo {    
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: var(--content-background-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 1s ease-in-out;
 }
 
 #gameContainer {
-    width: 95%;
+    width: 100%;
     margin: auto;
-    padding: 2%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -79,6 +94,10 @@
     margin-top: 0px;
     background-color: #0a9bd8;
     color: black;
+}
+
+#centerPadding {
+    width: 0px;
 }
 
 .gameContainer .container p {
@@ -114,17 +133,23 @@
 
 .panelHeader {
     width: 100%;
-    height: 50px;
     display: flex;
-    flex-direction: row;
-    margin-bottom: 16px;
+    flex-direction: column;
+    margin-bottom: 24px;
 }
 
 .panelHeader .boardTitle {
     font-size: 50px;
     width: var(--board-width);
-    padding-bottom: 2px;
+    padding-bottom: 8px;
     height: fit-content;
+}
+.panelHeader .scoreCard {
+    width: var(--board-width);
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .panelContent {
@@ -136,7 +161,8 @@
 .panelFooter {
     width: 0px;
     margin-top: 47%;
-    padding: 10px;
+    padding: 16px;
+    margin-left: -18px;
     /* background-color: aquamarine; */
     display: flex;
     flex-direction: row;
@@ -144,9 +170,36 @@
     justify-content: flex-end;
 }
 
+.panelFooter #allButtons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 64px;
+}
+
 .panelFooter .boardPadding {
     width: var(--board-width);
     margin-left: 16px;
+}
+
+.panelFooter button {
+    margin-left: 8px;
+}
+
+.panelFooter #setupButtons {
+    display: flex;
+    flex-direction: row;
+}
+
+.panelFooter #startButton {
+    font-size: 20px;
+    font-weight: bold;
+    width: calc(100% - 8px);
+    margin-top: 8px;
+    justify-content: center;
+}
+.panelFooter #startButton.hide {
+    display: flex;
+    visibility: hidden;
 }
 
 .shipList {
@@ -164,17 +217,18 @@
 #playerSide,
 #playerSide .panelHeader {
     justify-content: flex-end;
+    align-items: flex-end;
 }
 
 /* computer panel */
 #computerSide,
 #computerSide.panelHeader {
     justify-content: flex-start;
+    align-items: flex-start;
 }
 
 #playerSide .shipList {
     align-items: end;
-    padding-right: 16px;
 }
 
 #playerSide .shipList .playing {

@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <script>
+        function gotoHomePage() {
+            window.open('../index.html','_self')
+        }
+    </script>
     <div class="header">
         <nav>
             <section class="headerLogo">
@@ -26,14 +31,14 @@
                 <p>Bedankt voor het spelen!</p>
                 <p id="score"></p>
                 <script>
-                    document.getElementById("score").innerHTML = 
-                        window.location.search.split("=")[1] + "% van de schoten waren raak!";
+                    document.getElementById("score").innerHTML = "Uw heeft " + 
+                        window.location.search.split("=")[1] + " punten gescoord!";
                 </script>
             </div>
             <br>
             <img src="../media/lcf.jpg" alt="Lcf" height="500px">
             <div class="redirectionIndexPage">
-                <p>U word na 20 seconde terug gestuurd naar welkoms pagina.</p><br>
+                <div id="redirectMessage">U wordt na 20 seconde terug gestuurd naar het hoofdscherm.</div>
                 <progress value="0" max="20" id="progressBar"></progress>
                 <script type="text/javascript">
                     let timeleft = 20;
@@ -52,7 +57,7 @@
                 </script>
             </div>
             <div class="sectionButton">
-                <a href="../index.html"><button>welkom pagina</button></a>
+                <button onclick="gotoHomePage()">Home</button>
             </div>
         </div>
     </div>

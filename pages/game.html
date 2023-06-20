@@ -26,14 +26,17 @@
 
         </nav>
     </div>
-    <div id="gameContainer">
-        <div id="gameInfo">
-        </div>
 
+    <div id="gameContainer">
         <div id="gamesBoardContainer">
             <div id="playerSide" class="playerPanel">
                 <div class="panelHeader">
                     <div class="boardTitle">Speler</div>
+                    <div class="scoreCard">
+                        <div id="hit"></div>
+                        <div id="miss"></div>
+                        <div id="score"></div>
+                    </div>
                 </div>
                 <div class="panelContent">
                     <div class="shipList">
@@ -58,24 +61,35 @@
                         </div>
                     </div>
                     <div class="panelFooter">
-                        <button id="startButton">Start</button>
-                        <div id="flipButton">
-                            <img src="../media/flipButton.png" height="35px">
+                        <div id="allButtons">
+                            <div id="setupButtons">
+                                <button id="flipButton">
+                                    <img src="../media/flipButton.png"/>
+                                    Roteer
+                                </button>
+                                <button id="infoButton">
+                                    <img src="../media/infobutton.png"/>
+                                    Scheepsinfo
+                                </button>
+                            </div>
+                            <button id="startButton">Start</button>
                         </div>
-                        <section class="infoButton">
-                            <a href="../pages/info.html" target="_blank"><img src="../media/infobutton.png"
-                                    alt="info button"></a>
-                        </section>
-                        <div class="boardPadding"></div>
                     </div>
 
                     <div id="player" class="gameBoard"></div>
                 </div>
             </div>
 
+            <div id="centerPadding"></div>
+
             <div id="computerSide" class="playerPanel">
                 <div class="panelHeader">
                     <div class="boardTitle">Guardion</div>
+                    <div class="scoreCard">
+                        <div id="hit"></div>
+                        <div id="miss"></div>
+                        <div id="score"></div>
+                    </div>
                 </div>
                 <div class="panelContent">
                     <div id="computer" class="gameBoard"></div>
@@ -101,12 +115,19 @@
         </div>
 
     </div>
+
+    <div id="gameFooter">
+        <div id="gameInfo">
+            <div class="text"></div>
+            <div id="infoSpacer"></div>
+        </div>
+    </div>
+
     </div>
 
     <script src="../scripts/loadfile.js"></script>
-    <script src="../scripts/score.js"></script>
-    <script src="../scripts/game.js"></script>
-    <script src="../scripts/setup.js"></script>
+    <script type="module" src="../scripts/game.js"></script>
+    <script type="module" src="../scripts/setup.js"></script>
 
 </body>
 

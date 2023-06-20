@@ -2,22 +2,38 @@
     --backgroundColor: transparent;
     --body-background-color: #1d242c;
     --content-background-color: #292f37;
+    --guardion-blue: #0a9bd8;
+    --button-border-radius: 4px;
+    --button-height: 42px;
 }
 
 /* Media Queries */
 @media screen and (min-width: 2560px) {
     #gamesBoardContainer {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         width: 100%;
+    }
+
+    #centerPadding {
+        width: calc(2*274px) !important; /* twice width of the ship list */
     }
 
     #startButton {
         margin-right: 50%;
     }
 
-    #gameInfo {
-        padding-right: 50%;
+
+    #gameInfo .text {
+        width: 50%;
+    }
+    #infoSpacer {
+        width: 50%;
+        height: 16px;
+    }
+    #gameInfo
+    { 
+        flex-direction: row !important;
     }
 
     .infoContainer {
@@ -25,8 +41,8 @@
         justify-content: left;
     }
 
-    .modal {
-        padding-left: 50%;
+    .modal-content {
+        margin-left: 50% !important;
     }
 
     .section {
@@ -43,6 +59,9 @@
     .titleContainer {
         width: 50%;
         font-size: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .titleContainer h1 {
@@ -50,24 +69,42 @@
     }
 
     .rulesContainer {
-        width: 50%;
+        width: 25%;
         display: block !important;
-    }
-
-    .rulesText {
-        width: 50%;
         margin: auto auto;
         padding: 80px;
         background-color: var(--content-background-color);
+        border-radius: 8px;
     }
 
-    .rulesText h2 {
-        font-size: 70px;
+    .rulesContainer h2 {
+        font-size: 64px;
         margin-bottom: 30px;
     }
-
-    .rulesText li {
-        font-size: 50px;
+    .rulesContainer .ruleText {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .rulesContainer .rule {
+        padding-bottom: 16px;
+        display: flex;
+        flex-direction: row;
+        
+    }
+    .rulesContainer .ruleNumber {
+        font-size: 80px;
+        font-weight: bold;
+        padding-right: 16px;
+        margin-top: -11px;
+        color: var(--guardion-blue);
+    }
+    .rulesContainer .ruleHeader {
+        font-size: 36px;
+        font-weight: bold;
+    }
+    .rulesContainer .ruleExplainer {
+        font-size: 20px;
     }
 }
 
@@ -123,18 +160,26 @@ body {
 
 button,
 .button {
-    background-color: #0a9bd8;
+    background-color: var(--guardion-blue);
     border: none;
     color: black;
-    padding: 8px 32px;
+    padding: 8px;
     margin-top: 25px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-size: 16px;
     text-align: center;
-    border-radius: 5px;
+    border-radius: var(--button-border-radius);
+    box-shadow: 0px 2px 4px black;
     cursor: pointer;
+    height: var(--button-height);
+}
+button img {
+    height: 24px;
+    margin-right: 8px;
 }
 
 table {
@@ -144,6 +189,20 @@ table {
 
 td {
     padding: 20px;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;    
+    align-items: center;
+}
+
+.sectionContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sectionButton {
@@ -177,6 +236,8 @@ td {
     align-items: center;
     position: relative;
     height: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 nav a {
@@ -197,44 +258,14 @@ nav a:hover {
 }
 
 .infoButton img {
-    background-color: #0a9bd8;
     margin: auto;
-    max-height: 35px;
+    height: var(--button-height);
     border-radius: 20px;
 }
-
-.returnButton img {
-    background-color: #0a9bd8;
-    margin-left: 50%;
-    max-height: 50px;
-    border-radius: 30px;
-}
-
-.panelFooter .infoButton img {
-    background-color: #0a9bd8;
-    margin-left: 10px;
-    padding: 3px;
-    max-height: 35px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px black;
-}
-
-.panelFooter #flipButton {
-    background-color: #0a9bd8;
-    padding: 3px;
-    max-height: 35px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px black;
-}
-
-.panelFooter #startButton {
-    background-color: #0a9bd8;
-    height: 40px;
-    margin-right: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px black;
-    font-size: 20px;
-    font-weight: bold;
+.infoContainer {
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
 }
 
 #resetButton {
@@ -279,6 +310,35 @@ nav a:hover {
     box-shadow: 0px 3px 20px #0000001a;
 }
 
+.sectionContent img {
+    border-radius: 8px;
+}
+
+#redirectMessage {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.statsHeader {
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 64px;
+    padding-bottom: 8px;
+}
+.gameStatistics {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: fit-content;
+    padding: 8px;
+}
+
+.gameStatistics td {
+    padding: 2px 8px;
+}
+
 /* Progess bar result page */
 
 progress {
@@ -293,7 +353,7 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-    background: #0a9bd8;
+    background: var(--guardion-blue);
     border-radius: 15px;
 }
 
@@ -356,16 +416,14 @@ progress::-webkit-progress-value {
 
 .modal {
     display: none;
-    /* Hidden by default */
-    position: fixed;
+    /* Hidden by default; flex when enabled */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
     /* Stay in place */
     z-index: 1;
-    /* Sit on top */
-    padding-top: 100px;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 50%;
+    width: 100%;
     /* Full width */
     height: 100%;
     /* Full height */
@@ -381,15 +439,27 @@ progress::-webkit-progress-value {
 .modal-content {
     color: black;
     background-color: #fefefe;
-    margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 40%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+.modal-header {
+    margin-bottom: 16px;
 }
 
+.modal-actual-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .modal-content img {
     width: 100%;
-    padding-top: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
 }
 
 /* The Close Button */
@@ -408,5 +478,34 @@ progress::-webkit-progress-value {
 }
 
 .rulesContainer {
-    display: none;
+    display: none;    
+}
+
+/*win-lose screens*/
+.sectionText p {
+    padding-top: 16px;
+}
+
+#duckyExplainer {
+    font-style: italic;
+}
+
+#duckyExplainer:hover,
+#duckyExplainer:focus {
+    cursor: pointer;
+    color: var(--guardion-blue);
+    font-weight: bold;
+}
+#duckyExplainerModal img {
+    width: 25%;
+    height: 25%;
+}
+
+#duckyExplainerModal ol {
+    list-style-position: inside;
+    font-size: 20px;
+}
+#duckyExplainerModal p {
+    margin-bottom: 16px;
+    width: 100%
 }
