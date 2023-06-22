@@ -262,13 +262,14 @@ nav a:hover {
     height: var(--button-height);
     border-radius: 20px;
 }
+
 .infoContainer {
     display: flex; 
     flex-direction: column;
     align-items: center; 
 }
 
-#resetButton {
+#resetButton, #backToGame {
     background-color: transparent;
     border: none;
     color: white;
@@ -280,7 +281,7 @@ nav a:hover {
     font-weight: bold;
 }
 
-#resetButton:hover {
+#resetButton:hover, #backToGame:hover {
     color: #0a9bd8;
 }
 
