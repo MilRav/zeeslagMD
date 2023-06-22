@@ -64,6 +64,7 @@
     flex-direction: row;
     align-items: center;
 }
+
 #gameInfo .text{
     font-size: 20px;
     color: white;
@@ -79,7 +80,9 @@
     align-items: center;
     transition: 1s ease-in-out;
 }
-
+#gameInfo .playing {
+    display: none;
+}
 #gameContainer {
     width: 100%;
     margin: auto;
@@ -96,6 +99,9 @@
     color: black;
 }
 
+#gameContainer.playing ~ #gameFooter {
+    display: none;
+}
 #centerPadding {
     width: 0px;
 }
