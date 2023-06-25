@@ -19,6 +19,9 @@ window.onfocus = function (ev) {
     if (window.localStorage.getItem('returnToHome') === 'true'){
         // we have focus, because the info tab has closed itself due to timeout. Therefore: instantly return home too.
         returnHome()
+    } else {
+        // we got here through user interaction, so reset the timer
+        resetTimer()
     }
 };
 
