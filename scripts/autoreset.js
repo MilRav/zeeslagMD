@@ -6,19 +6,30 @@ let cancelTimerId
 
 // in seconds
 const CANCEL_TIME = 20 
-const AUTO_RESET_TIME = 180
+const AUTO_RESET_TIME = 18
 
 setTimer()
 
+// add eventlisteners to this window
 window.addEventListener("mousedown", function(event) {
     resetTimer()
 });
 
+window.onfocus = function (ev) {
+    if (window.localStorage.getItem('returnToHome') === 'true'){
+        // we have focus, because the info tab has closed itself due to timeout. Therefore: instantly return home too.
+        returnHome()
+    }
+};
+
 function setTimer () {
     mainTimerId = setTimeout(() => {
-        // call our dialog
-        raiseDialog()
-        console.log("this is the first message");
+        // call our dialog if we have focus, otherwise just extend the timer
+        if (document.hasFocus()) {
+            raiseDialog()
+        } else {
+            resetTimer()
+        }        
     }, AUTO_RESET_TIME * 1000);
 }
 
@@ -42,7 +53,12 @@ async function raiseDialog() {
     progressBar.max = CANCEL_TIME
  
     cancelTimerId = setTimeout(function () {
-        window.location = '../index.html'
+        if (window.location.toString().indexOf('info.html') != -1 ) {
+            // we are on the info page, so close ourself instead of navigating home
+            closeSelf()
+        } else {
+            returnHome()
+        }
     }, CANCEL_TIME  * 1000)
 
     let timeleft = CANCEL_TIME-1;
@@ -73,4 +89,13 @@ async function getDialogHTML() {
     let dialog_data = await response.text()
 
     return dialog_data
+}
+function closeSelf(){
+    window.localStorage.setItem('returnToHome','true')
+    window.close()
+}
+
+function returnHome(){
+    window.localStorage.removeItem('returnToHome')
+    window.location = '../index.html'
 }
