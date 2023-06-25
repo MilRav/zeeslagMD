@@ -6,7 +6,7 @@ let cancelTimerId
 
 // in seconds
 const CANCEL_TIME = 20 
-const AUTO_RESET_TIME = 18
+const AUTO_RESET_TIME = 180
 
 setTimer()
 
