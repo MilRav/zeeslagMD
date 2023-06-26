@@ -344,16 +344,21 @@
 }
 
 .boom {
+    pointer-events: none;
     background-image: url('../media/boom.gif') !important;
     background-size: cover;
-    background-position: center;
-    pointer-events: none;
+    background-position: center; 
+}
+
+#computer.gameBoard .boom {
+    background-color: rgb(255, 255, 195);
 }
 
 .empty {
     pointer-events: none;
     background-image: url('../media/empty.gif') !important;
     background-size: cover;
+    background-color: rgb(225, 255, 255);
     background-position: center;
 }
 
