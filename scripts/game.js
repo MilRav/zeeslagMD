@@ -216,13 +216,9 @@ function setTurnIndicator() {
         document.querySelector('#playerSide').classList.add('turn')
     }
     // update scorecards
-    document.querySelector('#playerSide .scoreCard #hit').textContent = `Raak: ${gameState.player.hits.length}` 
-    document.querySelector('#playerSide .scoreCard #miss').textContent = `Mis: ${gameState.round - gameState.player.hits.length}` 
-    document.querySelector('#playerSide .scoreCard #score').textContent = `Score: ${gameState.player.score}`
-
-    document.querySelector('#computerSide .scoreCard #hit').textContent = `Raak: ${gameState.computer.hits.length}` 
-    document.querySelector('#computerSide .scoreCard #miss').textContent = `Mis: ${gameState.round - gameState.computer.hits.length}` 
-    document.querySelector('#computerSide .scoreCard #score').textContent = `Score: ${gameState.computer.score}`
+    document.querySelector('#computerSide .scoreCard #hit').textContent = `Raak: ${gameState.player.hits.length}`
+    document.querySelector('#computerSide .scoreCard #miss').textContent = `Mis: ${gameState.round - gameState.player.hits.length}`
+    document.querySelector('#computerSide .scoreCard #score').textContent = `Score: ${gameState.player.score}`
 }
 
 function nuke() {

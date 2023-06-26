@@ -150,6 +150,9 @@
     padding-bottom: 8px;
     height: fit-content;
 }
+#playerSide .panelHeader .boardTitle {
+    padding-bottom: 30px;
+}
 .panelHeader .scoreCard {
     width: var(--board-width);
     height: fit-content;
