@@ -150,13 +150,12 @@
     padding-bottom: 8px;
     height: fit-content;
 }
-#playerSide .panelHeader .boardTitle {
-    padding-bottom: 30px;
-}
+
 .panelHeader .scoreCard {
     width: var(--board-width);
     height: fit-content;
     display: flex;
+    padding-bottom: 15px ;
     flex-direction: row;
     justify-content: space-around;
 }
@@ -354,14 +353,14 @@
 }
 
 #computer.gameBoard .boom {
-    background-color: rgb(255, 255, 195);
+    background-color: rgba(128, 57, 57, 0.666);
 }
 
 .empty {
     pointer-events: none;
     background-image: url('../media/empty.gif') !important;
     background-size: cover;
-    background-color: rgb(225, 255, 255);
+    background-color: rgba(38, 75, 148, 0.6);
     background-position: center;
 }
 
