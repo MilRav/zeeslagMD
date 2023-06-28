@@ -64,6 +64,7 @@
     flex-direction: row;
     align-items: center;
 }
+
 #gameInfo .text{
     font-size: 20px;
     color: white;
@@ -79,7 +80,9 @@
     align-items: center;
     transition: 1s ease-in-out;
 }
-
+#gameInfo .playing {
+    display: none;
+}
 #gameContainer {
     width: 100%;
     margin: auto;
@@ -96,6 +99,9 @@
     color: black;
 }
 
+#gameContainer.playing ~ #gameFooter {
+    display: none;
+}
 #centerPadding {
     width: 0px;
 }
@@ -144,10 +150,12 @@
     padding-bottom: 8px;
     height: fit-content;
 }
+
 .panelHeader .scoreCard {
     width: var(--board-width);
     height: fit-content;
     display: flex;
+    padding-bottom: 15px ;
     flex-direction: row;
     justify-content: space-around;
 }
@@ -338,16 +346,21 @@
 }
 
 .boom {
+    pointer-events: none;
     background-image: url('../media/boom.gif') !important;
     background-size: cover;
-    background-position: center;
-    pointer-events: none;
+    background-position: center; 
+}
+
+#computer.gameBoard .boom {
+    background-color: rgba(128, 57, 57, 0.666);
 }
 
 .empty {
     pointer-events: none;
     background-image: url('../media/empty.gif') !important;
     background-size: cover;
+    background-color: rgba(38, 75, 148, 0.6);
     background-position: center;
 }
 
