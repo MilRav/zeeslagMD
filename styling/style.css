@@ -16,7 +16,8 @@
     }
 
     #centerPadding {
-        width: calc(2*274px) !important; /* twice width of the ship list */
+        width: calc(2*274px) !important;
+        /* twice width of the ship list */
     }
 
     #startButton {
@@ -27,12 +28,13 @@
     #gameInfo .text {
         width: 50%;
     }
+
     #infoSpacer {
         width: 50%;
         height: 16px;
     }
-    #gameInfo
-    { 
+
+    #gameInfo {
         flex-direction: row !important;
     }
 
@@ -81,17 +83,20 @@
         font-size: 64px;
         margin-bottom: 30px;
     }
+
     .rulesContainer .ruleText {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
     }
+
     .rulesContainer .rule {
         padding-bottom: 16px;
         display: flex;
         flex-direction: row;
-        
+
     }
+
     .rulesContainer .ruleNumber {
         font-size: 80px;
         font-weight: bold;
@@ -99,10 +104,12 @@
         margin-top: -11px;
         color: var(--guardion-blue);
     }
+
     .rulesContainer .ruleHeader {
         font-size: 36px;
         font-weight: bold;
     }
+
     .rulesContainer .ruleExplainer {
         font-size: 20px;
     }
@@ -137,7 +144,7 @@ table h1 {
     font-size: 11vw;
 }
 
-h1{
+h1 {
     font-size: 40px;
 }
 
@@ -177,6 +184,7 @@ button,
     cursor: pointer;
     height: var(--button-height);
 }
+
 button img {
     height: 24px;
     margin-right: 8px;
@@ -193,7 +201,7 @@ td {
 
 .titleContainer {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     align-items: center;
 }
 
@@ -264,12 +272,13 @@ nav a:hover {
 }
 
 .infoContainer {
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
 }
 
-#resetButton, #backToGame {
+#resetButton,
+#backToGame {
     background-color: transparent;
     border: none;
     color: white;
@@ -281,7 +290,8 @@ nav a:hover {
     font-weight: bold;
 }
 
-#resetButton:hover, #backToGame:hover {
+#resetButton:hover,
+#backToGame:hover {
     color: #0a9bd8;
 }
 
@@ -291,7 +301,7 @@ nav a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 95vh;
+    height: 80vh;
     /* background-image: url("../media/backgroundShips.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -326,6 +336,7 @@ nav a:hover {
     padding-top: 64px;
     padding-bottom: 8px;
 }
+
 .gameStatistics {
     font-size: 16px;
     display: flex;
@@ -397,10 +408,12 @@ progress::-webkit-progress-value {
     width: 100%;
     text-align: center;
 }
+
 .shipInfoContainer p {
     margin-top: 10px;
     font-size: 20px;
 }
+
 .shipImg {
     margin: 40px;
 }
@@ -448,6 +461,7 @@ progress::-webkit-progress-value {
     flex-direction: column;
     justify-items: center;
 }
+
 .modal-header {
     margin-bottom: 16px;
 }
@@ -457,6 +471,7 @@ progress::-webkit-progress-value {
     flex-direction: column;
     align-items: center;
 }
+
 .modal-content img {
     width: 100%;
     margin-top: 20px;
@@ -479,7 +494,7 @@ progress::-webkit-progress-value {
 }
 
 .rulesContainer {
-    display: none;    
+    display: none;
 }
 
 /*win-lose screens*/
@@ -497,6 +512,7 @@ progress::-webkit-progress-value {
     color: var(--guardion-blue);
     font-weight: bold;
 }
+
 #duckyExplainerModal img {
     width: 25%;
     height: 25%;
@@ -506,6 +522,7 @@ progress::-webkit-progress-value {
     list-style-position: inside;
     font-size: 20px;
 }
+
 #duckyExplainerModal p {
     margin-bottom: 16px;
     width: 100%
