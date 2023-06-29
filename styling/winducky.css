@@ -1,23 +1,24 @@
 #ducky {
-    width: 80%;
-    height: 90%;
-    position: relative;    
-    border-radius: 10px;
-    margin: 8px;
-    overflow: hidden;
+  width: 50%;
+  height: 90%;
+  position: relative;
+  border-radius: 10px;
+  margin: 8px;
+  overflow: hidden;
 }
 
-#ducky img { /* <= optional, for responsiveness */
-    max-width: 50%;
-    height: auto;    
-    position: absolute;
-    top: 20%;
-    left: 25%;
+#ducky img {
+  /* <= optional, for responsiveness */
+  max-width: 50%;
+  height: auto;
+  position: absolute;
+  top: 20%;
+  left: 25%;
 }
- 
- #ducky #sunburst {
-   top: 0;
-   left: 0;
-   z-index: -1;
-   margin: -8px
- }
+
+#ducky #sunburst {
+  top: 0;
+  left: 0;
+  z-index: -1;
+  margin: -8px
+}
