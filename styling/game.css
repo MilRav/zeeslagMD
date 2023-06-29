@@ -157,10 +157,10 @@
 }
 
 .panelHeader .scoreCard {
-    width: 65%;
+    width: 60%;
     height: fit-content;
     display: flex;
-    padding-bottom: 15px;
+    padding-bottom: 25px;
     flex-direction: row;
     justify-content: space-around;
 }
@@ -168,12 +168,14 @@
 .scoreCard {
     color: var(--guardion-blue);
     font-size: 30px;
+    font-weight: bold;
 }
 
 .scoreCard p {
     color: white;
     font-size: 30px;
-    margin-left: 50px;
+    margin-left: 70px;
+    font-weight: normal;
 }
 
 .setup .scoreCard {

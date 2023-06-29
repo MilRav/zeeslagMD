@@ -7,7 +7,7 @@ const constants = {
     HARD_DIFFICULTY: 4,
     DIFFICULTY_THRESHOLD: 3,
     DUCKY_THRESHOLD: 40,
-    NORMAL_SPEED: () => Math.floor(Math.random() * 3 * 1000) + 1500,
+    NORMAL_SPEED: () => Math.floor(Math.random() * 1500) + 1000,
     DEBUG_SPEED: 10,
     AFTER_TURN_TIME: 1000, // defines the time after a turn is complete 
     BOARD_WIDTH: 10
