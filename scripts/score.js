@@ -1,15 +1,15 @@
-import { constants as consts, ships, sounds } from "./constants.js" 
+import { constants as consts, ships, sounds } from "./constants.js"
 
 // shows historic game statistics in the console
-export {getStatistics, resetStatistics, checkScore }
+export { getStatistics, resetStatistics, checkScore }
 
-function getStatistics(){
+function getStatistics() {
     let _oStats = JSON.parse(localStorage.getItem('gamestats'))
     return _oStats
 }
 
 // resets historic stats
-function resetStatistics(){
+function resetStatistics() {
     localStorage.removeItem('gamestats')
 }
 
@@ -19,22 +19,22 @@ function checkScore() {
             let computerShipList = document.querySelector('#computerSide .shipList').getElementsByClassName(`${ship.name}`);
             computerShipList[0].classList.add('sunk')
             if (gameState.computer.shipsSunk.indexOf(ship.name) == -1) {
-                sounds.sinkSound.play();
+                // sounds.sinkSound.play();
                 gameState.computer.shipsSunk.push(ship.name);
             }
         }
-        if (gameState.computer.hits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {   
+        if (gameState.computer.hits.filter(storedShipName => storedShipName === ship.name).length === ship.length) {
             let playerShipList = document.querySelector('#playerSide .shipList').getElementsByClassName(`${ship.name}`);
             playerShipList[0].classList.add('sunk')
             if (gameState.player.shipsSunk.indexOf(ship.name) == -1) {
-                sounds.sinkSound.play();
+                // sounds.sinkSound.play();
                 gameState.player.shipsSunk.push(ship.name);
             }
         }
     })
 
     // update score stats
-    let maxHits = 17; 
+    let maxHits = 17;
     gameState.computer.hitPercentage = Math.round((gameState.computer.hits.length / gameState.round) * 100);
     gameState.computer.score = Math.round((gameState.computer.hitPercentage / consts.DUCKY_THRESHOLD) * 100)
     gameState.player.hitPercentage = Math.round((gameState.player.hits.length / gameState.round) * 100)
@@ -66,10 +66,10 @@ function _lose() {
 }
 
 // appends the score of the game to local storage
-function _recordScore(){
+function _recordScore() {
     let _oGameStats = getStatistics();
 
-    if (!_oGameStats){
+    if (!_oGameStats) {
         _oGameStats = {
             'total games enjoyed': 0,
             'wins': 0,
@@ -87,14 +87,14 @@ function _recordScore(){
     }
 
     let _nGames = ++_oGameStats['total games enjoyed']
-    let _nDuration = (Date.now() - gameState.startTime)/1000 //in seconds
+    let _nDuration = (Date.now() - gameState.startTime) / 1000 //in seconds
     let _nPlayerScore = gameState.player.score
     let _nRounds = gameState.round
 
     let _bResult = (gameState.computer.shipsSunk.length === 5) ? ++_oGameStats['wins'] : ++_oGameStats['losses']
 
-    if (_bResult && (gameState.player.hitPercentage >= consts.DUCKY_THRESHOLD) ) {
-        ++_oGameStats['duckies']        
+    if (_bResult && (gameState.player.hitPercentage >= consts.DUCKY_THRESHOLD)) {
+        ++_oGameStats['duckies']
     }
 
     // score
@@ -109,9 +109,9 @@ function _recordScore(){
     if (_nRounds < _oGameStats["least rounds"]) _oGameStats["least rounds"] = _nRounds
 
     // recalculate averages
-    _oGameStats["average score"] =  ( (_oGameStats["average score"] * (_nGames-1)) + _nPlayerScore) /  _nGames
-    _oGameStats["average game time"] =  ( (_oGameStats["average game time"] * (_nGames-1)) + _nDuration) /  _nGames
-    _oGameStats["average no. rounds"] = ( (_oGameStats["average no. rounds"] * (_nGames-1)) + _nRounds) /  _nGames
+    _oGameStats["average score"] = ((_oGameStats["average score"] * (_nGames - 1)) + _nPlayerScore) / _nGames
+    _oGameStats["average game time"] = ((_oGameStats["average game time"] * (_nGames - 1)) + _nDuration) / _nGames
+    _oGameStats["average no. rounds"] = ((_oGameStats["average no. rounds"] * (_nGames - 1)) + _nRounds) / _nGames
 
     localStorage.setItem('gamestats', JSON.stringify(_oGameStats))
 

@@ -1,4 +1,4 @@
-export {constants, ships, sounds}
+export { constants, ships, sounds }
 
 //gameplay
 const constants = {

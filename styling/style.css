@@ -295,6 +295,11 @@ nav a:hover {
     color: #0a9bd8;
 }
 
+#btnNewGame {
+    font-size: 64px;
+    padding: 45px;
+}
+
 /* Section styling */
 
 .section {
@@ -504,6 +509,12 @@ progress::-webkit-progress-value {
 
 #duckyExplainer {
     font-style: italic;
+}
+
+#duckyExplainer img {
+    position: fixed;
+    margin-left: 70px;
+    height: 45px;
 }
 
 #duckyExplainer:hover,
