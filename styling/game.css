@@ -166,8 +166,9 @@
 }
 
 .scoreCard {
+    align-items: center;
     color: var(--guardion-blue);
-    font-size: 30px;
+    font-size: 36px;
     font-weight: bold;
 }
 
@@ -182,6 +183,9 @@
     display: none;
 }
 
+.statNumber {
+    padding-left: 10px;
+}
 
 .panelContent {
     display: flex;
