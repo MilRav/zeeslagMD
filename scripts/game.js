@@ -1,5 +1,5 @@
 import { checkScore } from "./score.js"
-import { constants as consts, ships, sounds } from "./constants.js" 
+import { constants as consts, ships, sounds } from "./constants.js"
 
 let allPlayerBlocks;
 let gameState;
@@ -10,7 +10,7 @@ const width = consts.BOARD_WIDTH
 window.enableDebugMode = debug
 
 //EXPORT
-export {startGame, setInfoText}
+export { startGame, setInfoText }
 
 // Start Game
 function startGame() {
@@ -58,7 +58,7 @@ function handleClick(e) {
     if (!gameState.gameOver) {
         gameState.round++;
         if (e.target.classList.contains("taken")) {
-            sounds.hitSound.play();
+            // sounds.hitSound.play();
             e.target.classList.add("boom");
             setInfoText("Je hebt een schip geraakt!");
             let classes = Array.from(e.target.classList);
@@ -76,7 +76,7 @@ function handleClick(e) {
         gameState.playerTurn = false;
         const allBoardBlocks = document.querySelectorAll("#computer div");
         allBoardBlocks.forEach(block => block.replaceWith(block.cloneNode(true)));
-        let _nDelay  = gameState.debug ? 10 : consts.AFTER_TURN_TIME
+        let _nDelay = gameState.debug ? 10 : consts.AFTER_TURN_TIME
         setTimeout(computerTurn, _nDelay);
     }
 }
@@ -104,7 +104,7 @@ function computerTurn() {
             adjustDifficulty();
 
             // Player turn
-            let _nDelay  = gameState.debug ? 10 : consts.AFTER_TURN_TIME
+            let _nDelay = gameState.debug ? 10 : consts.AFTER_TURN_TIME
             setTimeout(() => {
                 gameState.playerTurn = true;
                 setTurnIndicator();
@@ -124,7 +124,7 @@ function engageTarget(blockID) {
         allPlayerBlocks[blockID].classList.contains("taken") &&
         !allPlayerBlocks[blockID].classList.contains("boom")
     ) {
-        sounds.hitSound.play();
+        // sounds.hitSound.play();
         allPlayerBlocks[blockID].classList.add("boom");
         setInfoText("Guardion heeft jou schip geraakt!")
         let classes = Array.from(allPlayerBlocks[blockID].classList);
@@ -216,9 +216,9 @@ function setTurnIndicator() {
         document.querySelector('#playerSide').classList.add('turn')
     }
     // update scorecards
-    document.querySelector('#computerSide .scoreCard #hit').textContent = `Raak: ${gameState.player.hits.length}`
-    document.querySelector('#computerSide .scoreCard #miss').textContent = `Mis: ${gameState.round - gameState.player.hits.length}`
-    document.querySelector('#computerSide .scoreCard #score').textContent = `Score: ${gameState.player.score}`
+    document.querySelector('#computerSide .scoreCard #hit').textContent = `${gameState.player.hits.length}`
+    document.querySelector('#computerSide .scoreCard #miss').textContent = `${gameState.round - gameState.player.hits.length}`
+    document.querySelector('#computerSide .scoreCard #score').textContent = `${gameState.player.score}`
 }
 
 function nuke() {

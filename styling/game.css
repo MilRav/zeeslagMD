@@ -57,6 +57,7 @@
 :root {
     --board-width: 600px;
 }
+
 #gameInfo {
     width: 100%;
     text-align: center;
@@ -65,11 +66,12 @@
     align-items: center;
 }
 
-#gameInfo .text{
+#gameInfo .text {
     font-size: 20px;
     color: white;
 }
-#gameInfo {    
+
+#gameInfo {
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -80,9 +82,11 @@
     align-items: center;
     transition: 1s ease-in-out;
 }
+
 #gameInfo .playing {
     display: none;
 }
+
 #gameContainer {
     width: 100%;
     margin: auto;
@@ -99,9 +103,10 @@
     color: black;
 }
 
-#gameContainer.playing ~ #gameFooter {
+#gameContainer.playing~#gameFooter {
     display: none;
 }
+
 #centerPadding {
     width: 0px;
 }
@@ -152,12 +157,34 @@
 }
 
 .panelHeader .scoreCard {
-    width: var(--board-width);
+    width: 60%;
     height: fit-content;
     display: flex;
-    padding-bottom: 15px ;
+    padding-bottom: 25px;
     flex-direction: row;
     justify-content: space-around;
+}
+
+.scoreCard {
+    align-items: center;
+    color: var(--guardion-blue);
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.scoreCard p {
+    color: white;
+    font-size: 30px;
+    margin-left: 70px;
+    font-weight: normal;
+}
+
+.setup .scoreCard {
+    display: none;
+}
+
+.statNumber {
+    padding-left: 10px;
 }
 
 .panelContent {
@@ -205,6 +232,7 @@
     margin-top: 8px;
     justify-content: center;
 }
+
 .panelFooter #startButton.hide {
     display: flex;
     visibility: hidden;
@@ -349,7 +377,7 @@
     pointer-events: none;
     background-image: url('../media/boom.gif') !important;
     background-size: cover;
-    background-position: center; 
+    background-position: center;
 }
 
 #computer.gameBoard .boom {
